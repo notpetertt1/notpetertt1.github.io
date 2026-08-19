@@ -2569,18 +2569,17 @@ function handleScannedQR(data){
   }
 
 
-  if(!code){
+accessInput.value=code;
 
-    accessInput.value="";
+showAccessMessage(
+  "QR detected. Checking access...",
+  "success"
+);
 
-    showAccessMessage(
-      "That QR doesn't contain a PStyla access code.",
-      "error"
-    );
-
-    return;
-  }
-
+setTimeout(
+  redeemCode,
+  250
+);
 
   accessInput.value=code;
 
