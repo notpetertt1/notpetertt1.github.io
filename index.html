@@ -1,0 +1,2654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#09070f">
+<title>PStyla Games</title>
+
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+:root{
+  --purple:#9b5cff;
+  --purple2:#6d28d9;
+  --pink:#d946ef;
+  --bg:#050507;
+  --panel:#101016;
+  --panel2:#15151d;
+  --border:#292936;
+  --text:#fff;
+  --muted:#858592;
+}
+
+body{
+  margin:0;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 15% 10%,rgba(139,92,246,.14),transparent 30%),
+    radial-gradient(circle at 85% 70%,rgba(217,70,239,.10),transparent 35%),
+    var(--bg);
+  font-family:Arial,Helvetica,sans-serif;
+  overflow-x:hidden;
+}
+
+button,input{font:inherit}
+button{cursor:pointer}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-5;
+  pointer-events:none;
+  background:
+    linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+  background-size:50px 50px;
+  mask-image:linear-gradient(to bottom,black,transparent 85%);
+}
+
+#particles{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-2;
+  overflow:hidden;
+}
+
+.particle{
+  position:absolute;
+  width:var(--size);
+  height:var(--size);
+  left:var(--x);
+  top:var(--y);
+  border-radius:50%;
+  background:#c084fc;
+  box-shadow:0 0 12px #a855f7;
+  opacity:var(--opacity);
+  animation:float var(--duration) linear infinite;
+  animation-delay:var(--delay);
+}
+
+@keyframes float{
+  from{transform:translate(-40px,40px)}
+  to{transform:translate(110vw,-15vh)}
+}
+
+#intro{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:
+    radial-gradient(circle at center,#24103a,#0d0715 48%,#050507);
+  transition:.8s ease;
+}
+
+#intro.hide{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+.introBox{width:min(90%,700px)}
+
+.introTitle{
+  font-family:Impact,"Arial Black",sans-serif;
+  font-size:clamp(55px,10vw,110px);
+  letter-spacing:-5px;
+  text-shadow:0 0 35px rgba(168,85,247,.7);
+  animation:introIn 1s ease;
+}
+
+.introTitle span{color:#a855f7}
+
+.introText{
+  margin-top:18px;
+  color:#aaa;
+  line-height:1.7;
+  animation:introText .8s ease .4s both;
+}
+
+.updateText{
+  color:#777;
+  font-size:12px;
+  margin-top:10px;
+  animation:introText .8s ease .7s both;
+}
+
+.updateText span{
+  color:#c084fc;
+  font-weight:900;
+}
+
+.enter{
+  margin-top:28px;
+  border:1px solid #a855f7;
+  border-radius:10px;
+  padding:14px 28px;
+  color:#fff;
+  background:linear-gradient(135deg,#8b5cf6,#c026d3);
+  font-weight:900;
+  box-shadow:0 0 35px rgba(139,92,246,.35);
+  animation:introText .8s ease 1s both;
+  transition:.25s;
+}
+
+.enter:hover{
+  transform:translateY(-4px) scale(1.04);
+  box-shadow:0 0 55px rgba(168,85,247,.6);
+}
+
+@keyframes introIn{
+  from{opacity:0;transform:translateY(30px) scale(.9)}
+  to{opacity:1;transform:none}
+}
+
+@keyframes introText{
+  from{opacity:0;transform:translateY(15px)}
+  to{opacity:1;transform:none}
+}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:5000;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  background:rgba(5,5,8,.72);
+  backdrop-filter:blur(20px);
+}
+
+.nav{
+  max-width:1450px;
+  min-height:72px;
+  margin:auto;
+  padding:12px 28px;
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.logo{
+  white-space:nowrap;
+  font-size:23px;
+  font-weight:1000;
+}
+
+.logoMark{
+  display:inline-flex;
+  width:31px;
+  height:31px;
+  align-items:center;
+  justify-content:center;
+  margin-right:7px;
+  border-radius:8px;
+  background:linear-gradient(135deg,#8b5cf6,#d946ef);
+}
+
+.logo span:last-child{color:#c084fc}
+
+.search{
+  flex:1;
+  max-width:600px;
+}
+
+.search input{
+  width:100%;
+  padding:12px 16px;
+  border:1px solid var(--border);
+  border-radius:9px;
+  outline:none;
+  background:#121219;
+  color:#fff;
+}
+
+.search input:focus{
+  border-color:#8b5cf6;
+  box-shadow:0 0 20px rgba(139,92,246,.18);
+}
+
+.navButtons{
+  display:flex;
+  gap:7px;
+}
+
+.navButtons button{
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:10px 12px;
+  color:#fff;
+  background:#15151c;
+  transition:.2s;
+}
+
+.navButtons button:hover{
+  border-color:#8b5cf6;
+  transform:translateY(-2px);
+}
+
+main{
+  max-width:1450px;
+  margin:auto;
+  padding:38px 28px 80px;
+}
+
+.welcomeSmall{
+  color:#a855f7;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+h1{
+  margin:5px 0;
+  font-size:clamp(35px,5vw,58px);
+  letter-spacing:-3px;
+}
+
+.welcome p{color:#777}
+
+.featured{
+  position:relative;
+  overflow:hidden;
+  min-height:320px;
+  margin:30px 0 38px;
+  padding:45px;
+  border:1px solid rgba(168,85,247,.35);
+  border-radius:20px;
+  background:
+    radial-gradient(circle at 80% 40%,rgba(168,85,247,.22),transparent 30%),
+    linear-gradient(120deg,#21102f,#0e0b14);
+  box-shadow:0 30px 90px rgba(0,0,0,.45);
+}
+
+.featured:after{
+  content:"🪝";
+  position:absolute;
+  right:7%;
+  top:35px;
+  font-size:180px;
+  opacity:.11;
+  transform:rotate(-12deg);
+}
+
+.featuredLabel{
+  color:#c084fc;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.featured h2{
+  margin:8px 0;
+  font-size:clamp(40px,6vw,70px);
+  letter-spacing:-4px;
+}
+
+.featured p{
+  max-width:560px;
+  color:#999;
+  line-height:1.7;
+}
+
+.playFeatured{
+  display:inline-block;
+  margin-top:10px;
+  padding:13px 23px;
+  border:0;
+  border-radius:8px;
+  color:#fff;
+  background:linear-gradient(135deg,#8b5cf6,#c026d3);
+  text-decoration:none;
+  font-weight:900;
+  transition:.2s;
+}
+
+.playFeatured:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 30px rgba(139,92,246,.4);
+}
+
+.toolbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+}
+
+.toolbar h2{margin:0}
+
+.random{
+  border:1px solid #7543d2;
+  border-radius:8px;
+  padding:10px 16px;
+  color:#fff;
+  background:linear-gradient(135deg,#8b5cf6,#6d28d9);
+  font-weight:900;
+  transition:.2s;
+}
+
+.random:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 25px rgba(139,92,246,.3);
+}
+
+.categories{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:18px 0 25px;
+}
+
+.category{
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:9px 14px;
+  color:#999;
+  background:#14141b;
+  font-size:12px;
+  font-weight:900;
+  transition:.2s;
+}
+
+.category:hover,
+.category.active{
+  border-color:#8b5cf6;
+  color:#fff;
+  background:#8b5cf6;
+}
+
+.gameGrid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(215px,1fr));
+  gap:17px;
+}
+
+.game{
+  overflow:hidden;
+  position:relative;
+  border:1px solid var(--border);
+  border-radius:14px;
+  background:rgba(16,16,22,.96);
+  transition:.25s;
+}
+
+.game:hover{
+  transform:translateY(-8px);
+  border-color:#a855f7;
+  box-shadow:
+    0 20px 50px rgba(0,0,0,.55),
+    0 0 30px rgba(139,92,246,.16);
+}
+
+.thumb{
+  height:170px;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 25%,var(--glow),transparent 42%),
+    linear-gradient(135deg,var(--one),var(--two));
+}
+
+.thumb:before{
+  content:"";
+  position:absolute;
+  width:240px;
+  height:240px;
+  border-radius:50%;
+  background:rgba(255,255,255,.07);
+  top:-130px;
+  right:-80px;
+}
+
+.thumbIcon{
+  position:relative;
+  z-index:2;
+  font-size:68px;
+  filter:drop-shadow(0 12px 15px rgba(0,0,0,.45));
+  transition:.3s;
+}
+
+.game:hover .thumbIcon{
+  transform:scale(1.15) rotate(-4deg);
+}
+
+.badge{
+  position:absolute;
+  top:8px;
+  left:8px;
+  z-index:3;
+  padding:5px 7px;
+  border-radius:5px;
+  color:#d8b4fe;
+  background:rgba(4,4,8,.7);
+  backdrop-filter:blur(8px);
+  font-size:8px;
+  font-weight:900;
+}
+
+.badge.external{color:#fbbf24}
+
+.thumbName{
+  position:absolute;
+  left:10px;
+  bottom:9px;
+  z-index:3;
+  font-size:10px;
+  font-weight:1000;
+  text-shadow:0 2px 8px #000;
+}
+
+.gameInfo{padding:14px}
+
+.gameName{
+  font-size:16px;
+  font-weight:1000;
+  margin-bottom:5px;
+}
+
+.gameCategory{
+  color:#777;
+  font-size:10px;
+  text-transform:uppercase;
+  font-weight:900;
+}
+
+.gameVersion{
+  color:#a855f7;
+  font-size:9px;
+  margin-top:5px;
+}
+
+.gameVersion.external{color:#fbbf24}
+
+.play{
+  margin-top:10px;
+  border:0;
+  border-radius:6px;
+  padding:8px 12px;
+  color:#fff;
+  background:#8b5cf6;
+  font-size:10px;
+  font-weight:1000;
+  transition:.2s;
+}
+
+.play:hover{
+  background:#a855f7;
+  box-shadow:0 0 18px rgba(139,92,246,.45);
+}
+
+.hidden{display:none!important}
+
+.noResults{
+  display:none;
+  padding:50px;
+  border:1px dashed var(--border);
+  border-radius:12px;
+  color:#777;
+  text-align:center;
+}
+
+.section{margin-top:50px}
+
+.sectionTitle{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:15px;
+}
+
+.sectionTitle h2{margin:0}
+.sectionTitle span{color:#666;font-size:11px}
+
+#recent{
+  display:flex;
+  gap:12px;
+  overflow-x:auto;
+  padding-bottom:10px;
+}
+
+.recentItem{
+  flex:0 0 200px;
+  padding:16px;
+  border:1px solid var(--border);
+  border-radius:11px;
+  background:#111117;
+}
+
+.achievements{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+.achievement{
+  padding:20px;
+  border:1px solid #25252d;
+  border-radius:11px;
+  background:#111117;
+  text-align:center;
+  transition:.2s;
+}
+
+.achievement:hover{
+  transform:translateY(-5px);
+  border-color:#8b5cf6;
+}
+
+.achievementIcon{font-size:30px}
+.achievementName{margin-top:7px;font-weight:1000}
+.achievementDesc{margin-top:5px;color:#666;font-size:10px}
+
+.modal,
+#tutorial,
+.gameNotice{
+  position:fixed;
+  inset:0;
+  z-index:50000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(3,2,6,.82);
+  backdrop-filter:blur(14px);
+}
+
+.modal.show,
+#tutorial.show,
+.gameNotice.show{
+  display:flex;
+}
+
+.modalBox,
+.tutorialBox,
+.gameNoticeBox{
+  width:min(94%,600px);
+  padding:30px;
+  border:1px solid rgba(168,85,247,.45);
+  border-radius:18px;
+  background:linear-gradient(145deg,#190e26,#08070d);
+  box-shadow:0 30px 100px rgba(0,0,0,.75);
+}
+
+.modalBox h2,
+.tutorialBox h2{margin-top:8px}
+
+.notes{
+  color:#aaa;
+  line-height:2;
+  font-size:13px;
+}
+
+.close,
+.noticeButtons button,
+.tutorialButtons button{
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:10px 16px;
+  color:#fff;
+  background:#15151c;
+  font-weight:900;
+}
+
+.close,
+.noticeButtons .openHub,
+.tutorialButtons .next{
+  border-color:#8b5cf6;
+  background:linear-gradient(135deg,#8b5cf6,#c026d3);
+}
+
+.tutorialIcon{
+  margin:20px 0 10px;
+  font-size:55px;
+}
+
+.tutorialBox p,
+.gameNoticeBox p{
+  color:#999;
+  line-height:1.7;
+  font-size:14px;
+}
+
+.tutorialTop{
+  display:flex;
+  justify-content:space-between;
+}
+
+.tutorialLabel{
+  color:#a855f7;
+  font-size:10px;
+  font-weight:1000;
+  letter-spacing:2px;
+}
+
+.tutorialStep{color:#666;font-size:11px}
+
+.tutorialTips{
+  display:grid;
+  gap:9px;
+  margin-top:20px;
+}
+
+.tutorialTip{
+  padding:12px;
+  border:1px solid var(--border);
+  border-radius:8px;
+  color:#bbb;
+  background:rgba(255,255,255,.025);
+  font-size:12px;
+}
+
+.tutorialTip b{color:#c084fc}
+
+.tutorialProgress{
+  display:flex;
+  gap:5px;
+  margin-top:22px;
+}
+
+.progressDot{
+  height:4px;
+  flex:1;
+  border-radius:10px;
+  background:#292932;
+}
+
+.progressDot.active{background:#a855f7}
+
+.tutorialButtons,
+.noticeButtons{
+  display:flex;
+  justify-content:flex-end;
+  gap:9px;
+  margin-top:22px;
+}
+
+.gameNoticeBox{
+  max-width:500px;
+  text-align:center;
+}
+
+.gameNoticeIcon{font-size:55px}
+.gameNoticeBox h2{margin:12px 0 8px}
+
+.musicToast{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  z-index:9000;
+  padding:12px 16px;
+  border:1px solid rgba(168,85,247,.4);
+  border-radius:10px;
+  background:rgba(13,9,20,.94);
+  color:#ddd;
+  font-size:12px;
+  font-weight:900;
+  opacity:0;
+  transform:translateY(15px);
+  pointer-events:none;
+  transition:.3s;
+}
+
+.musicToast.show{
+  opacity:1;
+  transform:none;
+}
+
+.musicToast span{color:#c084fc}
+
+#gamePlayer{
+  position:fixed;
+  inset:0;
+  z-index:100000;
+  display:none;
+  flex-direction:column;
+  background:#000;
+}
+
+#gamePlayer.show{display:flex}
+
+.gamePlayerTop{
+  height:58px;
+  flex:0 0 58px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:8px 14px;
+  background:linear-gradient(90deg,#0b0711,#15101d);
+  border-bottom:1px solid rgba(168,85,247,.3);
+}
+
+.gamePlayerTitle{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+}
+
+.gamePlayerTitleIcon{font-size:24px}
+
+.gamePlayerTitleText{
+  font-weight:1000;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.gamePlayerBadge{
+  color:#c084fc;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:1px;
+}
+
+.gamePlayerControls{
+  display:flex;
+  gap:7px;
+}
+
+.gamePlayerControls button{
+  border:1px solid #30253c;
+  border-radius:7px;
+  padding:8px 12px;
+  color:#fff;
+  background:#17121e;
+  font-weight:900;
+}
+
+.gamePlayerControls button:hover{
+  border-color:#a855f7;
+}
+
+#openExternalGame{
+  display:none;
+  border-color:#f59e0b;
+  background:linear-gradient(135deg,#f59e0b,#d97706);
+}
+
+#closeGamePlayer{
+  border-color:#8b5cf6;
+  background:linear-gradient(135deg,#8b5cf6,#c026d3);
+}
+
+#gameFrame{
+  width:100%;
+  height:calc(100vh - 58px);
+  border:0;
+  background:#000;
+}
+
+footer{
+  padding:35px;
+  border-top:1px solid #17171d;
+  color:#444;
+  text-align:center;
+  font-size:11px;
+}
+
+@media(max-width:700px){
+
+  .nav{
+    flex-wrap:wrap;
+    padding:12px 15px;
+  }
+
+  .search{
+    order:5;
+    flex-basis:100%;
+    max-width:none;
+  }
+
+  main{padding:25px 15px 60px}
+
+  .featured{padding:28px}
+
+  .featured:after{font-size:100px}
+
+  .gameGrid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+  }
+
+  .thumb{height:145px}
+  .thumbIcon{font-size:54px}
+
+  .achievements{grid-template-columns:repeat(2,1fr)}
+
+  .navButtons button{
+    padding:8px 9px;
+    font-size:10px;
+  }
+
+  .gamePlayerTop{
+    height:54px;
+    flex-basis:54px;
+  }
+
+  #gameFrame{
+    height:calc(100vh - 54px);
+  }
+
+  .gamePlayerBadge{display:none}
+
+  .gamePlayerControls button{
+    padding:7px 9px;
+    font-size:10px;
+  }
+}
+
+@media(max-width:430px){
+
+  .gameName{font-size:14px}
+  .achievements{grid-template-columns:1fr}
+
+  .gamePlayerTitleText{font-size:12px}
+}
+</style>
+</head>
+
+<body>
+
+<div id="particles"></div>
+
+<div id="intro">
+  <div class="introBox">
+    <div class="introTitle">
+      <span>P</span>Styla Games
+    </div>
+
+    <div class="introText">
+      Welcome to PStyla 🎮<br>
+      Find a game. Click play. Have fun.
+    </div>
+
+    <div class="updateText">
+      ✨ Fresh games and updates every <span>1–2 weeks</span>
+    </div>
+
+    <button class="enter" id="enter">
+      🎮 ENTER PSTYLA
+    </button>
+  </div>
+</div>
+
+<header>
+  <div class="nav">
+
+    <div class="logo">
+      <span class="logoMark">P</span>
+      <span>PStyla</span> Games
+    </div>
+
+    <div class="search">
+      <input
+        id="search"
+        type="search"
+        placeholder="Search games..."
+        autocomplete="off"
+      >
+    </div>
+
+    <div class="navButtons">
+      <button id="music">🔇</button>
+      <button id="updates">✨ Updates</button>
+      <button id="newTab">🪟</button>
+      <button id="homeButton">Home</button>
+    </div>
+
+  </div>
+</header>
+
+<main>
+
+  <div class="welcomeSmall">WELCOME TO PSTYLA</div>
+
+  <h1>PStyla Games</h1>
+
+  <div class="welcome">
+    <p>
+      <span id="gameCount">0</span>
+      hand-picked games.
+      No filler. Just games worth playing. 🔥
+    </p>
+  </div>
+
+  <div class="featured">
+
+    <div class="featuredLabel">🔥 FEATURED GAME</div>
+
+    <h2>Stickman Hook</h2>
+
+    <p>
+      Swing, dodge and fly through the levels.
+      One of the classics in the PStyla lineup.
+    </p>
+
+    <button class="playFeatured" id="featuredPlay">
+      PLAY NOW →
+    </button>
+
+  </div>
+
+  <div class="toolbar">
+    <h2>🎮 Games</h2>
+
+    <button class="random" id="random">
+      🎲 Surprise Me
+    </button>
+  </div>
+
+  <div class="categories">
+    <button class="category active" data-category="all">All</button>
+    <button class="category" data-category="action">Action</button>
+    <button class="category" data-category="arcade">Arcade</button>
+    <button class="category" data-category="racing">Racing</button>
+    <button class="category" data-category="sports">Sports</button>
+    <button class="category" data-category="platformer">Platformer</button>
+    <button class="category" data-category="puzzle">Puzzle</button>
+    <button class="category" data-category="casual">Casual</button>
+  </div>
+
+  <div class="gameGrid" id="games"></div>
+
+  <div class="noResults" id="noResults">
+    😭 No games found. Try another search.
+  </div>
+
+  <section class="section">
+
+    <div class="sectionTitle">
+      <h2>🕐 Recently Played</h2>
+      <span>Saved on this device</span>
+    </div>
+
+    <div id="recent"></div>
+
+  </section>
+
+  <section class="section">
+
+    <div class="sectionTitle">
+      <h2>🏆 Achievements</h2>
+    </div>
+
+    <div class="achievements">
+
+      <div class="achievement">
+        <div class="achievementIcon">🎮</div>
+        <div class="achievementName">First Game</div>
+        <div class="achievementDesc">Play your first game</div>
+      </div>
+
+      <div class="achievement">
+        <div class="achievementIcon">🔥</div>
+        <div class="achievementName">Getting Addicted</div>
+        <div class="achievementDesc">Play 5 different games</div>
+      </div>
+
+      <div class="achievement">
+        <div class="achievementIcon">🎲</div>
+        <div class="achievementName">Lucky Player</div>
+        <div class="achievementDesc">Use Surprise Me</div>
+      </div>
+
+      <div class="achievement">
+        <div class="achievementIcon">🧭</div>
+        <div class="achievementName">Explorer</div>
+        <div class="achievementDesc">Finish the tutorial</div>
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  PStyla Games © 2026 • Fresh Edition
+</footer>
+
+<div class="musicToast" id="musicToast">
+  🎵 <span id="musicStatus">Music Off</span>
+</div>
+
+<div class="modal" id="modal">
+
+  <div class="modalBox">
+
+    <div style="
+      color:#a855f7;
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:2px;
+    ">
+      PSTYLA GAMES
+    </div>
+
+    <h2>✨ What's New</h2>
+
+    <div class="notes">
+      • Real HTML5 game files used where available<br>
+      • Games run inside the PStyla player<br>
+      • Tiny Fishing kept as an exception<br>
+      • Among Us kept as an exception<br>
+      • Fixed game launching<br>
+      • Fixed game-player behavior<br>
+      • Improved categories<br>
+      • Improved search<br>
+      • Improved mobile layout<br>
+      • Improved recently played<br>
+      • Improved Surprise Me
+    </div>
+
+    <button class="close" id="close">
+      CLOSE
+    </button>
+
+  </div>
+
+</div>
+
+<div class="gameNotice" id="gameNotice">
+
+  <div class="gameNoticeBox">
+
+    <div class="gameNoticeIcon" id="noticeIcon">🎮</div>
+
+    <h2 id="noticeTitle">Open Game</h2>
+
+    <p id="noticeText">
+      You're about to start this game.
+    </p>
+
+    <div class="noticeButtons">
+
+      <button id="noticeCancel">
+        Cancel
+      </button>
+
+      <button class="openHub" id="noticeOpen">
+        PLAY GAME →
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div id="tutorial">
+
+  <div class="tutorialBox">
+
+    <div class="tutorialTop">
+
+      <div class="tutorialLabel">
+        PSTYLA QUICK TOUR
+      </div>
+
+      <div class="tutorialStep" id="tutorialStep">
+        1 / 7
+      </div>
+
+    </div>
+
+    <div class="tutorialIcon" id="tutorialIcon">
+      🎮
+    </div>
+
+    <h2 id="tutorialTitle">
+      Welcome to PStyla
+    </h2>
+
+    <p id="tutorialText">
+      Your new game hub.
+    </p>
+
+    <div class="tutorialTips" id="tutorialTips"></div>
+
+    <div class="tutorialProgress" id="tutorialProgress"></div>
+
+    <div class="tutorialButtons">
+
+      <button id="tutorialBack">
+        ← Back
+      </button>
+
+      <button id="tutorialSkip">
+        Skip
+      </button>
+
+      <button class="next" id="tutorialNext">
+        Next →
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div id="gamePlayer">
+
+  <div class="gamePlayerTop">
+
+    <div class="gamePlayerTitle">
+
+      <div class="gamePlayerTitleIcon" id="playerIcon">
+        🎮
+      </div>
+
+      <div>
+
+        <div class="gamePlayerTitleText" id="playerTitle">
+          PStyla Game
+        </div>
+
+        <div class="gamePlayerBadge">
+          RUNNING INSIDE PSTYLA
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="gamePlayerControls">
+
+      <button id="reloadGame">
+        ↻ Reload
+      </button>
+
+      <button id="openExternalGame">
+        ↗ Open Tab
+      </button>
+
+      <button id="closeGamePlayer">
+        ✕ Back to PStyla
+      </button>
+
+    </div>
+
+  </div>
+
+  <iframe
+    id="gameFrame"
+    title="PStyla Game"
+    allow="autoplay; fullscreen; gamepad; pointer-lock"
+    allowfullscreen
+    referrerpolicy="no-referrer"
+  ></iframe>
+
+</div>
+
+<script>
+
+/* =====================================================
+   PSTYLA GAME DATABASE
+   DIRECT HTML5 GAME FILES
+===================================================== */
+
+const gamesData = [
+
+  /* ONLY THESE TWO REMAIN EXTERNAL */
+
+  {
+    n:"Tiny Fishing",
+    c:"casual",
+    i:"🎣",
+    external:true,
+    url:"https://bitstore1612.github.io/g5/class-451/"
+  },
+
+  {
+    n:"Among Us",
+    c:"arcade",
+    i:"👽",
+    external:true,
+    url:"https://bitstore1612.github.io/g5/class-468/"
+  },
+
+  /* REAL DIRECT GAME FILES */
+
+  {
+    n:"Shape Transform: Shifting Rush",
+    c:"platformer",
+    i:"🔷",
+    gameUrl:"https://www.bestgames.com/games/Shape-Transform-Shifting-Rush/index.html"
+  },
+
+  {
+    n:"Delete Puzzle",
+    c:"puzzle",
+    i:"🧩",
+    gameUrl:"https://html5.gamemonetize.co/ic9ka1ads3apmosue78nqng1hyxv6of2/"
+  },
+
+  {
+    n:"Gun Shooting Range",
+    c:"action",
+    i:"🎯",
+    gameUrl:"https://www.bestgames.com/games/Gun-Shooting-Range/index.html"
+  },
+
+  {
+    n:"Hit And Run: Solo Leveling",
+    c:"action",
+    i:"⚔️",
+    gameUrl:"https://html5.gamemonetize.co/f89br0v93lrsimki3ms5qjfpaf83vh2x/"
+  },
+
+  {
+    n:"Build Your Vehicle Run",
+    c:"racing",
+    i:"🚗",
+    gameUrl:"https://html5.gamemonetize.co/cp974vc56hy4rr4732500z5n3c04aefh/"
+  },
+
+  {
+    n:"Geometry Stack 2048 Run",
+    c:"puzzle",
+    i:"🔢",
+    gameUrl:"https://www.bestgames.com/games/Geometry-Stack-2048-Run/index.html"
+  },
+
+  {
+    n:"Join Clash: Color Button",
+    c:"arcade",
+    i:"🟣",
+    gameUrl:"https://html5.gamemonetize.co/5p0e6629cm0c227ienk6jsiv6puykqnf/"
+  },
+
+  {
+    n:"Lazy Jump Online",
+    c:"casual",
+    i:"🧍",
+    gameUrl:"https://html5.gamemonetize.co/npycpi1rn91379sihu4cbzsvvn5oosjy/"
+  },
+
+  {
+    n:"Save The Duck",
+    c:"puzzle",
+    i:"🦆",
+    gameUrl:"https://www.bestgames.com/games/Save-The-Duck/index.html"
+  },
+
+  {
+    n:"Uphill Rush Water Park 3D",
+    c:"racing",
+    i:"🌊",
+    gameUrl:"https://html5.gamemonetize.co/kct3c24pb3u24xq6mefl1im1xdte6r0y/"
+  },
+
+  {
+    n:"Merge Alphabet 3D",
+    c:"puzzle",
+    i:"🔤",
+    gameUrl:"https://html5.gamemonetize.co/8nh0vlg6u85gvqqxle1z5swjythyt8js/"
+  },
+
+  {
+    n:"Shoes Evolution 3D",
+    c:"arcade",
+    i:"👟",
+    gameUrl:"https://html5.gamemonetize.co/y2lchxvx76pgts75ned1zfav4cmxm160/"
+  },
+
+  {
+    n:"Cut It All",
+    c:"action",
+    i:"✂️",
+    gameUrl:"https://html5.gamemonetize.co/18n99dqsu01rpazmf1m06hlqsz3fqlf3/"
+  },
+
+  {
+    n:"Giant Head Rush",
+    c:"arcade",
+    i:"🗿",
+    gameUrl:"https://html5.gamemonetize.co/ggdaw86k8m7wha5i3639a26c1qnmepa0/"
+  },
+
+  {
+    n:"Balls Go High",
+    c:"sports",
+    i:"🏀",
+    gameUrl:"https://html5.gamemonetize.co/ga4wun1rt2bmbjxe8qlkzyktfb3xz3i1/"
+  },
+
+  {
+    n:"Blob Runner 3D",
+    c:"platformer",
+    i:"🟢",
+    gameUrl:"https://html5.gamemonetize.co/bsfynu69gzds6me5430fclhccnemu4ly/"
+  },
+
+  {
+    n:"Sky Rolling Balls",
+    c:"arcade",
+    i:"🔵",
+    gameUrl:"https://www.bestgames.com/games/Sky-Rolling-Balls/index.html"
+  },
+
+  {
+    n:"Collect Em All",
+    c:"puzzle",
+    i:"🔴",
+    gameUrl:"https://html5.gamemonetize.co/97xgrsd6ovyudenbgr9rg1fxcuwt4omu/"
+  },
+
+  {
+    n:"Stickman Hook",
+    c:"action",
+    i:"🪝",
+    gameUrl:"https://stickmanhook.bitbucket.io/"
+  }
+
+];
+
+document.getElementById("gameCount").textContent =
+  gamesData.length;
+
+
+/* PARTICLES */
+
+const particleBox =
+  document.getElementById("particles");
+
+for(let i=0;i<90;i++){
+
+  const p=document.createElement("div");
+
+  p.className="particle";
+
+  p.style.setProperty("--x",Math.random()*100+"%");
+  p.style.setProperty("--y",Math.random()*100+"%");
+  p.style.setProperty("--size",Math.random()*3+1+"px");
+  p.style.setProperty("--opacity",Math.random()*.6+.1);
+  p.style.setProperty("--duration",Math.random()*12+8+"s");
+  p.style.setProperty("--delay",-(Math.random()*15)+"s");
+
+  particleBox.appendChild(p);
+
+}
+
+
+/* COLORS */
+
+const colors={
+  action:["#7c3aed","#170a29"],
+  arcade:["#0891b2","#06151a"],
+  racing:["#ef4444","#1a0707"],
+  sports:["#16a34a","#061409"],
+  platformer:["#2563eb","#071329"],
+  puzzle:["#f59e0b","#1b1004"],
+  casual:["#db2777","#190817"]
+};
+
+
+/* GAME CARDS */
+
+const gamesBox =
+  document.getElementById("games");
+
+function createGame(game){
+
+  const card =
+    document.createElement("div");
+
+  card.className="game";
+
+  card.dataset.name =
+    game.n.toLowerCase();
+
+  card.dataset.category =
+    game.c;
+
+  const pair =
+    colors[game.c] ||
+    ["#8b5cf6","#100817"];
+
+  const badge =
+    game.external
+      ? "EXTERNAL"
+      : "IN PSTYLA";
+
+  const version =
+    game.external
+      ? "EXTERNAL GAME"
+      : "IN-SITE GAME";
+
+  card.innerHTML=`
+
+    <div
+      class="thumb"
+      style="
+        --one:${pair[0]};
+        --two:${pair[1]};
+        --glow:${pair[0]};
+      "
+    >
+
+      <div class="badge ${game.external ? "external" : ""}">
+        ${badge}
+      </div>
+
+      <div class="thumbIcon">
+        ${game.i}
+      </div>
+
+      <div class="thumbName">
+        ${game.n}
+      </div>
+
+    </div>
+
+    <div class="gameInfo">
+
+      <div class="gameName">
+        ${game.n}
+      </div>
+
+      <div class="gameCategory">
+        ${game.c}
+      </div>
+
+      <div class="gameVersion ${game.external ? "external" : ""}">
+        ${version}
+      </div>
+
+      <button class="play" type="button">
+        PLAY →
+      </button>
+
+    </div>
+  `;
+
+  card.querySelector(".play")
+    .addEventListener("click",()=>{
+
+      openGame(game);
+
+    });
+
+  return card;
+}
+
+
+gamesData.forEach(game=>{
+  gamesBox.appendChild(createGame(game));
+});
+
+
+/* =====================================================
+   GAME LAUNCH SYSTEM
+===================================================== */
+
+const gameNotice =
+  document.getElementById("gameNotice");
+
+const noticeTitle =
+  document.getElementById("noticeTitle");
+
+const noticeText =
+  document.getElementById("noticeText");
+
+const noticeIcon =
+  document.getElementById("noticeIcon");
+
+const noticeOpen =
+  document.getElementById("noticeOpen");
+
+let selectedGame=null;
+
+const gamePlayer =
+  document.getElementById("gamePlayer");
+
+const gameFrame =
+  document.getElementById("gameFrame");
+
+const playerTitle =
+  document.getElementById("playerTitle");
+
+const playerIcon =
+  document.getElementById("playerIcon");
+
+const openExternalGame =
+  document.getElementById("openExternalGame");
+
+let currentPlayingGame=null;
+
+
+function openGame(game){
+
+  selectedGame=game;
+
+  noticeTitle.textContent =
+    game.n;
+
+  noticeIcon.textContent =
+    game.i;
+
+  if(game.external){
+
+    noticeText.textContent =
+      "This is one of your preserved external games. It will open separately.";
+
+    noticeOpen.textContent =
+      "OPEN GAME ↗";
+
+  }else{
+
+    noticeText.textContent =
+      "This game will load directly inside the PStyla game player.";
+
+    noticeOpen.textContent =
+      "PLAY INSIDE PSTYLA →";
+
+  }
+
+  gameNotice.classList.add("show");
+
+}
+
+
+/* =====================================================
+   START GAME
+===================================================== */
+
+noticeOpen.addEventListener("click",()=>{
+
+  if(!selectedGame)return;
+
+  const game=selectedGame;
+
+  selectedGame=null;
+
+  gameNotice.classList.remove("show");
+
+  savePlayed(game.n);
+
+  /* ONLY TINY FISHING + AMONG US OPEN EXTERNALLY */
+
+  if(game.external){
+
+    const opened =
+      window.open(
+        game.url,
+        "_blank",
+        "noopener,noreferrer"
+      );
+
+    if(!opened){
+
+      alert(
+        "Your browser blocked the game tab. Allow pop-ups for PStyla."
+      );
+
+    }
+
+    return;
+  }
+
+  /* EVERYTHING ELSE STAYS IN PSTYLA */
+
+  currentPlayingGame=game;
+
+  playerTitle.textContent =
+    game.n;
+
+  playerIcon.textContent =
+    game.i;
+
+  /*
+    IMPORTANT:
+    Do not open the game URL with window.open.
+    It is loaded ONLY into the PStyla iframe.
+  */
+
+  openExternalGame.style.display =
+    "none";
+
+  gameFrame.src="about:blank";
+
+  gamePlayer.classList.add("show");
+
+  document.body.style.overflow="hidden";
+
+  setTimeout(()=>{
+
+    gameFrame.src=game.gameUrl;
+
+  },50);
+
+});
+
+
+/* =====================================================
+   CLOSE GAME
+===================================================== */
+
+function closeGamePlayer(){
+
+  gameFrame.src="about:blank";
+
+  gamePlayer.classList.remove("show");
+
+  document.body.style.overflow="";
+
+  currentPlayingGame=null;
+
+}
+
+
+document
+  .getElementById("closeGamePlayer")
+  .addEventListener(
+    "click",
+    closeGamePlayer
+  );
+
+
+/* RELOAD */
+
+document
+  .getElementById("reloadGame")
+  .addEventListener("click",()=>{
+
+    if(!currentPlayingGame)
+      return;
+
+    const url =
+      currentPlayingGame.gameUrl;
+
+    gameFrame.src="about:blank";
+
+    setTimeout(()=>{
+
+      gameFrame.src=url;
+
+    },100);
+
+  });
+
+
+/* CANCEL */
+
+document
+  .getElementById("noticeCancel")
+  .addEventListener("click",()=>{
+
+    gameNotice.classList.remove("show");
+
+    selectedGame=null;
+
+  });
+
+
+/* OUTSIDE NOTICE */
+
+gameNotice.addEventListener("click",e=>{
+
+  if(e.target===gameNotice){
+
+    gameNotice.classList.remove("show");
+
+    selectedGame=null;
+
+  }
+
+});
+
+
+/* FEATURED */
+
+document
+  .getElementById("featuredPlay")
+  .addEventListener("click",()=>{
+
+    const stickmanHook =
+      gamesData.find(
+        g=>g.n==="Stickman Hook"
+      );
+
+    if(!stickmanHook)return;
+
+    openGame(stickmanHook);
+
+  });
+
+
+/* SEARCH */
+
+const search =
+  document.getElementById("search");
+
+const categories =
+  document.querySelectorAll(".category");
+
+const noResults =
+  document.getElementById("noResults");
+
+let currentCategory="all";
+
+
+function updateGames(){
+
+  const query =
+    search.value
+      .toLowerCase()
+      .trim();
+
+  let count=0;
+
+  document
+    .querySelectorAll(".game")
+    .forEach(card=>{
+
+      const name =
+        card.dataset.name;
+
+      const cat =
+        card.dataset.category;
+
+      const matchName =
+        name.includes(query);
+
+      const matchCategory =
+        currentCategory==="all" ||
+        cat===currentCategory;
+
+      if(matchName && matchCategory){
+
+        card.classList.remove("hidden");
+
+        count++;
+
+      }else{
+
+        card.classList.add("hidden");
+
+      }
+
+    });
+
+  noResults.style.display =
+    count ? "none" : "block";
+
+}
+
+
+search.addEventListener(
+  "input",
+  updateGames
+);
+
+
+/* CATEGORIES */
+
+categories.forEach(button=>{
+
+  button.addEventListener(
+    "click",
+    ()=>{
+
+      categories.forEach(
+        b=>b.classList.remove("active")
+      );
+
+      button.classList.add("active");
+
+      currentCategory =
+        button.dataset.category;
+
+      updateGames();
+
+    }
+  );
+
+});
+
+
+/* RECENT */
+
+function getRecent(){
+
+  try{
+
+    return JSON.parse(
+      localStorage.getItem(
+        "pstylaRecent"
+      ) || "[]"
+    );
+
+  }catch{
+
+    return [];
+
+  }
+
+}
+
+
+function savePlayed(name){
+
+  let recent=getRecent();
+
+  recent=recent.filter(
+    x=>x!==name
+  );
+
+  recent.unshift(name);
+
+  recent=recent.slice(0,8);
+
+  localStorage.setItem(
+    "pstylaRecent",
+    JSON.stringify(recent)
+  );
+
+  loadRecent();
+
+  updateAchievements();
+
+}
+
+
+function findGame(name){
+
+  return gamesData.find(
+    x=>x.n===name
+  );
+
+}
+
+
+function loadRecent(){
+
+  const box =
+    document.getElementById("recent");
+
+  const recent =
+    getRecent();
+
+  box.innerHTML="";
+
+  if(!recent.length){
+
+    box.innerHTML=`
+
+      <div class="recentItem">
+        🎮 Play a game and it'll appear here.
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+  recent.forEach(name=>{
+
+    const game=findGame(name);
+
+    if(!game)return;
+
+    const item =
+      document.createElement("div");
+
+    item.className="recentItem";
+
+    item.innerHTML=`
+
+      <div style="font-size:35px">
+        ${game.i}
+      </div>
+
+      <strong>
+        ${game.n}
+      </strong>
+
+      <div
+        style="
+          color:#777;
+          font-size:10px;
+          margin-top:4px
+        "
+      >
+        ${game.c.toUpperCase()}
+      </div>
+
+      <button
+        class="play"
+        type="button"
+      >
+        PLAY AGAIN
+      </button>
+
+    `;
+
+    item.querySelector("button")
+      .addEventListener(
+        "click",
+        ()=>{
+
+          openGame(game);
+
+        }
+      );
+
+    box.appendChild(item);
+
+  });
+
+}
+
+
+loadRecent();
+
+
+/* RANDOM */
+
+document
+  .getElementById("random")
+  .addEventListener(
+    "click",
+    ()=>{
+
+      const visible =
+        [
+          ...document.querySelectorAll(".game")
+        ]
+        .filter(
+          card=>
+            !card.classList.contains("hidden")
+        );
+
+      if(!visible.length)return;
+
+      const card =
+        visible[
+          Math.floor(
+            Math.random()*visible.length
+          )
+        ];
+
+      const game =
+        gamesData.find(
+          g=>
+            g.n.toLowerCase()===
+            card.dataset.name
+        );
+
+      if(!game)return;
+
+      savePlayed(game.n);
+
+      openGame(game);
+
+      card.scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+      });
+
+      card.style.boxShadow =
+        "0 0 50px rgba(168,85,247,.9)";
+
+      setTimeout(()=>{
+
+        card.style.boxShadow="";
+
+      },1500);
+
+      localStorage.setItem(
+        "pstylaLuckyPlayer",
+        "true"
+      );
+
+      updateAchievements();
+
+    }
+  );
+
+
+/* HOME */
+
+document
+  .getElementById("homeButton")
+  .addEventListener(
+    "click",
+    ()=>{
+
+      window.scrollTo({
+        top:0,
+        behavior:"smooth"
+      });
+
+    }
+  );
+
+
+/* NEW TAB */
+
+document
+  .getElementById("newTab")
+  .addEventListener(
+    "click",
+    ()=>{
+
+      const currentUrl =
+        window.location.href;
+
+      const newWindow =
+        window.open(
+          currentUrl,
+          "_blank"
+        );
+
+      if(!newWindow){
+
+        alert(
+          "Your browser blocked the new tab. Allow pop-ups for PStyla."
+        );
+
+      }
+
+    }
+  );
+
+
+/* INTRO */
+
+document
+  .getElementById("enter")
+  .addEventListener(
+    "click",
+    ()=>{
+
+      document
+        .getElementById("intro")
+        .classList.add("hide");
+
+      setTimeout(()=>{
+
+        if(
+          !localStorage.getItem(
+            "pstylaTutorialDone"
+          )
+        ){
+
+          openTutorial();
+
+        }
+
+      },500);
+
+    }
+  );
+
+
+/* =====================================================
+   TUTORIAL
+===================================================== */
+
+const tutorialPages=[
+
+  {
+    icon:"🎮",
+    title:"Welcome to PStyla",
+    text:
+      "This is your game hub. Everything is built around finding something fun quickly.",
+    tips:[
+      "<b>20 games</b> are currently loaded",
+      "Use search and categories to find games fast"
+    ]
+  },
+
+  {
+    icon:"🔎",
+    title:"Find a Game",
+    text:
+      "Use the search bar to instantly filter the game library.",
+    tips:[
+      "Type a game name",
+      "Use categories underneath the Games heading",
+      "Press <b>All</b> to reset filters"
+    ]
+  },
+
+  {
+    icon:"🎲",
+    title:"Surprise Me",
+    text:
+      "Can't decide? Let PStyla pick something.",
+    tips:[
+      "Press <b>Surprise Me</b>",
+      "It chooses from the games currently visible",
+      "Your choice is saved to Recently Played"
+    ]
+  },
+
+  {
+    icon:"▶️",
+    title:"Play Inside PStyla",
+    text:
+      "The game player loads the game inside PStyla.",
+    tips:[
+      "Games stay inside the PStyla player",
+      "PStyla's interface remains behind the game",
+      "Use <b>Back to PStyla</b> when finished"
+    ]
+  },
+
+  {
+    icon:"🎣",
+    title:"Two Exceptions",
+    text:
+      "Tiny Fishing and Among Us stay as your original external games.",
+    tips:[
+      "They open in a separate tab",
+      "PStyla stays open",
+      "Your original versions are preserved"
+    ]
+  },
+
+  {
+    icon:"🕐",
+    title:"Recently Played",
+    text:
+      "Your recently selected games are saved on this device.",
+    tips:[
+      "Up to <b>8 games</b> are remembered",
+      "Press PLAY AGAIN anytime"
+    ]
+  },
+
+  {
+    icon:"🔥",
+    title:"You're Ready",
+    text:
+      "That's it. Search, pick a game and get playing.",
+    tips:[
+      "<b>Updates</b> shows what's new",
+      "<b>Home</b> takes you back to the top",
+      "Have fun 🎮"
+    ]
+  }
+
+];
+
+
+let tutorialIndex=0;
+
+const tutorial =
+  document.getElementById("tutorial");
+
+const tutorialIcon =
+  document.getElementById("tutorialIcon");
+
+const tutorialTitle =
+  document.getElementById("tutorialTitle");
+
+const tutorialText =
+  document.getElementById("tutorialText");
+
+const tutorialTips =
+  document.getElementById("tutorialTips");
+
+const tutorialStep =
+  document.getElementById("tutorialStep");
+
+const tutorialProgress =
+  document.getElementById("tutorialProgress");
+
+const tutorialBack =
+  document.getElementById("tutorialBack");
+
+const tutorialNext =
+  document.getElementById("tutorialNext");
+
+
+function renderTutorial(){
+
+  const page =
+    tutorialPages[tutorialIndex];
+
+  tutorialIcon.textContent =
+    page.icon;
+
+  tutorialTitle.textContent =
+    page.title;
+
+  tutorialText.textContent =
+    page.text;
+
+  tutorialStep.textContent =
+    `${tutorialIndex+1} / ${tutorialPages.length}`;
+
+  tutorialTips.innerHTML="";
+
+  page.tips.forEach(tip=>{
+
+    const div =
+      document.createElement("div");
+
+    div.className="tutorialTip";
+
+    div.innerHTML=tip;
+
+    tutorialTips.appendChild(div);
+
+  });
+
+  tutorialProgress.innerHTML="";
+
+  tutorialPages.forEach((_,index)=>{
+
+    const dot =
+      document.createElement("div");
+
+    dot.className="progressDot";
+
+    if(index===tutorialIndex){
+      dot.classList.add("active");
+    }
+
+    tutorialProgress.appendChild(dot);
+
+  });
+
+  tutorialBack.style.visibility =
+    tutorialIndex===0
+      ? "hidden"
+      : "visible";
+
+  tutorialNext.textContent =
+    tutorialIndex===
+    tutorialPages.length-1
+      ? "Finish ✓"
+      : "Next →";
+
+}
+
+
+function openTutorial(){
+
+  tutorialIndex=0;
+
+  renderTutorial();
+
+  tutorial.classList.add("show");
+
+}
+
+
+function closeTutorial(){
+
+  tutorial.classList.remove("show");
+
+  localStorage.setItem(
+    "pstylaTutorialDone",
+    "true"
+  );
+
+  updateAchievements();
+
+}
+
+
+tutorialNext.addEventListener(
+  "click",
+  ()=>{
+
+    if(
+      tutorialIndex<
+      tutorialPages.length-1
+    ){
+
+      tutorialIndex++;
+
+      renderTutorial();
+
+    }else{
+
+      closeTutorial();
+
+    }
+
+  }
+);
+
+
+tutorialBack.addEventListener(
+  "click",
+  ()=>{
+
+    if(tutorialIndex>0){
+
+      tutorialIndex--;
+
+      renderTutorial();
+
+    }
+
+  }
+);
+
+
+document
+  .getElementById("tutorialSkip")
+  .addEventListener(
+    "click",
+    closeTutorial
+  );
+
+
+/* UPDATES */
+
+const modal =
+  document.getElementById("modal");
+
+document
+  .getElementById("updates")
+  .addEventListener(
+    "click",
+    ()=>{
+      modal.classList.add("show");
+    }
+  );
+
+document
+  .getElementById("close")
+  .addEventListener(
+    "click",
+    ()=>{
+      modal.classList.remove("show");
+    }
+  );
+
+modal.addEventListener(
+  "click",
+  e=>{
+
+    if(e.target===modal){
+      modal.classList.remove("show");
+    }
+
+  }
+);
+
+
+/* MUSIC */
+
+const musicTracks=[
+
+  {
+    name:"PStyla Track 1",
+    id:"85wZGRcHHAc"
+  },
+
+  {
+    name:"PStyla Track 2",
+    id:"ps5nM2CiaMY"
+  }
+
+];
+
+let musicIndex=-1;
+let musicFrame=null;
+
+const musicButton =
+  document.getElementById("music");
+
+const musicToast =
+  document.getElementById("musicToast");
+
+const musicStatus =
+  document.getElementById("musicStatus");
+
+
+function showMusicToast(text){
+
+  musicStatus.textContent=text;
+
+  musicToast.classList.add("show");
+
+  clearTimeout(window.musicTimer);
+
+  window.musicTimer =
+    setTimeout(()=>{
+
+      musicToast.classList.remove("show");
+
+    },2200);
+
+}
+
+
+function clearMusic(){
+
+  if(musicFrame){
+
+    musicFrame.remove();
+
+    musicFrame=null;
+
+  }
+
+}
+
+
+function playMusic(index){
+
+  clearMusic();
+
+  musicIndex=index;
+
+  const track =
+    musicTracks[musicIndex];
+
+  musicFrame =
+    document.createElement("iframe");
+
+  musicFrame.style.position="fixed";
+  musicFrame.style.width="1px";
+  musicFrame.style.height="1px";
+  musicFrame.style.left="-100px";
+  musicFrame.style.top="-100px";
+  musicFrame.style.opacity="0";
+
+  musicFrame.allow=
+    "autoplay; encrypted-media";
+
+  musicFrame.src=
+    `https://www.youtube.com/embed/${track.id}?autoplay=1&loop=1&playlist=${track.id}&controls=0&playsinline=1`;
+
+  document.body.appendChild(
+    musicFrame
+  );
+
+  musicButton.textContent="🔊";
+
+  showMusicToast(
+    "Music: "+track.name
+  );
+
+}
+
+
+function stopMusic(){
+
+  clearMusic();
+
+  musicIndex=-1;
+
+  musicButton.textContent="🔇";
+
+  showMusicToast(
+    "Music Off"
+  );
+
+}
+
+
+musicButton.addEventListener(
+  "click",
+  ()=>{
+
+    if(musicIndex===-1){
+
+      playMusic(0);
+
+      return;
+
+    }
+
+    if(
+      musicIndex<
+      musicTracks.length-1
+    ){
+
+      playMusic(
+        musicIndex+1
+      );
+
+      return;
+
+    }
+
+    stopMusic();
+
+  }
+);
+
+
+document.addEventListener(
+  "keydown",
+  e=>{
+
+    if(
+      e.key.toLowerCase()==="m" &&
+      !["INPUT","TEXTAREA"].includes(
+        document.activeElement.tagName
+      )
+    ){
+
+      musicButton.click();
+
+    }
+
+  }
+);
+
+
+/* ACHIEVEMENTS */
+
+function updateAchievements(){
+
+  const recent=getRecent();
+
+  const achievements =
+    document.querySelectorAll(
+      ".achievement"
+    );
+
+  if(recent.length>=1){
+
+    achievements[0]
+      .style.borderColor="#a855f7";
+
+  }
+
+  if(recent.length>=5){
+
+    achievements[1]
+      .style.borderColor="#a855f7";
+
+  }
+
+  if(
+    localStorage.getItem(
+      "pstylaLuckyPlayer"
+    )==="true"
+  ){
+
+    achievements[2]
+      .style.borderColor="#a855f7";
+
+  }
+
+  if(
+    localStorage.getItem(
+      "pstylaTutorialDone"
+    )==="true"
+  ){
+
+    achievements[3]
+      .style.borderColor="#a855f7";
+
+  }
+
+}
+
+
+updateAchievements();
+
+
+/* ESCAPE */
+
+document.addEventListener(
+  "keydown",
+  e=>{
+
+    if(e.key==="Escape"){
+
+      modal.classList.remove("show");
+
+      tutorial.classList.remove("show");
+
+      gameNotice.classList.remove("show");
+
+      selectedGame=null;
+
+      if(
+        gamePlayer.classList.contains("show")
+      ){
+
+        closeGamePlayer();
+
+      }
+
+    }
+
+  }
+);
+
+
+/* PAGE UNLOAD */
+
+window.addEventListener(
+  "beforeunload",
+  ()=>{
+
+    gameFrame.src="about:blank";
+
+  }
+);
+
+
+console.log(
+  `PStyla Games loaded: ${gamesData.length} games`
+);
+
+</script>
+
+</body>
+</html>
