@@ -1,43 +1,58 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#09070f">
 <title>PStyla Games</title>
 
 <style>
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-
 :root{
-  --purple:#9b5cff;
-  --purple2:#6d28d9;
-  --pink:#d946ef;
+  --purple:#8b5cf6;
+  --purple2:#c026d3;
+  --border:#29252f;
   --bg:#050507;
-  --panel:#101016;
-  --panel2:#15151d;
-  --border:#292936;
+  --panel:#111117;
   --text:#fff;
-  --muted:#858592;
+  --muted:#888;
 }
+
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
 
 body{
   margin:0;
-  color:var(--text);
   background:
-    radial-gradient(circle at 15% 10%,rgba(139,92,246,.14),transparent 30%),
-    radial-gradient(circle at 85% 70%,rgba(217,70,239,.10),transparent 35%),
-    var(--bg);
+    radial-gradient(circle at 50% -10%,#21102f 0,#08060c 35%,#050507 70%);
+  color:var(--text);
   font-family:Arial,Helvetica,sans-serif;
-  overflow-x:hidden;
+  min-height:100vh;
 }
 
-button,input{font:inherit}
-button{cursor:pointer}
+button,input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-5;
+  pointer-events:none;
+  background:
+    linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+  background-size:50px 50px;
+  mask-image:linear-gradient(to bottom,black,transparent 85%);
+}
 
 /* =====================================================
-   ACCESS SCREEN
+   ACCESS
 ===================================================== */
 
 #accessScreen{
@@ -50,154 +65,169 @@ button{cursor:pointer}
   padding:20px;
   background:
     radial-gradient(circle at center,#24103a,#0d0715 48%,#050507);
-  transition:.5s ease;
 }
 
 #accessScreen.hidden{
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
+  display:none;
 }
 
 .accessBox{
   width:min(94%,500px);
   padding:35px;
-  text-align:center;
-  border:1px solid rgba(168,85,247,.45);
+  border:1px solid rgba(168,85,247,.4);
   border-radius:20px;
-  background:
-    linear-gradient(145deg,#190e26,#08070d);
-  box-shadow:
-    0 30px 100px rgba(0,0,0,.8),
-    0 0 50px rgba(139,92,246,.12);
+  background:#0d0b12;
+  text-align:center;
+  box-shadow:0 30px 100px rgba(0,0,0,.7);
 }
 
 .accessLogo{
-  font-size:12px;
   color:#c084fc;
-  font-weight:1000;
+  font-size:11px;
+  font-weight:900;
   letter-spacing:3px;
 }
 
 .accessIcon{
-  margin:15px 0 5px;
+  margin-top:20px;
   font-size:55px;
 }
 
 .accessBox h1{
-  margin:5px 0;
-  font-size:32px;
-  letter-spacing:-1px;
+  margin:12px 0 8px;
 }
 
 .accessBox p{
   color:#888;
-  font-size:13px;
-  line-height:1.7;
+  line-height:1.6;
 }
 
 .accessInput{
   width:100%;
-  margin-top:15px;
-  padding:14px 15px;
+  margin-top:14px;
+  padding:14px;
   border:1px solid #30253c;
   border-radius:9px;
   outline:none;
+  background:#121219;
   color:#fff;
-  background:#111018;
   text-align:center;
-  letter-spacing:2px;
-  font-weight:900;
+  text-transform:uppercase;
 }
 
 .accessInput:focus{
-  border-color:#a855f7;
-  box-shadow:0 0 25px rgba(139,92,246,.2);
+  border-color:var(--purple);
+  box-shadow:0 0 20px rgba(139,92,246,.2);
 }
 
-.accessEnter{
+.accessEnter,
+.scanQR{
   width:100%;
   margin-top:10px;
   padding:13px;
   border:0;
   border-radius:9px;
   color:#fff;
-  background:linear-gradient(135deg,#8b5cf6,#c026d3);
-  font-weight:1000;
-  transition:.2s;
+  background:linear-gradient(135deg,var(--purple),var(--purple2));
+  font-weight:900;
 }
 
-.accessEnter:hover{
-  transform:translateY(-2px);
-  box-shadow:0 10px 30px rgba(139,92,246,.35);
+.scanQR{
+  border:1px solid #7543d2;
+  background:#15101d;
 }
 
 .accessMessage{
   min-height:20px;
   margin-top:12px;
-  color:#888;
-  font-size:11px;
+  font-size:12px;
+  font-weight:900;
 }
 
-.accessMessage.error{
-  color:#f87171;
-}
+.accessMessage.error{color:#f87171}
+.accessMessage.success{color:#86efac}
 
-.accessMessage.success{
-  color:#c084fc;
+.accessBadge{
+  display:none;
+  margin-top:15px;
+  padding:7px 10px;
+  border:1px solid rgba(168,85,247,.4);
+  border-radius:6px;
+  color:#d8b4fe;
+  background:rgba(168,85,247,.08);
+  font-size:10px;
+  font-weight:900;
 }
 
 .accessSmall{
-  margin-top:18px!important;
-  color:#555!important;
   font-size:10px!important;
 }
 
-.accessBadge{
-  display:inline-block;
-  margin-top:12px;
-  padding:6px 9px;
-  border:1px solid #30253c;
-  border-radius:6px;
-  color:#777;
-  background:#0e0d13;
-  font-size:9px;
-  font-weight:900;
-}
-
 /* =====================================================
-   TRIAL BAR
+   QR SCANNER
 ===================================================== */
 
-#accessBar{
+#qrScanner{
   position:fixed;
-  left:50%;
-  bottom:15px;
-  z-index:150000;
+  inset:0;
+  z-index:210000;
   display:none;
-  transform:translateX(-50%);
-  width:min(92%,500px);
-  padding:10px 15px;
-  border:1px solid rgba(168,85,247,.35);
-  border-radius:10px;
-  background:rgba(13,9,20,.94);
-  backdrop-filter:blur(12px);
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(3,2,6,.94);
+  backdrop-filter:blur(15px);
+}
+
+#qrScanner.show{
+  display:flex;
+}
+
+.scannerBox{
+  width:min(94%,520px);
+  padding:20px;
+  border:1px solid rgba(168,85,247,.45);
+  border-radius:18px;
+  background:#0d0b12;
   text-align:center;
-  color:#aaa;
-  font-size:11px;
+}
+
+.scannerBox h2{
+  margin:8px 0;
+}
+
+.scannerBox p{
+  color:#888;
+  font-size:12px;
+}
+
+#qrVideo{
+  width:100%;
+  max-height:55vh;
+  margin-top:15px;
+  border-radius:12px;
+  background:#000;
+  object-fit:cover;
+}
+
+.scannerStatus{
+  margin:10px 0;
+  color:#c084fc;
+  font-size:12px;
   font-weight:900;
 }
 
-#accessBar.show{
-  display:block;
-}
-
-#accessBar span{
-  color:#c084fc;
+.closeScanner{
+  padding:10px 18px;
+  border:1px solid #30253c;
+  border-radius:8px;
+  color:#fff;
+  background:#15151c;
+  font-weight:900;
 }
 
 /* =====================================================
-   EXPIRED SCREEN
+   EXPIRED
 ===================================================== */
 
 #expiredScreen{
@@ -241,29 +271,40 @@ button{cursor:pointer}
 .expiredClose{
   margin-top:12px;
   padding:11px 20px;
-  border:1px solid #8b5cf6;
+  border:1px solid var(--purple);
   border-radius:8px;
   color:#fff;
   background:#15101d;
   font-weight:900;
 }
 
-/* =====================================================
-   ORIGINAL PSTYLA STYLES
-===================================================== */
-
-body:before{
-  content:"";
+#accessBar{
   position:fixed;
-  inset:0;
-  z-index:-5;
-  pointer-events:none;
-  background:
-    linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
-  background-size:50px 50px;
-  mask-image:linear-gradient(to bottom,black,transparent 85%);
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:9000;
+  display:none;
+  padding:6px;
+  background:#09070d;
+  border-top:1px solid rgba(168,85,247,.2);
+  color:#aaa;
+  font-size:11px;
+  font-weight:900;
+  text-align:center;
 }
+
+#accessBar.show{
+  display:block;
+}
+
+#accessBar span{
+  color:#c084fc;
+}
+
+/* =====================================================
+   PARTICLES
+===================================================== */
 
 #particles{
   position:fixed;
@@ -292,6 +333,10 @@ body:before{
   to{transform:translate(110vw,-15vh)}
 }
 
+/* =====================================================
+   INTRO
+===================================================== */
+
 #intro{
   position:fixed;
   inset:0;
@@ -311,30 +356,31 @@ body:before{
   pointer-events:none;
 }
 
-.introBox{width:min(90%,700px)}
+.introBox{
+  width:min(90%,700px);
+}
 
 .introTitle{
   font-family:Impact,"Arial Black",sans-serif;
   font-size:clamp(55px,10vw,110px);
   letter-spacing:-5px;
   text-shadow:0 0 35px rgba(168,85,247,.7);
-  animation:introIn 1s ease;
 }
 
-.introTitle span{color:#a855f7}
+.introTitle span{
+  color:#a855f7;
+}
 
 .introText{
   margin-top:18px;
   color:#aaa;
   line-height:1.7;
-  animation:introText .8s ease .4s both;
 }
 
 .updateText{
   color:#777;
   font-size:12px;
   margin-top:10px;
-  animation:introText .8s ease .7s both;
 }
 
 .updateText span{
@@ -351,24 +397,11 @@ body:before{
   background:linear-gradient(135deg,#8b5cf6,#c026d3);
   font-weight:900;
   box-shadow:0 0 35px rgba(139,92,246,.35);
-  animation:introText .8s ease 1s both;
-  transition:.25s;
 }
 
-.enter:hover{
-  transform:translateY(-4px) scale(1.04);
-  box-shadow:0 0 55px rgba(168,85,247,.6);
-}
-
-@keyframes introIn{
-  from{opacity:0;transform:translateY(30px) scale(.9)}
-  to{opacity:1;transform:none}
-}
-
-@keyframes introText{
-  from{opacity:0;transform:translateY(15px)}
-  to{opacity:1;transform:none}
-}
+/* =====================================================
+   NAV
+===================================================== */
 
 header{
   position:sticky;
@@ -406,7 +439,9 @@ header{
   background:linear-gradient(135deg,#8b5cf6,#d946ef);
 }
 
-.logo span:last-child{color:#c084fc}
+.logo span:last-child{
+  color:#c084fc;
+}
 
 .search{
   flex:1;
@@ -423,11 +458,6 @@ header{
   color:#fff;
 }
 
-.search input:focus{
-  border-color:#8b5cf6;
-  box-shadow:0 0 20px rgba(139,92,246,.18);
-}
-
 .navButtons{
   display:flex;
   gap:7px;
@@ -439,13 +469,11 @@ header{
   padding:10px 12px;
   color:#fff;
   background:#15151c;
-  transition:.2s;
 }
 
-.navButtons button:hover{
-  border-color:#8b5cf6;
-  transform:translateY(-2px);
-}
+/* =====================================================
+   MAIN
+===================================================== */
 
 main{
   max-width:1450px;
@@ -466,7 +494,9 @@ h1{
   letter-spacing:-3px;
 }
 
-.welcome p{color:#777}
+.welcome p{
+  color:#777;
+}
 
 .featured{
   position:relative;
@@ -519,14 +549,7 @@ h1{
   border-radius:8px;
   color:#fff;
   background:linear-gradient(135deg,#8b5cf6,#c026d3);
-  text-decoration:none;
   font-weight:900;
-  transition:.2s;
-}
-
-.playFeatured:hover{
-  transform:translateY(-3px);
-  box-shadow:0 12px 30px rgba(139,92,246,.4);
 }
 
 .toolbar{
@@ -536,7 +559,9 @@ h1{
   gap:15px;
 }
 
-.toolbar h2{margin:0}
+.toolbar h2{
+  margin:0;
+}
 
 .random{
   border:1px solid #7543d2;
@@ -545,12 +570,6 @@ h1{
   color:#fff;
   background:linear-gradient(135deg,#8b5cf6,#6d28d9);
   font-weight:900;
-  transition:.2s;
-}
-
-.random:hover{
-  transform:translateY(-3px);
-  box-shadow:0 10px 25px rgba(139,92,246,.3);
 }
 
 .categories{
@@ -568,15 +587,18 @@ h1{
   background:#14141b;
   font-size:12px;
   font-weight:900;
-  transition:.2s;
 }
 
-.category:hover,
-.category.active{
+.category.active,
+.category:hover{
   border-color:#8b5cf6;
   color:#fff;
   background:#8b5cf6;
 }
+
+/* =====================================================
+   GAMES
+===================================================== */
 
 .gameGrid{
   display:grid;
@@ -613,27 +635,11 @@ h1{
     linear-gradient(135deg,var(--one),var(--two));
 }
 
-.thumb:before{
-  content:"";
-  position:absolute;
-  width:240px;
-  height:240px;
-  border-radius:50%;
-  background:rgba(255,255,255,.07);
-  top:-130px;
-  right:-80px;
-}
-
 .thumbIcon{
   position:relative;
   z-index:2;
   font-size:68px;
   filter:drop-shadow(0 12px 15px rgba(0,0,0,.45));
-  transition:.3s;
-}
-
-.game:hover .thumbIcon{
-  transform:scale(1.15) rotate(-4deg);
 }
 
 .badge{
@@ -645,12 +651,13 @@ h1{
   border-radius:5px;
   color:#d8b4fe;
   background:rgba(4,4,8,.7);
-  backdrop-filter:blur(8px);
   font-size:8px;
   font-weight:900;
 }
 
-.badge.external{color:#fbbf24}
+.badge.external{
+  color:#fbbf24;
+}
 
 .thumbName{
   position:absolute;
@@ -662,7 +669,9 @@ h1{
   text-shadow:0 2px 8px #000;
 }
 
-.gameInfo{padding:14px}
+.gameInfo{
+  padding:14px;
+}
 
 .gameName{
   font-size:16px;
@@ -683,7 +692,9 @@ h1{
   margin-top:5px;
 }
 
-.gameVersion.external{color:#fbbf24}
+.gameVersion.external{
+  color:#fbbf24;
+}
 
 .play{
   margin-top:10px;
@@ -694,15 +705,11 @@ h1{
   background:#8b5cf6;
   font-size:10px;
   font-weight:1000;
-  transition:.2s;
 }
 
-.play:hover{
-  background:#a855f7;
-  box-shadow:0 0 18px rgba(139,92,246,.45);
+.hidden{
+  display:none!important;
 }
-
-.hidden{display:none!important}
 
 .noResults{
   display:none;
@@ -713,7 +720,13 @@ h1{
   text-align:center;
 }
 
-.section{margin-top:50px}
+/* =====================================================
+   SECTIONS
+===================================================== */
+
+.section{
+  margin-top:50px;
+}
 
 .sectionTitle{
   display:flex;
@@ -722,8 +735,14 @@ h1{
   margin-bottom:15px;
 }
 
-.sectionTitle h2{margin:0}
-.sectionTitle span{color:#666;font-size:11px}
+.sectionTitle h2{
+  margin:0;
+}
+
+.sectionTitle span{
+  color:#666;
+  font-size:11px;
+}
 
 #recent{
   display:flex;
@@ -752,17 +771,26 @@ h1{
   border-radius:11px;
   background:#111117;
   text-align:center;
-  transition:.2s;
 }
 
-.achievement:hover{
-  transform:translateY(-5px);
-  border-color:#8b5cf6;
+.achievementIcon{
+  font-size:30px;
 }
 
-.achievementIcon{font-size:30px}
-.achievementName{margin-top:7px;font-weight:1000}
-.achievementDesc{margin-top:5px;color:#666;font-size:10px}
+.achievementName{
+  margin-top:7px;
+  font-weight:1000;
+}
+
+.achievementDesc{
+  margin-top:5px;
+  color:#666;
+  font-size:10px;
+}
+
+/* =====================================================
+   MODALS
+===================================================== */
 
 .modal,
 #tutorial,
@@ -794,9 +822,6 @@ h1{
   background:linear-gradient(145deg,#190e26,#08070d);
   box-shadow:0 30px 100px rgba(0,0,0,.75);
 }
-
-.modalBox h2,
-.tutorialBox h2{margin-top:8px}
 
 .notes{
   color:#aaa;
@@ -846,7 +871,10 @@ h1{
   letter-spacing:2px;
 }
 
-.tutorialStep{color:#666;font-size:11px}
+.tutorialStep{
+  color:#666;
+  font-size:11px;
+}
 
 .tutorialTips{
   display:grid;
@@ -863,8 +891,6 @@ h1{
   font-size:12px;
 }
 
-.tutorialTip b{color:#c084fc}
-
 .tutorialProgress{
   display:flex;
   gap:5px;
@@ -878,7 +904,9 @@ h1{
   background:#292932;
 }
 
-.progressDot.active{background:#a855f7}
+.progressDot.active{
+  background:#a855f7;
+}
 
 .tutorialButtons,
 .noticeButtons{
@@ -893,8 +921,89 @@ h1{
   text-align:center;
 }
 
-.gameNoticeIcon{font-size:55px}
-.gameNoticeBox h2{margin:12px 0 8px}
+.gameNoticeIcon{
+  font-size:55px;
+}
+
+/* =====================================================
+   PLAYER
+===================================================== */
+
+#gamePlayer{
+  position:fixed;
+  inset:0;
+  z-index:100000;
+  display:none;
+  flex-direction:column;
+  background:#000;
+}
+
+#gamePlayer.show{
+  display:flex;
+}
+
+.gamePlayerTop{
+  height:58px;
+  flex:0 0 58px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:8px 14px;
+  background:linear-gradient(90deg,#0b0711,#15101d);
+  border-bottom:1px solid rgba(168,85,247,.3);
+}
+
+.gamePlayerTitle{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+}
+
+.gamePlayerTitleIcon{
+  font-size:24px;
+}
+
+.gamePlayerTitleText{
+  font-weight:1000;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.gamePlayerControls{
+  display:flex;
+  gap:7px;
+}
+
+.gamePlayerControls button{
+  border:1px solid #30253c;
+  border-radius:7px;
+  padding:8px 12px;
+  color:#fff;
+  background:#17121e;
+  font-weight:900;
+}
+
+#gameFrame{
+  width:100%;
+  height:calc(100vh - 58px);
+  border:0;
+  background:#000;
+}
+
+footer{
+  padding:35px;
+  border-top:1px solid #17171d;
+  color:#444;
+  text-align:center;
+  font-size:11px;
+}
+
+/* =====================================================
+   MUSIC
+===================================================== */
 
 .musicToast{
   position:fixed;
@@ -919,97 +1028,9 @@ h1{
   transform:none;
 }
 
-.musicToast span{color:#c084fc}
-
-#gamePlayer{
-  position:fixed;
-  inset:0;
-  z-index:100000;
-  display:none;
-  flex-direction:column;
-  background:#000;
-}
-
-#gamePlayer.show{display:flex}
-
-.gamePlayerTop{
-  height:58px;
-  flex:0 0 58px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding:8px 14px;
-  background:linear-gradient(90deg,#0b0711,#15101d);
-  border-bottom:1px solid rgba(168,85,247,.3);
-}
-
-.gamePlayerTitle{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  min-width:0;
-}
-
-.gamePlayerTitleIcon{font-size:24px}
-
-.gamePlayerTitleText{
-  font-weight:1000;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-.gamePlayerBadge{
-  color:#c084fc;
-  font-size:9px;
-  font-weight:900;
-  letter-spacing:1px;
-}
-
-.gamePlayerControls{
-  display:flex;
-  gap:7px;
-}
-
-.gamePlayerControls button{
-  border:1px solid #30253c;
-  border-radius:7px;
-  padding:8px 12px;
-  color:#fff;
-  background:#17121e;
-  font-weight:900;
-}
-
-.gamePlayerControls button:hover{
-  border-color:#a855f7;
-}
-
-#openExternalGame{
-  display:none;
-  border-color:#f59e0b;
-  background:linear-gradient(135deg,#f59e0b,#d97706);
-}
-
-#closeGamePlayer{
-  border-color:#8b5cf6;
-  background:linear-gradient(135deg,#8b5cf6,#c026d3);
-}
-
-#gameFrame{
-  width:100%;
-  height:calc(100vh - 58px);
-  border:0;
-  background:#000;
-}
-
-footer{
-  padding:35px;
-  border-top:1px solid #17171d;
-  color:#444;
-  text-align:center;
-  font-size:11px;
-}
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media(max-width:700px){
 
@@ -1024,21 +1045,34 @@ footer{
     max-width:none;
   }
 
-  main{padding:25px 15px 60px}
+  main{
+    padding:25px 15px 60px;
+  }
 
-  .featured{padding:28px}
+  .featured{
+    padding:28px;
+  }
 
-  .featured:after{font-size:100px}
+  .featured:after{
+    font-size:100px;
+  }
 
   .gameGrid{
     grid-template-columns:repeat(2,minmax(0,1fr));
     gap:10px;
   }
 
-  .thumb{height:145px}
-  .thumbIcon{font-size:54px}
+  .thumb{
+    height:145px;
+  }
 
-  .achievements{grid-template-columns:repeat(2,1fr)}
+  .thumbIcon{
+    font-size:54px;
+  }
+
+  .achievements{
+    grid-template-columns:repeat(2,1fr);
+  }
 
   .navButtons button{
     padding:8px 9px;
@@ -1054,24 +1088,25 @@ footer{
     height:calc(100vh - 54px);
   }
 
-  .gamePlayerBadge{display:none}
-
   .gamePlayerControls button{
     padding:7px 9px;
     font-size:10px;
-  }
-
-  .accessBox{
-    padding:25px;
   }
 }
 
 @media(max-width:430px){
 
-  .gameName{font-size:14px}
-  .achievements{grid-template-columns:1fr}
+  .gameName{
+    font-size:14px;
+  }
 
-  .gamePlayerTitleText{font-size:12px}
+  .achievements{
+    grid-template-columns:1fr;
+  }
+
+  .gamePlayerTitleText{
+    font-size:12px;
+  }
 }
 </style>
 </head>
@@ -1079,7 +1114,7 @@ footer{
 <body>
 
 <!-- =====================================================
-     ACCESS SYSTEM
+     ACCESS SCREEN
 ===================================================== -->
 
 <div id="accessScreen">
@@ -1108,33 +1143,69 @@ footer{
       spellcheck="false"
     >
 
-    <button
-      id="accessEnter"
-      class="accessEnter"
-      type="button"
-    >
+    <button id="accessEnter" class="accessEnter">
       ENTER PSTYLA →
     </button>
 
-    <div
-      id="accessMessage"
-      class="accessMessage"
-    ></div>
+    <button id="scanQR" class="scanQR">
+      📷 SCAN QR CODE
+    </button>
 
-    <div
-      id="accessBadge"
-      class="accessBadge"
-      style="display:none"
-    ></div>
+    <div id="accessMessage" class="accessMessage"></div>
+
+    <div id="accessBadge" class="accessBadge"></div>
 
     <p class="accessSmall">
-      Free access is available for 5 minutes.
+      Free access lasts 5 minutes.
       Redeemed QR access lasts 9 days.
     </p>
 
   </div>
 
 </div>
+
+
+<!-- =====================================================
+     QR SCANNER
+===================================================== -->
+
+<div id="qrScanner">
+
+  <div class="scannerBox">
+
+    <div style="color:#a855f7;font-size:10px;font-weight:900;letter-spacing:2px">
+      PSTYLA QR SCANNER
+    </div>
+
+    <h2>📷 Scan Access QR</h2>
+
+    <p>
+      Point your camera at a PStyla access QR code.
+    </p>
+
+    <video
+      id="qrVideo"
+      autoplay
+      muted
+      playsinline
+    ></video>
+
+    <div class="scannerStatus" id="scannerStatus">
+      Starting camera...
+    </div>
+
+    <button class="closeScanner" id="closeScanner">
+      CLOSE
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     EXPIRED
+===================================================== -->
 
 <div id="expiredScreen">
 
@@ -1147,14 +1218,10 @@ footer{
     </h2>
 
     <p id="expiredText">
-      Sorry, your free trial has ended.
-      See Peter for extra credits, or wait until next week.
+      Your access has expired.
     </p>
 
-    <button
-      class="expiredClose"
-      id="expiredClose"
-    >
+    <button class="expiredClose" id="expiredClose">
       BACK TO ACCESS
     </button>
 
@@ -1162,13 +1229,21 @@ footer{
 
 </div>
 
+
 <div id="accessBar">
   <span id="accessBarText"></span>
 </div>
 
+
 <div id="particles"></div>
 
+
+<!-- =====================================================
+     INTRO
+===================================================== -->
+
 <div id="intro">
+
   <div class="introBox">
 
     <div class="introTitle">
@@ -1181,7 +1256,8 @@ footer{
     </div>
 
     <div class="updateText">
-      ✨ Fresh games and updates every <span>1–2 weeks</span>
+      ✨ Fresh games and updates every
+      <span>1–2 weeks</span>
     </div>
 
     <button class="enter" id="enter">
@@ -1189,9 +1265,16 @@ footer{
     </button>
 
   </div>
+
 </div>
 
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
 <header>
+
   <div class="nav">
 
     <div class="logo">
@@ -1200,27 +1283,39 @@ footer{
     </div>
 
     <div class="search">
+
       <input
         id="search"
         type="search"
         placeholder="Search games..."
         autocomplete="off"
       >
+
     </div>
 
     <div class="navButtons">
+
       <button id="music">🔇</button>
       <button id="updates">✨ Updates</button>
       <button id="newTab">🪟</button>
       <button id="homeButton">Home</button>
+
     </div>
 
   </div>
+
 </header>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
 
 <main>
 
-  <div class="welcomeSmall">WELCOME TO PSTYLA</div>
+  <div class="welcomeSmall">
+    WELCOME TO PSTYLA
+  </div>
 
   <h1>PStyla Games</h1>
 
@@ -1232,9 +1327,12 @@ footer{
     </p>
   </div>
 
+
   <div class="featured">
 
-    <div class="featuredLabel">🔥 FEATURED GAME</div>
+    <div class="featuredLabel">
+      🔥 FEATURED GAME
+    </div>
 
     <h2>Stickman Hook</h2>
 
@@ -1249,30 +1347,62 @@ footer{
 
   </div>
 
+
   <div class="toolbar">
+
     <h2>🎮 Games</h2>
 
     <button class="random" id="random">
       🎲 Surprise Me
     </button>
+
   </div>
+
 
   <div class="categories">
-    <button class="category active" data-category="all">All</button>
-    <button class="category" data-category="action">Action</button>
-    <button class="category" data-category="arcade">Arcade</button>
-    <button class="category" data-category="racing">Racing</button>
-    <button class="category" data-category="sports">Sports</button>
-    <button class="category" data-category="platformer">Platformer</button>
-    <button class="category" data-category="puzzle">Puzzle</button>
-    <button class="category" data-category="casual">Casual</button>
+
+    <button class="category active" data-category="all">
+      All
+    </button>
+
+    <button class="category" data-category="action">
+      Action
+    </button>
+
+    <button class="category" data-category="arcade">
+      Arcade
+    </button>
+
+    <button class="category" data-category="racing">
+      Racing
+    </button>
+
+    <button class="category" data-category="sports">
+      Sports
+    </button>
+
+    <button class="category" data-category="platformer">
+      Platformer
+    </button>
+
+    <button class="category" data-category="puzzle">
+      Puzzle
+    </button>
+
+    <button class="category" data-category="casual">
+      Casual
+    </button>
+
   </div>
 
+
   <div class="gameGrid" id="games"></div>
+
 
   <div class="noResults" id="noResults">
     😭 No games found. Try another search.
   </div>
+
 
   <section class="section">
 
@@ -1285,6 +1415,7 @@ footer{
 
   </section>
 
+
   <section class="section">
 
     <div class="sectionTitle">
@@ -1296,25 +1427,33 @@ footer{
       <div class="achievement">
         <div class="achievementIcon">🎮</div>
         <div class="achievementName">First Game</div>
-        <div class="achievementDesc">Play your first game</div>
+        <div class="achievementDesc">
+          Play your first game
+        </div>
       </div>
 
       <div class="achievement">
         <div class="achievementIcon">🔥</div>
         <div class="achievementName">Getting Addicted</div>
-        <div class="achievementDesc">Play 5 different games</div>
+        <div class="achievementDesc">
+          Play 5 different games
+        </div>
       </div>
 
       <div class="achievement">
         <div class="achievementIcon">🎲</div>
         <div class="achievementName">Lucky Player</div>
-        <div class="achievementDesc">Use Surprise Me</div>
+        <div class="achievementDesc">
+          Use Surprise Me
+        </div>
       </div>
 
       <div class="achievement">
         <div class="achievementIcon">🧭</div>
         <div class="achievementName">Explorer</div>
-        <div class="achievementDesc">Finish the tutorial</div>
+        <div class="achievementDesc">
+          Finish the tutorial
+        </div>
       </div>
 
     </div>
@@ -1323,13 +1462,24 @@ footer{
 
 </main>
 
+
 <footer>
   PStyla Games © 2026 • Fresh Edition
 </footer>
 
+
+<!-- =====================================================
+     MUSIC TOAST
+===================================================== -->
+
 <div class="musicToast" id="musicToast">
   🎵 <span id="musicStatus">Music Off</span>
 </div>
+
+
+<!-- =====================================================
+     UPDATES
+===================================================== -->
 
 <div class="modal" id="modal">
 
@@ -1347,20 +1497,19 @@ footer{
     <h2>✨ What's New</h2>
 
     <div class="notes">
-      • Real HTML5 game files used where available<br>
-      • Games run inside the PStyla player<br>
-      • Tiny Fishing kept as an exception<br>
-      • Among Us kept as an exception<br>
-      • Fixed game launching<br>
-      • Fixed game-player behavior<br>
-      • Improved categories<br>
-      • Improved search<br>
-      • Improved mobile layout<br>
-      • Improved recently played<br>
-      • Improved Surprise Me<br>
-      • Added QR access system<br>
-      • Added 5-minute free trial<br>
-      • Added 9-day redeemed access
+
+      • Working QR access<br>
+      • Built-in camera QR scanner<br>
+      • 5-minute free trial<br>
+      • 9-day redeemed access<br>
+      • Fixed trial/redemption conflict<br>
+      • HTML5 games<br>
+      • External games preserved<br>
+      • Search and categories<br>
+      • Recently Played<br>
+      • Surprise Me<br>
+      • Mobile improvements
+
     </div>
 
     <button class="close" id="close">
@@ -1371,13 +1520,22 @@ footer{
 
 </div>
 
+
+<!-- =====================================================
+     GAME NOTICE
+===================================================== -->
+
 <div class="gameNotice" id="gameNotice">
 
   <div class="gameNoticeBox">
 
-    <div class="gameNoticeIcon" id="noticeIcon">🎮</div>
+    <div class="gameNoticeIcon" id="noticeIcon">
+      🎮
+    </div>
 
-    <h2 id="noticeTitle">Open Game</h2>
+    <h2 id="noticeTitle">
+      Open Game
+    </h2>
 
     <p id="noticeText">
       You're about to start this game.
@@ -1398,6 +1556,11 @@ footer{
   </div>
 
 </div>
+
+
+<!-- =====================================================
+     TUTORIAL
+===================================================== -->
 
 <div id="tutorial">
 
@@ -1451,6 +1614,11 @@ footer{
 
 </div>
 
+
+<!-- =====================================================
+     GAME PLAYER
+===================================================== -->
+
 <div id="gamePlayer">
 
   <div class="gamePlayerTop">
@@ -1461,16 +1629,8 @@ footer{
         🎮
       </div>
 
-      <div>
-
-        <div class="gamePlayerTitleText" id="playerTitle">
-          PStyla Game
-        </div>
-
-        <div class="gamePlayerBadge">
-          RUNNING INSIDE PSTYLA
-        </div>
-
+      <div class="gamePlayerTitleText" id="playerTitle">
+        PStyla Game
       </div>
 
     </div>
@@ -1481,12 +1641,8 @@ footer{
         ↻ Reload
       </button>
 
-      <button id="openExternalGame">
-        ↗ Open Tab
-      </button>
-
       <button id="closeGamePlayer">
-        ✕ Back to PStyla
+        ✕ Back
       </button>
 
     </div>
@@ -1503,70 +1659,49 @@ footer{
 
 </div>
 
+
+<!-- =====================================================
+     QR DECODER LIBRARY
+     
+     jsQR reads the camera image and detects QR codes.
+===================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+
+
 <script>
 
 /* =====================================================
-   PSTYLA ACCESS SETTINGS
+   ACCESS CONFIG
 ===================================================== */
 
 /*
-   CHANGE THIS EVERY WEEK.
-
-   Example QR URL:
+   PUT THIS URL IN YOUR QR CODE:
 
    https://YOUR-SITE.com/?code=R7K4-X9P2-Q6M8
 
-   The QR opens the website with the code already filled in.
-   The person only has to press ENTER.
+   Change WEEKLY_CODE whenever you want.
 */
 
 const WEEKLY_CODE = "R7K4-X9P2-Q6M8";
 
-/*
-   YOUR PERSONAL DEV CODE
-
-   This is your bypass code.
-   Change it whenever you want.
-
-   IMPORTANT:
-   Because this is client-side HTML, this code is NOT secret.
-*/
-
 const DEV_CODE = "3129";
-
-/*
-   Free trial duration:
-   5 minutes
-*/
 
 const FREE_TRIAL_MS =
   5 * 60 * 1000;
-
-/*
-   QR redemption duration:
-   9 days
-*/
 
 const REDEEM_DURATION_MS =
   9 * 24 * 60 * 60 * 1000;
 
 
-/* =====================================================
-   ACCESS STORAGE KEYS
-===================================================== */
-
 const ACCESS_KEYS = {
-
-  freeTrial:
-    "pstylaFreeTrialStart",
-
-  redeemed:
-    "pstylaRedeemedAccess",
-
-  weeklyCode:
-    "pstylaWeeklyCodeRedeemed"
-
+  freeTrial:"pstylaFreeTrialStart",
+  redeemed:"pstylaRedeemedAccess",
+  weeklyCode:"pstylaWeeklyCodeRedeemed"
 };
+
+
+let currentAccessType = null;
 
 
 /* =====================================================
@@ -1581,6 +1716,9 @@ const accessInput =
 
 const accessEnter =
   document.getElementById("accessEnter");
+
+const scanQR =
+  document.getElementById("scanQR");
 
 const accessMessage =
   document.getElementById("accessMessage");
@@ -1619,12 +1757,9 @@ function getStorageNumber(key){
   const value =
     localStorage.getItem(key);
 
-  if(!value){
-    return null;
-  }
+  if(!value)return null;
 
-  const number =
-    Number(value);
+  const number=Number(value);
 
   return Number.isFinite(number)
     ? number
@@ -1632,11 +1767,16 @@ function getStorageNumber(key){
 }
 
 
-function clearAccessStorage(){
+function clearFreeTrial(){
 
   localStorage.removeItem(
     ACCESS_KEYS.freeTrial
   );
+
+}
+
+
+function clearRedeemed(){
 
   localStorage.removeItem(
     ACCESS_KEYS.redeemed
@@ -1646,6 +1786,77 @@ function clearAccessStorage(){
     ACCESS_KEYS.weeklyCode
   );
 
+}
+
+
+/* =====================================================
+   FREE TRIAL
+===================================================== */
+
+function startFreeTrial(){
+
+  const existing =
+    getStorageNumber(
+      ACCESS_KEYS.freeTrial
+    );
+
+  if(existing)return existing;
+
+  const now=Date.now();
+
+  localStorage.setItem(
+    ACCESS_KEYS.freeTrial,
+    String(now)
+  );
+
+  return now;
+}
+
+
+function getFreeTrialRemaining(){
+
+  const start =
+    getStorageNumber(
+      ACCESS_KEYS.freeTrial
+    );
+
+  if(!start)return FREE_TRIAL_MS;
+
+  return Math.max(
+    0,
+    FREE_TRIAL_MS -
+    (Date.now()-start)
+  );
+
+}
+
+
+/* =====================================================
+   REDEEMED ACCESS
+===================================================== */
+
+function getRedeemedUntil(){
+
+  return getStorageNumber(
+    ACCESS_KEYS.redeemed
+  );
+
+}
+
+
+function isRedeemedActive(){
+
+  const until =
+    getRedeemedUntil();
+
+  if(!until)return false;
+
+  if(Date.now()<until)
+    return true;
+
+  clearRedeemed();
+
+  return false;
 }
 
 
@@ -1662,14 +1873,12 @@ function getUrlCode(){
 
   return (
     params.get("code") || ""
-  ).trim();
+  )
+  .trim()
+  .toUpperCase();
 
 }
 
-
-/* =====================================================
-   CLEAN URL AFTER QR REDEMPTION
-===================================================== */
 
 function cleanUrl(){
 
@@ -1691,7 +1900,7 @@ function cleanUrl(){
 
 
 /* =====================================================
-   SHOW ACCESS MESSAGE
+   MESSAGES
 ===================================================== */
 
 function showAccessMessage(
@@ -1708,141 +1917,7 @@ function showAccessMessage(
 
 
 /* =====================================================
-   FREE TRIAL
-===================================================== */
-
-function startFreeTrial(){
-
-  const existing =
-    getStorageNumber(
-      ACCESS_KEYS.freeTrial
-    );
-
-  if(existing){
-    return existing;
-  }
-
-  const now=Date.now();
-
-  localStorage.setItem(
-    ACCESS_KEYS.freeTrial,
-    String(now)
-  );
-
-  return now;
-
-}
-
-
-function getFreeTrialRemaining(){
-
-  const start =
-    getStorageNumber(
-      ACCESS_KEYS.freeTrial
-    );
-
-  if(!start){
-    return FREE_TRIAL_MS;
-  }
-
-  return Math.max(
-    0,
-    FREE_TRIAL_MS -
-    (Date.now()-start)
-  );
-
-}
-
-
-/* =====================================================
-   QR REDEEMED ACCESS
-===================================================== */
-
-function getRedeemedUntil(){
-
-  return getStorageNumber(
-    ACCESS_KEYS.redeemed
-  );
-
-}
-
-
-function isRedeemedActive(){
-
-  const until =
-    getRedeemedUntil();
-
-  if(!until){
-    return false;
-  }
-
-  if(Date.now()<until){
-    return true;
-  }
-
-  localStorage.removeItem(
-    ACCESS_KEYS.redeemed
-  );
-
-  return false;
-
-}
-
-
-/* =====================================================
-   ACTIVATE WEBSITE
-===================================================== */
-
-function activateAccess(
-  type,
-  until=null
-){
-
-  accessScreen.classList.add(
-    "hidden"
-  );
-
-  if(type==="qr"){
-
-    accessBadge.style.display =
-      "inline-block";
-
-    accessBadge.textContent =
-      "✓ 9-DAY ACCESS ACTIVE";
-
-    accessBar.classList.add("show");
-
-  }else if(type==="dev"){
-
-    accessBadge.style.display =
-      "inline-block";
-
-    accessBadge.textContent =
-      "✓ DEV ACCESS";
-
-    accessBar.classList.remove(
-      "show"
-    );
-
-  }else{
-
-    accessBadge.style.display =
-      "inline-block";
-
-    accessBadge.textContent =
-      "✓ FREE TRIAL";
-
-    accessBar.classList.add("show");
-
-  }
-
-  updateAccessBar(type);
-
-}
-
-
-/* =====================================================
-   ACCESS BAR
+   FORMAT TIME
 ===================================================== */
 
 function formatTime(ms){
@@ -1870,85 +1945,74 @@ function formatTime(ms){
   const seconds =
     totalSeconds%60;
 
-  if(days>0){
+  if(days>0)
+    return `${days}d ${hours}h`;
 
-    return (
-      days+"d "+
-      hours+"h"
-    );
+  if(hours>0)
+    return `${hours}h ${minutes}m`;
 
-  }
-
-  if(hours>0){
-
-    return (
-      hours+"h "+
-      minutes+"m"
-    );
-
-  }
-
-  return (
-    minutes+"m "+
-    seconds+"s"
-  );
-
+  return `${minutes}m ${seconds}s`;
 }
 
 
-function updateAccessBar(type){
+/* =====================================================
+   ACTIVATE ACCESS
+===================================================== */
+
+function activateAccess(type){
+
+  currentAccessType=type;
+
+  accessScreen.classList.add(
+    "hidden"
+  );
+
+  expiredScreen.classList.remove(
+    "show"
+  );
+
+  accessBadge.style.display =
+    "inline-block";
+
 
   if(type==="dev"){
 
-    accessBarText.textContent =
-      "Developer access • Unlimited";
+    accessBadge.textContent =
+      "✓ DEV ACCESS";
+
+    accessBar.classList.remove(
+      "show"
+    );
 
     return;
-
   }
+
 
   if(type==="qr"){
 
-    const until =
-      getRedeemedUntil();
+    accessBadge.textContent =
+      "✓ 9-DAY ACCESS ACTIVE";
 
-    const remaining =
-      until
-        ? until-Date.now()
-        : 0;
+    accessBar.classList.add(
+      "show"
+    );
 
-    accessBarText.textContent =
-      "🎟️ QR access • "+
-      formatTime(remaining)+
-      " remaining";
-
-    if(remaining<=0){
-
-      showExpired(
-        "Your 9-day access has ended",
-        "Thanks for using PStyla. See Peter for another access code."
-      );
-
-    }
+    updateAccessBar();
 
     return;
-
   }
 
-  const remaining =
-    getFreeTrialRemaining();
 
-  accessBarText.textContent =
-    "🆓 Free trial • "+
-    formatTime(remaining)+
-    " remaining";
+  if(type==="free"){
 
-  if(remaining<=0){
+    accessBadge.textContent =
+      "✓ FREE TRIAL";
 
-    showExpired(
-      "Sorry, your free trial has ended",
-      "See Peter for extra credits, or wait until next week."
+    accessBar.classList.add(
+      "show"
     );
+
+    updateAccessBar();
 
   }
 
@@ -1956,19 +2020,18 @@ function updateAccessBar(type){
 
 
 /* =====================================================
-   EXPIRED
+   EXPIRE
 ===================================================== */
 
-function showExpired(
+function expireAccess(
   title,
   text
 ){
 
-  expiredTitle.textContent =
-    title;
+  currentAccessType=null;
 
-  expiredText.textContent =
-    text;
+  expiredTitle.textContent=title;
+  expiredText.textContent=text;
 
   expiredScreen.classList.add(
     "show"
@@ -1982,6 +2045,85 @@ function showExpired(
     "show"
   );
 
+  accessBadge.style.display=
+    "none";
+}
+
+
+/* =====================================================
+   ACCESS BAR
+===================================================== */
+
+function updateAccessBar(){
+
+  if(currentAccessType==="dev"){
+
+    return;
+  }
+
+
+  if(currentAccessType==="qr"){
+
+    const until =
+      getRedeemedUntil();
+
+    if(!until){
+
+      expireAccess(
+        "Your 9-day access has ended",
+        "See Peter for another access code."
+      );
+
+      return;
+    }
+
+    const remaining =
+      until-Date.now();
+
+    if(remaining<=0){
+
+      clearRedeemed();
+
+      expireAccess(
+        "Your 9-day access has ended",
+        "See Peter for another access code."
+      );
+
+      return;
+    }
+
+    accessBarText.textContent =
+      "🎟️ QR access • " +
+      formatTime(remaining) +
+      " remaining";
+
+    return;
+  }
+
+
+  if(currentAccessType==="free"){
+
+    const remaining =
+      getFreeTrialRemaining();
+
+    if(remaining<=0){
+
+      clearFreeTrial();
+
+      expireAccess(
+        "Sorry, your free trial has ended",
+        "See Peter for extra credits, or wait until next week."
+      );
+
+      return;
+    }
+
+    accessBarText.textContent =
+      "🆓 Free trial • " +
+      formatTime(remaining) +
+      " remaining";
+  }
+
 }
 
 
@@ -1990,11 +2132,6 @@ function showExpired(
 ===================================================== */
 
 function checkExistingAccess(){
-
-  /*
-    DEV CODE ACCESS
-    Stored as a simple session flag.
-  */
 
   if(
     sessionStorage.getItem(
@@ -2005,60 +2142,57 @@ function checkExistingAccess(){
     activateAccess("dev");
 
     return true;
-
   }
 
 
   /*
-    9-DAY QR ACCESS
+    REDEEMED ACCESS IS CHECKED FIRST.
   */
 
   if(isRedeemedActive()){
 
+    clearFreeTrial();
+
     activateAccess("qr");
 
     return true;
-
   }
 
 
   /*
-    FREE TRIAL
+    EXISTING FREE TRIAL.
   */
 
-  const existingTrial =
+  const trial =
     getStorageNumber(
       ACCESS_KEYS.freeTrial
     );
 
-  if(existingTrial){
+  if(trial){
 
-    const remaining =
-      FREE_TRIAL_MS -
-      (Date.now()-existingTrial);
-
-    if(remaining>0){
+    if(
+      Date.now()-trial <
+      FREE_TRIAL_MS
+    ){
 
       activateAccess("free");
 
       return true;
-
     }
 
-    showExpired(
+    clearFreeTrial();
+
+    expireAccess(
       "Sorry, your free trial has ended",
       "See Peter for extra credits, or wait until next week."
     );
 
     return false;
-
   }
 
 
   /*
-    BRAND NEW USER
-    Start the 5-minute trial
-    immediately.
+    NEW USER.
   */
 
   startFreeTrial();
@@ -2066,12 +2200,11 @@ function checkExistingAccess(){
   activateAccess("free");
 
   return true;
-
 }
 
 
 /* =====================================================
-   CODE REDEMPTION
+   REDEEM CODE
 ===================================================== */
 
 function redeemCode(){
@@ -2088,13 +2221,12 @@ function redeemCode(){
       "error"
     );
 
-    return;
-
+    return false;
   }
 
 
   /*
-    DEV CODE
+    DEV
   */
 
   if(entered===DEV_CODE){
@@ -2109,57 +2241,52 @@ function redeemCode(){
       "success"
     );
 
-    setTimeout(()=>{
+    setTimeout(
+      ()=>activateAccess("dev"),
+      250
+    );
 
-      activateAccess("dev");
-
-    },300);
-
-    return;
-
+    return true;
   }
 
 
   /*
-    WEEKLY QR CODE
+    WEEKLY ACCESS
   */
 
   if(entered===WEEKLY_CODE){
 
-    /*
-      If this device already redeemed
-      the current weekly code, don't
-      give another 9 days.
-    */
-
-    const redeemedThisWeek =
+    const previous =
       localStorage.getItem(
         ACCESS_KEYS.weeklyCode
       );
 
     if(
-      redeemedThisWeek===
-      WEEKLY_CODE &&
+      previous===WEEKLY_CODE &&
       isRedeemedActive()
     ){
 
       showAccessMessage(
-        "This week's QR code has already been redeemed on this device.",
+        "This week's code is already active on this device.",
         "error"
       );
 
-      return;
-
+      return false;
     }
 
-
-    /*
-      Give 9 days.
-    */
 
     const until =
       Date.now()+
       REDEEM_DURATION_MS;
+
+
+    /*
+      CRITICAL:
+      DELETE THE FREE TRIAL.
+    */
+
+    clearFreeTrial();
+
 
     localStorage.setItem(
       ACCESS_KEYS.redeemed,
@@ -2171,53 +2298,38 @@ function redeemCode(){
       WEEKLY_CODE
     );
 
-    /*
-      Remove free trial because
-      the user now has redeemed access.
-    */
-
-    localStorage.removeItem(
-      ACCESS_KEYS.freeTrial
-    );
 
     showAccessMessage(
-      "Thanks for redeeming this! 🎟️",
+      "Access activated! 🎟️",
       "success"
     );
 
     accessDescription.textContent =
       "Your 9-day PStyla access is now active.";
 
-    setTimeout(()=>{
 
-      cleanUrl();
+    cleanUrl();
 
-      activateAccess(
-        "qr",
-        until
-      );
+    setTimeout(
+      ()=>activateAccess("qr"),
+      500
+    );
 
-    },900);
-
-    return;
-
+    return true;
   }
 
 
-  /*
-    WRONG CODE
-  */
-
   showAccessMessage(
-    "That code isn't valid. Check it and try again.",
+    "That code isn't valid.",
     "error"
   );
 
+  return false;
 }
 
 
 /* =====================================================
-   AUTO-FILL QR CODE
+   AUTO QR URL
 ===================================================== */
 
 const urlCode =
@@ -2225,13 +2337,15 @@ const urlCode =
 
 if(urlCode){
 
-  accessInput.value =
-    urlCode;
+  accessInput.value=urlCode;
 
   accessDescription.textContent =
-    "QR code detected. Your access code has been filled in.";
+    "QR code detected. Redeeming access...";
 
-  accessInput.focus();
+  setTimeout(
+    redeemCode,
+    150
+  );
 
 }
 
@@ -2250,18 +2364,285 @@ accessInput.addEventListener(
   "keydown",
   e=>{
 
-    if(e.key==="Enter"){
-
+    if(e.key==="Enter")
       redeemCode();
-
-    }
 
   }
 );
 
 
 /* =====================================================
-   EXPIRED BACK BUTTON
+   CAMERA QR SCANNER
+===================================================== */
+
+const qrScanner =
+  document.getElementById(
+    "qrScanner"
+  );
+
+const qrVideo =
+  document.getElementById(
+    "qrVideo"
+  );
+
+const scannerStatus =
+  document.getElementById(
+    "scannerStatus"
+  );
+
+const closeScanner =
+  document.getElementById(
+    "closeScanner"
+  );
+
+let qrStream=null;
+let qrAnimation=null;
+let qrScanning=false;
+
+
+async function startQRScanner(){
+
+  if(typeof jsQR!=="function"){
+
+    scannerStatus.textContent =
+      "QR scanner failed to load.";
+
+    return;
+  }
+
+
+  qrScanner.classList.add("show");
+
+  scannerStatus.textContent =
+    "Requesting camera permission...";
+
+
+  try{
+
+    qrStream =
+      await navigator.mediaDevices.getUserMedia({
+        video:{
+          facingMode:{
+            ideal:"environment"
+          }
+        },
+        audio:false
+      });
+
+    qrVideo.srcObject=qrStream;
+
+    await qrVideo.play();
+
+    scannerStatus.textContent =
+      "Point the camera at your PStyla QR code.";
+
+    qrScanning=true;
+
+    scanQRFrame();
+
+  }catch(error){
+
+    scannerStatus.textContent =
+      "Camera unavailable. Check browser camera permissions.";
+
+    console.error(error);
+
+  }
+
+}
+
+
+function scanQRFrame(){
+
+  if(!qrScanning)return;
+
+  if(
+    qrVideo.readyState >=
+    HTMLMediaElement.HAVE_CURRENT_DATA
+  ){
+
+    const canvas =
+      document.createElement("canvas");
+
+    const width=qrVideo.videoWidth;
+    const height=qrVideo.videoHeight;
+
+    if(width && height){
+
+      canvas.width=width;
+      canvas.height=height;
+
+      const ctx =
+        canvas.getContext("2d",{
+          willReadFrequently:true
+        });
+
+      ctx.drawImage(
+        qrVideo,
+        0,
+        0,
+        width,
+        height
+      );
+
+      const image =
+        ctx.getImageData(
+          0,
+          0,
+          width,
+          height
+        );
+
+      const result =
+        jsQR(
+          image.data,
+          image.width,
+          image.height,
+          {
+            inversionAttempts:
+              "attemptBoth"
+          }
+        );
+
+
+      if(result){
+
+        handleScannedQR(
+          result.data
+        );
+
+        return;
+      }
+    }
+  }
+
+  qrAnimation =
+    requestAnimationFrame(
+      scanQRFrame
+    );
+}
+
+
+/* =====================================================
+   HANDLE QR CONTENT
+===================================================== */
+
+function handleScannedQR(data){
+
+  stopQRScanner();
+
+  const raw =
+    String(data || "").trim();
+
+  let code="";
+
+
+  /*
+    QR can contain:
+
+    https://site.com/?code=R7K4-X9P2-Q6M8
+  */
+
+  try{
+
+    const url =
+      new URL(raw);
+
+    code =
+      (
+        url.searchParams.get("code") ||
+        ""
+      )
+      .trim()
+      .toUpperCase();
+
+  }catch{
+
+    /*
+      Or QR can simply contain:
+      R7K4-X9P2-Q6M8
+    */
+
+    code =
+      raw.toUpperCase();
+
+  }
+
+
+  if(!code){
+
+    accessInput.value="";
+
+    showAccessMessage(
+      "That QR doesn't contain a PStyla access code.",
+      "error"
+    );
+
+    return;
+  }
+
+
+  accessInput.value=code;
+
+  showAccessMessage(
+    "QR detected. Checking access...",
+    "success"
+  );
+
+  setTimeout(
+    redeemCode,
+    250
+  );
+}
+
+
+function stopQRScanner(){
+
+  qrScanning=false;
+
+  if(qrAnimation){
+
+    cancelAnimationFrame(
+      qrAnimation
+    );
+
+    qrAnimation=null;
+  }
+
+
+  if(qrStream){
+
+    qrStream
+      .getTracks()
+      .forEach(
+        track=>track.stop()
+      );
+
+    qrStream=null;
+  }
+
+  qrVideo.srcObject=null;
+
+  qrScanner.classList.remove(
+    "show"
+  );
+}
+
+
+scanQR.addEventListener(
+  "click",
+  startQRScanner
+);
+
+
+closeScanner.addEventListener(
+  "click",
+  stopQRScanner
+);
+
+
+/* =====================================================
+   EXPIRED BUTTON
 ===================================================== */
 
 expiredClose.addEventListener(
@@ -2278,6 +2659,8 @@ expiredClose.addEventListener(
 
     accessInput.value="";
 
+    showAccessMessage("");
+
     accessInput.focus();
 
   }
@@ -2288,71 +2671,50 @@ expiredClose.addEventListener(
    ACCESS TIMER
 ===================================================== */
 
-setInterval(()=>{
+setInterval(
+  ()=>{
 
-  /*
-    DEV
-  */
-
-  if(
-    sessionStorage.getItem(
-      "pstylaDevAccess"
-    )==="true"
-  ){
-
-    return;
-
-  }
+    if(
+      currentAccessType==="dev"
+    ){
+      return;
+    }
 
 
-  /*
-    QR
-  */
+    /*
+      QR ALWAYS GETS PRIORITY.
+    */
 
-  if(isRedeemedActive()){
+    if(
+      currentAccessType==="qr" ||
+      isRedeemedActive()
+    ){
 
-    updateAccessBar("qr");
+      currentAccessType="qr";
 
-    return;
+      clearFreeTrial();
 
-  }
+      updateAccessBar();
+
+      return;
+    }
 
 
-  /*
-    FREE
-  */
+    if(
+      currentAccessType==="free"
+    ){
 
-  const trialStart =
-    getStorageNumber(
-      ACCESS_KEYS.freeTrial
-    );
-
-  if(trialStart){
-
-    const remaining =
-      FREE_TRIAL_MS -
-      (Date.now()-trialStart);
-
-    if(remaining<=0){
-
-      showExpired(
-        "Sorry, your free trial has ended",
-        "See Peter for extra credits, or wait until next week."
-      );
-
-    }else{
-
-      updateAccessBar("free");
+      updateAccessBar();
 
     }
 
-  }
-
-},1000);
+  },
+  1000
+);
 
 
 /* =====================================================
-   INITIALIZE ACCESS
+   INIT ACCESS
 ===================================================== */
 
 checkExistingAccess();
@@ -2362,7 +2724,7 @@ checkExistingAccess();
    GAME DATABASE
 ===================================================== */
 
-const gamesData = [
+const gamesData=[
 
   {
     n:"Tiny Fishing",
@@ -2515,8 +2877,9 @@ const gamesData = [
 
 ];
 
-document.getElementById("gameCount").textContent =
-  gamesData.length;
+document.getElementById(
+  "gameCount"
+).textContent=gamesData.length;
 
 
 /* =====================================================
@@ -2524,11 +2887,14 @@ document.getElementById("gameCount").textContent =
 ===================================================== */
 
 const particleBox =
-  document.getElementById("particles");
+  document.getElementById(
+    "particles"
+  );
 
 for(let i=0;i<90;i++){
 
-  const p=document.createElement("div");
+  const p =
+    document.createElement("div");
 
   p.className="particle";
 
@@ -2563,7 +2929,6 @@ for(let i=0;i<90;i++){
   );
 
   particleBox.appendChild(p);
-
 }
 
 
@@ -2589,6 +2954,7 @@ const colors={
 const gamesBox =
   document.getElementById("games");
 
+
 function createGame(game){
 
   const card =
@@ -2606,16 +2972,6 @@ function createGame(game){
     colors[game.c] ||
     ["#8b5cf6","#100817"];
 
-  const badge =
-    game.external
-      ? "EXTERNAL"
-      : "IN PSTYLA";
-
-  const version =
-    game.external
-      ? "EXTERNAL GAME"
-      : "IN-SITE GAME";
-
   card.innerHTML=`
 
     <div
@@ -2627,8 +2983,16 @@ function createGame(game){
       "
     >
 
-      <div class="badge ${game.external ? "external" : ""}">
-        ${badge}
+      <div class="badge ${
+        game.external
+        ? "external"
+        : ""
+      }">
+        ${
+          game.external
+          ? "EXTERNAL"
+          : "IN PSTYLA"
+        }
       </div>
 
       <div class="thumbIcon">
@@ -2651,11 +3015,19 @@ function createGame(game){
         ${game.c}
       </div>
 
-      <div class="gameVersion ${game.external ? "external" : ""}">
-        ${version}
+      <div class="gameVersion ${
+        game.external
+        ? "external"
+        : ""
+      }">
+        ${
+          game.external
+          ? "EXTERNAL GAME"
+          : "IN-SITE GAME"
+        }
       </div>
 
-      <button class="play" type="button">
+      <button class="play">
         PLAY →
       </button>
 
@@ -2669,53 +3041,68 @@ function createGame(game){
     );
 
   return card;
-
 }
 
 
-gamesData.forEach(game=>{
-  gamesBox.appendChild(
-    createGame(game)
-  );
-});
+gamesData.forEach(
+  game=>{
+    gamesBox.appendChild(
+      createGame(game)
+    );
+  }
+);
 
 
 /* =====================================================
-   GAME LAUNCH SYSTEM
+   GAME PLAYER
 ===================================================== */
 
 const gameNotice =
-  document.getElementById("gameNotice");
+  document.getElementById(
+    "gameNotice"
+  );
 
 const noticeTitle =
-  document.getElementById("noticeTitle");
+  document.getElementById(
+    "noticeTitle"
+  );
 
 const noticeText =
-  document.getElementById("noticeText");
+  document.getElementById(
+    "noticeText"
+  );
 
 const noticeIcon =
-  document.getElementById("noticeIcon");
+  document.getElementById(
+    "noticeIcon"
+  );
 
 const noticeOpen =
-  document.getElementById("noticeOpen");
-
-let selectedGame=null;
+  document.getElementById(
+    "noticeOpen"
+  );
 
 const gamePlayer =
-  document.getElementById("gamePlayer");
+  document.getElementById(
+    "gamePlayer"
+  );
 
 const gameFrame =
-  document.getElementById("gameFrame");
+  document.getElementById(
+    "gameFrame"
+  );
 
 const playerTitle =
-  document.getElementById("playerTitle");
+  document.getElementById(
+    "playerTitle"
+  );
 
 const playerIcon =
-  document.getElementById("playerIcon");
+  document.getElementById(
+    "playerIcon"
+  );
 
-const openExternalGame =
-  document.getElementById("openExternalGame");
-
+let selectedGame=null;
 let currentPlayingGame=null;
 
 
@@ -2723,40 +3110,34 @@ function openGame(game){
 
   selectedGame=game;
 
-  noticeTitle.textContent =
+  noticeTitle.textContent=
     game.n;
 
-  noticeIcon.textContent =
+  noticeIcon.textContent=
     game.i;
 
   if(game.external){
 
-    noticeText.textContent =
-      "This is one of your preserved external games. It will open separately.";
+    noticeText.textContent=
+      "This game will open separately.";
 
-    noticeOpen.textContent =
+    noticeOpen.textContent=
       "OPEN GAME ↗";
 
   }else{
 
-    noticeText.textContent =
-      "This game will load directly inside the PStyla game player.";
+    noticeText.textContent=
+      "This game will load inside PStyla.";
 
-    noticeOpen.textContent =
+    noticeOpen.textContent=
       "PLAY INSIDE PSTYLA →";
-
   }
 
   gameNotice.classList.add(
     "show"
   );
-
 }
 
-
-/* =====================================================
-   START GAME
-===================================================== */
 
 noticeOpen.addEventListener(
   "click",
@@ -2774,6 +3155,7 @@ noticeOpen.addEventListener(
 
     savePlayed(game.n);
 
+
     if(game.external){
 
       const opened =
@@ -2786,27 +3168,25 @@ noticeOpen.addEventListener(
       if(!opened){
 
         alert(
-          "Your browser blocked the game tab. Allow pop-ups for PStyla."
+          "Your browser blocked the game tab."
         );
 
       }
 
       return;
-
     }
+
 
     currentPlayingGame=game;
 
-    playerTitle.textContent =
+    playerTitle.textContent=
       game.n;
 
-    playerIcon.textContent =
+    playerIcon.textContent=
       game.i;
 
-    openExternalGame.style.display =
-      "none";
-
-    gameFrame.src="about:blank";
+    gameFrame.src=
+      "about:blank";
 
     gamePlayer.classList.add(
       "show"
@@ -2815,18 +3195,21 @@ noticeOpen.addEventListener(
     document.body.style.overflow=
       "hidden";
 
-    setTimeout(()=>{
-
-      gameFrame.src=
-        game.gameUrl;
-
-    },50);
+    setTimeout(
+      ()=>{
+        gameFrame.src=
+          game.gameUrl;
+      },
+      50
+    );
 
   }
 );
 
 
-/* CLOSE GAME */
+/* =====================================================
+   CLOSE / RELOAD
+===================================================== */
 
 function closeGamePlayer(){
 
@@ -2837,31 +3220,31 @@ function closeGamePlayer(){
     "show"
   );
 
-  document.body.style.overflow=
-    "";
+  document.body.style.overflow="";
 
   currentPlayingGame=null;
-
 }
 
+
 document
-  .getElementById("closeGamePlayer")
+  .getElementById(
+    "closeGamePlayer"
+  )
   .addEventListener(
     "click",
     closeGamePlayer
   );
 
 
-/* RELOAD */
-
 document
-  .getElementById("reloadGame")
+  .getElementById(
+    "reloadGame"
+  )
   .addEventListener(
     "click",
     ()=>{
 
-      if(!currentPlayingGame)
-        return;
+      if(!currentPlayingGame)return;
 
       const url =
         currentPlayingGame.gameUrl;
@@ -2869,67 +3252,50 @@ document
       gameFrame.src=
         "about:blank";
 
-      setTimeout(()=>{
-
-        gameFrame.src=url;
-
-      },100);
+      setTimeout(
+        ()=>{
+          gameFrame.src=url;
+        },
+        100
+      );
 
     }
   );
 
 
-/* CANCEL */
-
 document
-  .getElementById("noticeCancel")
+  .getElementById(
+    "noticeCancel"
+  )
   .addEventListener(
     "click",
     ()=>{
-
       gameNotice.classList.remove(
         "show"
       );
-
       selectedGame=null;
-
     }
   );
 
 
-gameNotice.addEventListener(
-  "click",
-  e=>{
-
-    if(e.target===gameNotice){
-
-      gameNotice.classList.remove(
-        "show"
-      );
-
-      selectedGame=null;
-
-    }
-
-  }
-);
-
-
-/* FEATURED */
+/* =====================================================
+   FEATURED
+===================================================== */
 
 document
-  .getElementById("featuredPlay")
+  .getElementById(
+    "featuredPlay"
+  )
   .addEventListener(
     "click",
     ()=>{
 
-      const stickmanHook =
+      const game =
         gamesData.find(
           g=>g.n==="Stickman Hook"
         );
 
-      if(stickmanHook)
-        openGame(stickmanHook);
+      if(game)openGame(game);
 
     }
   );
@@ -2940,7 +3306,9 @@ document
 ===================================================== */
 
 const search =
-  document.getElementById("search");
+  document.getElementById(
+    "search"
+  );
 
 const categories =
   document.querySelectorAll(
@@ -2948,7 +3316,9 @@ const categories =
   );
 
 const noResults =
-  document.getElementById("noResults");
+  document.getElementById(
+    "noResults"
+  );
 
 let currentCategory="all";
 
@@ -2964,46 +3334,44 @@ function updateGames(){
 
   document
     .querySelectorAll(".game")
-    .forEach(card=>{
+    .forEach(
+      card=>{
 
-      const name =
-        card.dataset.name;
+        const matchName =
+          card.dataset.name
+            .includes(query);
 
-      const cat =
-        card.dataset.category;
+        const matchCategory =
+          currentCategory==="all" ||
+          card.dataset.category===
+          currentCategory;
 
-      const matchName =
-        name.includes(query);
+        if(
+          matchName &&
+          matchCategory
+        ){
 
-      const matchCategory =
-        currentCategory==="all" ||
-        cat===currentCategory;
+          card.classList.remove(
+            "hidden"
+          );
 
-      if(
-        matchName &&
-        matchCategory
-      ){
+          count++;
 
-        card.classList.remove(
-          "hidden"
-        );
+        }else{
 
-        count++;
+          card.classList.add(
+            "hidden"
+          );
 
-      }else{
-
-        card.classList.add(
-          "hidden"
-        );
+        }
 
       }
-
-    });
+    );
 
   noResults.style.display =
     count ? "none" : "block";
-
 }
+
 
 search.addEventListener(
   "input",
@@ -3011,33 +3379,33 @@ search.addEventListener(
 );
 
 
-/* CATEGORIES */
+categories.forEach(
+  button=>{
 
-categories.forEach(button=>{
+    button.addEventListener(
+      "click",
+      ()=>{
 
-  button.addEventListener(
-    "click",
-    ()=>{
+        categories.forEach(
+          b=>b.classList.remove(
+            "active"
+          )
+        );
 
-      categories.forEach(
-        b=>b.classList.remove(
+        button.classList.add(
           "active"
-        )
-      );
+        );
 
-      button.classList.add(
-        "active"
-      );
+        currentCategory =
+          button.dataset.category;
 
-      currentCategory =
-        button.dataset.category;
+        updateGames();
 
-      updateGames();
+      }
+    );
 
-    }
-  );
-
-});
+  }
+);
 
 
 /* =====================================================
@@ -3059,7 +3427,6 @@ function getRecent(){
     return [];
 
   }
-
 }
 
 
@@ -3067,13 +3434,15 @@ function savePlayed(name){
 
   let recent=getRecent();
 
-  recent=recent.filter(
-    x=>x!==name
-  );
+  recent =
+    recent.filter(
+      x=>x!==name
+    );
 
   recent.unshift(name);
 
-  recent=recent.slice(0,8);
+  recent =
+    recent.slice(0,8);
 
   localStorage.setItem(
     "pstylaRecent",
@@ -3081,9 +3450,7 @@ function savePlayed(name){
   );
 
   loadRecent();
-
   updateAchievements();
-
 }
 
 
@@ -3092,7 +3459,6 @@ function findGame(name){
   return gamesData.find(
     x=>x.n===name
   );
-
 }
 
 
@@ -3103,76 +3469,73 @@ function loadRecent(){
       "recent"
     );
 
-  const recent =
-    getRecent();
+  const recent=getRecent();
 
   box.innerHTML="";
 
   if(!recent.length){
 
     box.innerHTML=`
-
       <div class="recentItem">
         🎮 Play a game and it'll appear here.
       </div>
-
     `;
 
     return;
-
   }
 
-  recent.forEach(name=>{
 
-    const game=findGame(name);
+  recent.forEach(
+    name=>{
 
-    if(!game)return;
+      const game=findGame(name);
 
-    const item =
-      document.createElement("div");
+      if(!game)return;
 
-    item.className="recentItem";
+      const item =
+        document.createElement(
+          "div"
+        );
 
-    item.innerHTML=`
+      item.className=
+        "recentItem";
 
-      <div style="font-size:35px">
-        ${game.i}
-      </div>
+      item.innerHTML=`
 
-      <strong>
-        ${game.n}
-      </strong>
+        <div style="font-size:35px">
+          ${game.i}
+        </div>
 
-      <div
-        style="
+        <strong>
+          ${game.n}
+        </strong>
+
+        <div style="
           color:#777;
           font-size:10px;
           margin-top:4px
-        "
-      >
-        ${game.c.toUpperCase()}
-      </div>
+        ">
+          ${game.c.toUpperCase()}
+        </div>
 
-      <button
-        class="play"
-        type="button"
-      >
-        PLAY AGAIN
-      </button>
+        <button class="play">
+          PLAY AGAIN
+        </button>
+      `;
 
-    `;
-
-    item.querySelector("button")
-      .addEventListener(
+      item.querySelector(
+        "button"
+      ).addEventListener(
         "click",
         ()=>openGame(game)
       );
 
-    box.appendChild(item);
+      box.appendChild(item);
 
-  });
-
+    }
+  );
 }
+
 
 loadRecent();
 
@@ -3182,7 +3545,9 @@ loadRecent();
 ===================================================== */
 
 document
-  .getElementById("random")
+  .getElementById(
+    "random"
+  )
   .addEventListener(
     "click",
     ()=>{
@@ -3220,7 +3585,6 @@ document
       if(!game)return;
 
       savePlayed(game.n);
-
       openGame(game);
 
       card.scrollIntoView({
@@ -3228,65 +3592,46 @@ document
         block:"center"
       });
 
-      card.style.boxShadow =
-        "0 0 50px rgba(168,85,247,.9)";
-
-      setTimeout(()=>{
-
-        card.style.boxShadow="";
-
-      },1500);
-
       localStorage.setItem(
         "pstylaLuckyPlayer",
         "true"
       );
 
       updateAchievements();
-
     }
   );
 
 
-/* HOME */
+/* =====================================================
+   HOME / NEW TAB
+===================================================== */
 
 document
-  .getElementById("homeButton")
+  .getElementById(
+    "homeButton"
+  )
   .addEventListener(
     "click",
     ()=>{
-
       window.scrollTo({
         top:0,
         behavior:"smooth"
       });
-
     }
   );
 
 
-/* NEW TAB */
-
 document
-  .getElementById("newTab")
+  .getElementById(
+    "newTab"
+  )
   .addEventListener(
     "click",
     ()=>{
-
-      const newWindow =
-        window.open(
-          window.location.href,
-          "_blank"
-        );
-
-      if(!newWindow){
-
-        alert(
-          "Your browser blocked the new tab. Allow pop-ups for PStyla."
-        );
-
-      }
-
+      window.open(
+        window.location.href,
+        "_blank"
+      );
     }
   );
 
@@ -3296,7 +3641,9 @@ document
 ===================================================== */
 
 document
-  .getElementById("enter")
+  .getElementById(
+    "enter"
+  )
   .addEventListener(
     "click",
     ()=>{
@@ -3305,19 +3652,18 @@ document
         .getElementById("intro")
         .classList.add("hide");
 
-      setTimeout(()=>{
-
-        if(
-          !localStorage.getItem(
-            "pstylaTutorialDone"
-          )
-        ){
-
-          openTutorial();
-
-        }
-
-      },500);
+      setTimeout(
+        ()=>{
+          if(
+            !localStorage.getItem(
+              "pstylaTutorialDone"
+            )
+          ){
+            openTutorial();
+          }
+        },
+        500
+      );
 
     }
   );
@@ -3332,58 +3678,47 @@ const tutorialPages=[
   {
     icon:"🎮",
     title:"Welcome to PStyla",
-    text:
-      "This is your game hub. Everything is built around finding something fun quickly.",
+    text:"This is your game hub.",
     tips:[
-      "<b>20 games</b> are currently loaded",
-      "Use search and categories to find games fast"
+      "Find games quickly",
+      "Use search and categories"
     ]
   },
 
   {
     icon:"🔎",
     title:"Find a Game",
-    text:
-      "Use the search bar to instantly filter the game library.",
+    text:"Search the game library instantly.",
     tips:[
       "Type a game name",
-      "Use categories underneath the Games heading",
-      "Press <b>All</b> to reset filters"
+      "Use the categories"
     ]
   },
 
   {
     icon:"🎲",
     title:"Surprise Me",
-    text:
-      "Can't decide? Let PStyla pick something.",
+    text:"Let PStyla pick a game.",
     tips:[
-      "Press <b>Surprise Me</b>",
-      "It chooses from the games currently visible",
-      "Your choice is saved to Recently Played"
+      "Press Surprise Me",
+      "It chooses from visible games"
     ]
   },
 
   {
     icon:"▶️",
     title:"Play Inside PStyla",
-    text:
-      "The game player loads the game inside PStyla.",
+    text:"Most games load directly in the player.",
     tips:[
-      "Games stay inside the PStyla player",
-      "PStyla's interface remains behind the game",
-      "Use <b>Back to PStyla</b> when finished"
+      "Use Back when finished"
     ]
   },
 
   {
     icon:"🎣",
-    title:"Two Exceptions",
-    text:
-      "Tiny Fishing and Among Us stay as your original external games.",
+    title:"External Games",
+    text:"Tiny Fishing and Among Us open separately.",
     tips:[
-      "They open in a separate tab",
-      "PStyla stays open",
       "Your original versions are preserved"
     ]
   },
@@ -3391,23 +3726,18 @@ const tutorialPages=[
   {
     icon:"🕐",
     title:"Recently Played",
-    text:
-      "Your recently selected games are saved on this device.",
+    text:"Your recent games are saved on this device.",
     tips:[
-      "Up to <b>8 games</b> are remembered",
-      "Press PLAY AGAIN anytime"
+      "Up to 8 games are remembered"
     ]
   },
 
   {
     icon:"🔥",
     title:"You're Ready",
-    text:
-      "That's it. Search, pick a game and get playing.",
+    text:"Search, pick a game and play.",
     tips:[
-      "<b>Updates</b> shows what's new",
-      "<b>Home</b> takes you back to the top",
-      "Have fun 🎮"
+      "Check Updates for new stuff"
     ]
   }
 
@@ -3467,37 +3797,38 @@ function renderTutorial(){
   const page =
     tutorialPages[tutorialIndex];
 
-  tutorialIcon.textContent =
+  tutorialIcon.textContent=
     page.icon;
 
-  tutorialTitle.textContent =
+  tutorialTitle.textContent=
     page.title;
 
-  tutorialText.textContent =
+  tutorialText.textContent=
     page.text;
 
-  tutorialStep.textContent =
+  tutorialStep.textContent=
     `${tutorialIndex+1} / ${tutorialPages.length}`;
 
   tutorialTips.innerHTML="";
 
-  page.tips.forEach(tip=>{
+  page.tips.forEach(
+    tip=>{
 
-    const div =
-      document.createElement(
-        "div"
-      );
+      const div =
+        document.createElement(
+          "div"
+        );
 
-    div.className=
-      "tutorialTip";
+      div.className=
+        "tutorialTip";
 
-    div.innerHTML=tip;
+      div.innerHTML=tip;
 
-    tutorialTips.appendChild(
-      div
-    );
+      tutorialTips.appendChild(div);
 
-  });
+    }
+  );
+
 
   tutorialProgress.innerHTML="";
 
@@ -3512,13 +3843,8 @@ function renderTutorial(){
       dot.className=
         "progressDot";
 
-      if(index===tutorialIndex){
-
-        dot.classList.add(
-          "active"
-        );
-
-      }
+      if(index===tutorialIndex)
+        dot.classList.add("active");
 
       tutorialProgress.appendChild(
         dot
@@ -3526,6 +3852,7 @@ function renderTutorial(){
 
     }
   );
+
 
   tutorialBack.style.visibility =
     tutorialIndex===0
@@ -3537,7 +3864,6 @@ function renderTutorial(){
     tutorialPages.length-1
       ? "Finish ✓"
       : "Next →";
-
 }
 
 
@@ -3550,7 +3876,6 @@ function openTutorial(){
   tutorial.classList.add(
     "show"
   );
-
 }
 
 
@@ -3566,7 +3891,6 @@ function closeTutorial(){
   );
 
   updateAchievements();
-
 }
 
 
@@ -3580,7 +3904,6 @@ tutorialNext.addEventListener(
     ){
 
       tutorialIndex++;
-
       renderTutorial();
 
     }else{
@@ -3600,7 +3923,6 @@ tutorialBack.addEventListener(
     if(tutorialIndex>0){
 
       tutorialIndex--;
-
       renderTutorial();
 
     }
@@ -3610,7 +3932,9 @@ tutorialBack.addEventListener(
 
 
 document
-  .getElementById("tutorialSkip")
+  .getElementById(
+    "tutorialSkip"
+  )
   .addEventListener(
     "click",
     closeTutorial
@@ -3626,8 +3950,11 @@ const modal =
     "modal"
   );
 
+
 document
-  .getElementById("updates")
+  .getElementById(
+    "updates"
+  )
   .addEventListener(
     "click",
     ()=>{
@@ -3637,8 +3964,11 @@ document
     }
   );
 
+
 document
-  .getElementById("close")
+  .getElementById(
+    "close"
+  )
   .addEventListener(
     "click",
     ()=>{
@@ -3648,38 +3978,20 @@ document
     }
   );
 
-modal.addEventListener(
-  "click",
-  e=>{
-
-    if(e.target===modal){
-
-      modal.classList.remove(
-        "show"
-      );
-
-    }
-
-  }
-);
-
 
 /* =====================================================
    MUSIC
 ===================================================== */
 
 const musicTracks=[
-
   {
     name:"PStyla Track 1",
     id:"85wZGRcHHAc"
   },
-
   {
     name:"PStyla Track 2",
     id:"ps5nM2CiaMY"
   }
-
 ];
 
 let musicIndex=-1;
@@ -3703,8 +4015,7 @@ const musicStatus =
 
 function showMusicToast(text){
 
-  musicStatus.textContent=
-    text;
+  musicStatus.textContent=text;
 
   musicToast.classList.add(
     "show"
@@ -3715,14 +4026,14 @@ function showMusicToast(text){
   );
 
   window.musicTimer=
-    setTimeout(()=>{
-
-      musicToast.classList.remove(
-        "show"
-      );
-
-    },2200);
-
+    setTimeout(
+      ()=>{
+        musicToast.classList.remove(
+          "show"
+        );
+      },
+      2200
+    );
 }
 
 
@@ -3731,11 +4042,9 @@ function clearMusic(){
   if(musicFrame){
 
     musicFrame.remove();
-
     musicFrame=null;
 
   }
-
 }
 
 
@@ -3746,32 +4055,19 @@ function playMusic(index){
   musicIndex=index;
 
   const track=
-    musicTracks[
-      musicIndex
-    ];
+    musicTracks[musicIndex];
 
-  musicFrame=
+  musicFrame =
     document.createElement(
       "iframe"
     );
 
-  musicFrame.style.position=
-    "fixed";
-
-  musicFrame.style.width=
-    "1px";
-
-  musicFrame.style.height=
-    "1px";
-
-  musicFrame.style.left=
-    "-100px";
-
-  musicFrame.style.top=
-    "-100px";
-
-  musicFrame.style.opacity=
-    "0";
+  musicFrame.style.position="fixed";
+  musicFrame.style.width="1px";
+  musicFrame.style.height="1px";
+  musicFrame.style.left="-100px";
+  musicFrame.style.top="-100px";
+  musicFrame.style.opacity="0";
 
   musicFrame.allow=
     "autoplay; encrypted-media";
@@ -3783,13 +4079,11 @@ function playMusic(index){
     musicFrame
   );
 
-  musicButton.textContent=
-    "🔊";
+  musicButton.textContent="🔊";
 
   showMusicToast(
     "Music: "+track.name
   );
-
 }
 
 
@@ -3799,13 +4093,11 @@ function stopMusic(){
 
   musicIndex=-1;
 
-  musicButton.textContent=
-    "🔇";
+  musicButton.textContent="🔇";
 
   showMusicToast(
     "Music Off"
   );
-
 }
 
 
@@ -3816,7 +4108,6 @@ musicButton.addEventListener(
     if(musicIndex===-1){
 
       playMusic(0);
-
       return;
 
     }
@@ -3831,29 +4122,9 @@ musicButton.addEventListener(
       );
 
       return;
-
     }
 
     stopMusic();
-
-  }
-);
-
-
-document.addEventListener(
-  "keydown",
-  e=>{
-
-    if(
-      e.key.toLowerCase()==="m" &&
-      !["INPUT","TEXTAREA"].includes(
-        document.activeElement.tagName
-      )
-    ){
-
-      musicButton.click();
-
-    }
 
   }
 );
@@ -3865,54 +4136,36 @@ document.addEventListener(
 
 function updateAchievements(){
 
-  const recent=
-    getRecent();
+  const recent=getRecent();
 
-  const achievements=
+  const achievements =
     document.querySelectorAll(
       ".achievement"
     );
 
-  if(recent.length>=1){
-
-    achievements[0]
-      .style.borderColor=
+  if(recent.length>=1)
+    achievements[0].style.borderColor=
       "#a855f7";
 
-  }
-
-  if(recent.length>=5){
-
-    achievements[1]
-      .style.borderColor=
+  if(recent.length>=5)
+    achievements[1].style.borderColor=
       "#a855f7";
-
-  }
 
   if(
     localStorage.getItem(
       "pstylaLuckyPlayer"
     )==="true"
-  ){
-
-    achievements[2]
-      .style.borderColor=
+  )
+    achievements[2].style.borderColor=
       "#a855f7";
-
-  }
 
   if(
     localStorage.getItem(
       "pstylaTutorialDone"
     )==="true"
-  ){
-
-    achievements[3]
-      .style.borderColor=
+  )
+    achievements[3].style.borderColor=
       "#a855f7";
-
-  }
-
 }
 
 
@@ -3927,31 +4180,39 @@ document.addEventListener(
   "keydown",
   e=>{
 
-    if(e.key==="Escape"){
+    if(e.key!=="Escape")return;
 
-      modal.classList.remove(
+    modal.classList.remove(
+      "show"
+    );
+
+    tutorial.classList.remove(
+      "show"
+    );
+
+    gameNotice.classList.remove(
+      "show"
+    );
+
+    selectedGame=null;
+
+    if(
+      gamePlayer.classList.contains(
         "show"
-      );
+      )
+    ){
 
-      tutorial.classList.remove(
+      closeGamePlayer();
+
+    }
+
+    if(
+      qrScanner.classList.contains(
         "show"
-      );
+      )
+    ){
 
-      gameNotice.classList.remove(
-        "show"
-      );
-
-      selectedGame=null;
-
-      if(
-        gamePlayer.classList.contains(
-          "show"
-        )
-      ){
-
-        closeGamePlayer();
-
-      }
+      stopQRScanner();
 
     }
 
@@ -3960,16 +4221,16 @@ document.addEventListener(
 
 
 /* =====================================================
-   PAGE UNLOAD
+   UNLOAD
 ===================================================== */
 
 window.addEventListener(
   "beforeunload",
   ()=>{
-
     gameFrame.src=
       "about:blank";
 
+    stopQRScanner();
   }
 );
 
@@ -3982,3 +4243,4 @@ console.log(
 
 </body>
 </html>
+```
