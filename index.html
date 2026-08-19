@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,14 +7,21 @@
 
 <style>
 *{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:Inter,Arial,sans-serif;
   background:#08070b;
   color:#fff;
 }
-button,input{font:inherit}
-button{cursor:pointer}
+
+button,input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
 
 .app{
   min-height:100vh;
@@ -53,6 +59,10 @@ button{
   font-weight:800;
 }
 
+button:hover{
+  filter:brightness(1.12);
+}
+
 button.secondary{
   background:#211b29;
   border:1px solid #382d43;
@@ -68,7 +78,17 @@ input{
   outline:none;
 }
 
-.hidden{display:none!important}
+input:focus{
+  border-color:#a855f7;
+}
+
+.hidden{
+  display:none!important;
+}
+
+/* =========================
+   QR SCANNER
+========================= */
 
 #qrScanner{
   position:fixed;
@@ -81,7 +101,9 @@ input{
   background:rgba(3,2,6,.96);
 }
 
-#qrScanner.show{display:flex}
+#qrScanner.show{
+  display:flex;
+}
 
 .scannerBox{
   width:min(94%,520px);
@@ -90,6 +112,7 @@ input{
   border-radius:20px;
   background:#0d0b12;
   text-align:center;
+  box-shadow:0 0 40px rgba(168,85,247,.2);
 }
 
 #qrVideo{
@@ -97,6 +120,8 @@ input{
   margin-top:15px;
   border-radius:14px;
   background:#000;
+  min-height:220px;
+  object-fit:cover;
 }
 
 .scannerStatus{
@@ -106,6 +131,10 @@ input{
   font-size:13px;
   font-weight:800;
 }
+
+/* =========================
+   GAMES
+========================= */
 
 .game-grid{
   display:grid;
@@ -159,10 +188,47 @@ input{
   border-radius:10px;
   margin-top:10px;
   font-size:13px;
+  font-weight:800;
 }
 
-.success{background:#12351f;color:#86efac}
-.error{background:#3a1515;color:#fca5a5}
+.success{
+  background:#12351f;
+  color:#86efac;
+  border:1px solid #1e6b3a;
+}
+
+.error{
+  background:#3a1515;
+  color:#fca5a5;
+  border:1px solid #702525;
+}
+
+.accessGranted{
+  animation:accessPulse .4s ease;
+}
+
+@keyframes accessPulse{
+  0%{transform:scale(.97);opacity:.4}
+  100%{transform:scale(1);opacity:1}
+}
+
+@media(max-width:600px){
+  .app{
+    padding:14px;
+  }
+
+  header{
+    gap:10px;
+  }
+
+  .logo{
+    font-size:22px;
+  }
+
+  button{
+    padding:11px 14px;
+  }
+}
 </style>
 </head>
 
@@ -172,81 +238,189 @@ input{
 
 <header>
   <div class="logo">PStyla</div>
-  <button onclick="openQR()">📷 Scan QR</button>
+
+  <button onclick="openQR()">
+    📷 Scan QR
+  </button>
 </header>
 
-<section class="card">
-  <h2>Welcome</h2>
-  <p>Scan a QR to enter, or use one of the games below.</p>
 
-  <input id="accessInput" placeholder="Enter access code or QR result">
+<!-- =========================
+     ACCESS
+========================= -->
+
+<section class="card">
+
+  <h2>Welcome</h2>
+
+  <p>
+    Scan your PStyla QR code to enter, or enter the QR result manually.
+  </p>
+
+  <input
+    id="accessInput"
+    placeholder="Enter access code or QR result"
+    autocomplete="off"
+  >
 
   <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap">
+
     <button onclick="processQR(document.getElementById('accessInput').value)">
       Enter
     </button>
-    <button class="secondary" onclick="openQR()">
-      Scan QR
+
+    <button
+      class="secondary"
+      onclick="openQR()"
+    >
+      📷 Scan QR
     </button>
+
   </div>
 
   <div id="accessMessage"></div>
+
 </section>
 
+
+<!-- =========================
+     INTERNAL GAMES
+========================= -->
+
 <section class="card">
+
   <h2>🎮 Internal Games</h2>
 
   <div class="game-grid">
 
     <div class="card game">
+
       <div>
         <h3>🐟 Tiny Fish</h3>
-        <p>Eat the little dots. Don't bonk the walls.</p>
+
+        <p>
+          Eat the little dots. Don't bonk the walls.
+        </p>
       </div>
-      <button onclick="showGame('fishGame')">Play</button>
+
+      <button onclick="showGame('fishGame')">
+        Play
+      </button>
+
     </div>
+
 
     <div class="card game">
+
       <div>
         <h3>🚀 Space Crew</h3>
-        <p>A tiny social-deduction mini game, fully inside this page.</p>
+
+        <p>
+          A tiny social-deduction mini game, fully inside this page.
+        </p>
       </div>
-      <button onclick="showGame('crewGame')">Play</button>
+
+      <button onclick="showGame('crewGame')">
+        Play
+      </button>
+
     </div>
 
   </div>
+
 </section>
 
-<section id="fishGame" class="card hidden">
+
+<!-- =========================
+     TINY FISH
+========================= -->
+
+<section
+  id="fishGame"
+  class="card hidden"
+>
+
   <h2>🐟 Tiny Fish</h2>
-  <div class="score">Score: <span id="fishScore">0</span></div>
 
-  <canvas id="fishCanvas" width="600" height="350"></canvas>
+  <div class="score">
+    Score:
+    <span id="fishScore">0</span>
+  </div>
+
+  <canvas
+    id="fishCanvas"
+    width="600"
+    height="350"
+  ></canvas>
 
   <div class="gameControls">
-    <button onclick="startFish()">Start / Restart</button>
-    <button class="secondary" onclick="hideGames()">Back</button>
+
+    <button onclick="startFish()">
+      Start / Restart
+    </button>
+
+    <button
+      class="secondary"
+      onclick="hideGames()"
+    >
+      Back
+    </button>
+
   </div>
+
 </section>
 
-<section id="crewGame" class="card hidden">
+
+<!-- =========================
+     SPACE CREW
+========================= -->
+
+<section
+  id="crewGame"
+  class="card hidden"
+>
+
   <h2>🚀 Space Crew</h2>
-  <p id="crewText">Start the round and find the suspicious crew member.</p>
 
-  <canvas id="crewCanvas" width="600" height="350"></canvas>
+  <p id="crewText">
+    Start the round and find the suspicious crew member.
+  </p>
 
-  <div id="crewButtons" class="gameControls"></div>
+  <canvas
+    id="crewCanvas"
+    width="600"
+    height="350"
+  ></canvas>
+
+  <div
+    id="crewButtons"
+    class="gameControls"
+  ></div>
 
   <div class="gameControls">
-    <button onclick="startCrew()">Start Round</button>
-    <button class="secondary" onclick="hideGames()">Back</button>
+
+    <button onclick="startCrew()">
+      Start Round
+    </button>
+
+    <button
+      class="secondary"
+      onclick="hideGames()"
+    >
+      Back
+    </button>
+
   </div>
+
 </section>
 
 </div>
 
 
-<!-- QR SCANNER -->
+<!-- =========================
+     QR SCANNER
+========================= -->
+
 <div id="qrScanner">
 
   <div class="scannerBox">
@@ -254,19 +428,27 @@ input{
     <h2>📷 Scan QR</h2>
 
     <p>
-      Scan a QR containing a website or access code.
+      Scan your PStyla QR code.
     </p>
 
-    <video id="qrVideo" autoplay playsinline></video>
+    <video
+      id="qrVideo"
+      autoplay
+      playsinline
+    ></video>
 
-    <div id="scannerStatus" class="scannerStatus">
-      Rescan to enter
+    <div
+      id="scannerStatus"
+      class="scannerStatus"
+    >
+      Point your camera at your PStyla QR code.
     </div>
 
     <input
       id="manualQR"
       placeholder="Paste QR result here"
       style="margin-top:10px"
+      autocomplete="off"
     >
 
     <button
@@ -290,38 +472,75 @@ input{
 
 
 <script>
+
+/* =====================================================
+   PSTYLA QR CONFIG
+===================================================== */
+
+/*
+   THIS IS THE QR VALUE FOR YOUR SITE.
+
+   Your QR code should contain:
+
+   https://notpetertt1.github.io/
+
+   Both versions below are accepted so a trailing /
+   doesn't matter.
+*/
+
+const PSTYLA_QR_CODES = [
+  "https://notpetertt1.github.io/",
+  "https://notpetertt1.github.io"
+];
+
+
 /* =====================================================
    QR SCANNER
 ===================================================== */
 
-const qrScanner = document.getElementById("qrScanner");
-const qrVideo = document.getElementById("qrVideo");
-const scannerStatus = document.getElementById("scannerStatus");
+const qrScanner =
+  document.getElementById("qrScanner");
+
+const qrVideo =
+  document.getElementById("qrVideo");
+
+const scannerStatus =
+  document.getElementById("scannerStatus");
 
 let qrStream = null;
 let qrScanning = false;
+let qrDetector = null;
+
 
 function openQR(){
 
   qrScanner.classList.add("show");
 
-  scannerStatus.textContent = "Point your camera at a QR code.";
+  scannerStatus.textContent =
+    "Point your camera at your PStyla QR code.";
 
   startQRScanner();
 }
+
 
 function closeQR(){
 
   qrScanning = false;
 
   if(qrStream){
-    qrStream.getTracks().forEach(track => track.stop());
+
+    qrStream
+      .getTracks()
+      .forEach(track => track.stop());
+
     qrStream = null;
   }
 
   qrVideo.srcObject = null;
+
   qrScanner.classList.remove("show");
 }
+
 
 async function startQRScanner(){
 
@@ -333,23 +552,46 @@ async function startQRScanner(){
     return;
   }
 
+
+  if(!navigator.mediaDevices ||
+     !navigator.mediaDevices.getUserMedia){
+
+    scannerStatus.textContent =
+      "Camera unavailable. Paste the QR result instead.";
+
+    return;
+  }
+
+
   try{
 
-    qrStream = await navigator.mediaDevices.getUserMedia({
-      video:{facingMode:"environment"}
-    });
+    qrStream =
+      await navigator.mediaDevices.getUserMedia({
+        video:{
+          facingMode:"environment"
+        }
+      });
+
 
     qrVideo.srcObject = qrStream;
 
+    await qrVideo.play();
+
     qrScanning = true;
 
-    const detector = new BarcodeDetector({
-      formats:["qr_code"]
-    });
 
-    scanFrame(detector);
+    qrDetector =
+      new BarcodeDetector({
+        formats:["qr_code"]
+      });
+
+
+    scanFrame(qrDetector);
+
 
   }catch(error){
+
+    console.error(error);
 
     scannerStatus.textContent =
       "Camera unavailable. Paste the QR result instead.";
@@ -357,30 +599,49 @@ async function startQRScanner(){
   }
 }
 
+
 async function scanFrame(detector){
 
-  if(!qrScanning) return;
+  if(!qrScanning){
+    return;
+  }
+
 
   try{
 
-    const codes = await detector.detect(qrVideo);
+    if(qrVideo.readyState >= 2){
 
-    if(codes.length){
+      const codes =
+        await detector.detect(qrVideo);
 
-      const value = codes[0].rawValue || "";
 
-      scannerStatus.textContent = "QR detected ✓";
+      if(codes.length){
 
-      processQR(value);
+        const value =
+          codes[0].rawValue || "";
 
-      closeQR();
 
-      return;
+        scannerStatus.textContent =
+          "QR detected ✓";
+
+
+        processQR(value);
+
+
+        closeQR();
+
+        return;
+      }
     }
 
-  }catch(error){}
+  }catch(error){
+    console.error(error);
+  }
 
-  requestAnimationFrame(() => scanFrame(detector));
+
+  requestAnimationFrame(
+    () => scanFrame(detector)
+  );
 }
 
 
@@ -390,94 +651,209 @@ async function scanFrame(detector){
 
 function processQR(value){
 
-  value = String(value || "").trim();
+  value =
+    String(value || "").trim();
+
 
   if(!value){
 
     showAccessMessage(
-      "Rescan to enter.",
+      "Please scan your PStyla QR code.",
       "error"
     );
 
     return;
   }
 
+
   /*
-    If the QR contains a normal website URL,
-    open that URL directly.
+     Normalize the QR value.
+
+     This removes spaces around the URL and
+     makes the comparison consistent.
+  */
+
+  const normalized =
+    value.replace(/\s+/g,"");
+
+
+  /*
+     YOUR QR CODE
+
+     https://notpetertt1.github.io/
+
+     is accepted as the PStyla access QR.
+  */
+
+  if(
+    PSTYLA_QR_CODES.includes(
+      normalized
+    )
+  ){
+
+    grantPStylaAccess();
+
+    return;
+  }
+
+
+  /*
+     Also accept the same URL if someone
+     scans it with a harmless trailing slash
+     variation.
   */
 
   try{
 
-    const url = new URL(value);
+    const url =
+      new URL(normalized);
+
+
+    const hostname =
+      url.hostname.toLowerCase();
+
 
     if(
-      url.protocol === "https:" ||
-      url.protocol === "http:"
+      hostname === "notpetertt1.github.io" &&
+      url.protocol === "https:"
     ){
 
-      window.location.href = url.href;
+      grantPStylaAccess();
+
       return;
     }
 
-  }catch(error){}
+  }catch(error){
+    /* Not a URL. Continue below. */
+  }
+
 
   /*
-    Otherwise treat it as an access code.
-    This does NOT bypass subscriptions or access controls.
+     Everything else is treated as a normal
+     manual access-code value.
   */
 
-  document.getElementById("accessInput").value = value;
+  document.getElementById(
+    "accessInput"
+  ).value = value;
+
 
   showAccessMessage(
-    "QR detected. Checking access...",
-    "success"
-  );
-
-  redeemCode(value);
-}
-
-
-function redeemCode(code){
-
-  /*
-    Replace this with your legitimate server-side
-    access verification if your app has one.
-
-    For this standalone version we simply display
-    the scanned value rather than pretending it
-    grants paid access.
-  */
-
-  showAccessMessage(
-    "QR received: " + escapeHTML(code),
-    "success"
+    "That isn't the PStyla QR code.",
+    "error"
   );
 }
 
+
+/* =====================================================
+   PSTYLA ACCESS
+===================================================== */
+
+function grantPStylaAccess(){
+
+  /*
+     Save that this browser has successfully
+     scanned the PStyla QR.
+  */
+
+  localStorage.setItem(
+    "pstylaQRVerified",
+    "true"
+  );
+
+
+  document.getElementById(
+    "accessInput"
+  ).value =
+    "https://notpetertt1.github.io/";
+
+
+  showAccessMessage(
+    "✅ PStyla QR accepted. Access granted!",
+    "success"
+  );
+
+
+  const box =
+    document.getElementById(
+      "accessMessage"
+    );
+
+
+  box.classList.add(
+    "accessGranted"
+  );
+
+
+  setTimeout(() => {
+
+    box.classList.remove(
+      "accessGranted"
+    );
+
+  },500);
+}
+
+
+/* =====================================================
+   ACCESS MESSAGE
+===================================================== */
 
 function showAccessMessage(text,type){
 
-  const box = document.getElementById("accessMessage");
+  const box =
+    document.getElementById(
+      "accessMessage"
+    );
+
 
   if(!text){
+
     box.innerHTML = "";
+
+    box.className = "";
+
     return;
   }
 
-  box.className = "message " + type;
-  box.innerHTML = text;
+
+  box.className =
+    "message " + type;
+
+
+  box.innerHTML =
+    escapeHTML(text);
 }
 
 
 function escapeHTML(value){
 
-  return value
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+  return String(value)
+
+    .replaceAll(
+      "&",
+      "&amp;"
+    )
+
+    .replaceAll(
+      "<",
+      "&lt;"
+    )
+
+    .replaceAll(
+      ">",
+      "&gt;"
+    )
+
+    .replaceAll(
+      '"',
+      "&quot;"
+    )
+
+    .replaceAll(
+      "'",
+      "&#039;"
+    );
 }
 
 
@@ -489,10 +865,19 @@ function showGame(id){
 
   hideGames();
 
-  document
-    .getElementById(id)
-    .classList.remove("hidden");
+
+  const game =
+    document.getElementById(id);
+
+
+  if(game){
+
+    game.classList.remove(
+      "hidden"
+    );
+  }
 }
+
 
 function hideGames(){
 
@@ -500,9 +885,13 @@ function hideGames(){
     .getElementById("fishGame")
     .classList.add("hidden");
 
+
   document
     .getElementById("crewGame")
     .classList.add("hidden");
+
+
+  fishRunning = false;
 }
 
 
@@ -510,8 +899,14 @@ function hideGames(){
    TINY FISH
 ===================================================== */
 
-const fishCanvas = document.getElementById("fishCanvas");
-const fishCtx = fishCanvas.getContext("2d");
+const fishCanvas =
+  document.getElementById(
+    "fishCanvas"
+  );
+
+const fishCtx =
+  fishCanvas.getContext("2d");
+
 
 let fish = {
   x:300,
@@ -520,102 +915,252 @@ let fish = {
   speed:5
 };
 
+
 let food = {
   x:100,
   y:100,
   r:7
 };
 
+
 let fishScore = 0;
 let fishRunning = false;
 
+
 const keys = {};
 
-document.addEventListener("keydown",e=>{
-  keys[e.key.toLowerCase()] = true;
-});
 
-document.addEventListener("keyup",e=>{
-  keys[e.key.toLowerCase()] = false;
-});
+document.addEventListener(
+  "keydown",
+  e => {
+
+    keys[
+      e.key.toLowerCase()
+    ] = true;
+
+  }
+);
+
+
+document.addEventListener(
+  "keyup",
+  e => {
+
+    keys[
+      e.key.toLowerCase()
+    ] = false;
+
+  }
+);
+
 
 function randomFood(){
 
-  food.x = 20 + Math.random() * 560;
-  food.y = 20 + Math.random() * 310;
+  food.x =
+    20 + Math.random() * 560;
+
+  food.y =
+    20 + Math.random() * 310;
 }
+
 
 function startFish(){
 
   fish.x = 300;
   fish.y = 175;
+
   fishScore = 0;
 
-  document.getElementById("fishScore").textContent = fishScore;
+
+  document.getElementById(
+    "fishScore"
+  ).textContent =
+    fishScore;
+
 
   randomFood();
 
+
   fishRunning = true;
+
 
   fishLoop();
 }
 
+
 function fishLoop(){
 
-  if(!fishRunning) return;
+  if(!fishRunning){
+    return;
+  }
 
-  if(keys["arrowup"] || keys["w"]) fish.y -= fish.speed;
-  if(keys["arrowdown"] || keys["s"]) fish.y += fish.speed;
-  if(keys["arrowleft"] || keys["a"]) fish.x -= fish.speed;
-  if(keys["arrowright"] || keys["d"]) fish.x += fish.speed;
 
-  fish.x = Math.max(16,Math.min(584,fish.x));
-  fish.y = Math.max(16,Math.min(334,fish.y));
+  if(
+    keys["arrowup"] ||
+    keys["w"]
+  ){
+    fish.y -= fish.speed;
+  }
 
-  const dx = fish.x - food.x;
-  const dy = fish.y - food.y;
 
-  if(Math.sqrt(dx*dx + dy*dy) < fish.r + food.r){
+  if(
+    keys["arrowdown"] ||
+    keys["s"]
+  ){
+    fish.y += fish.speed;
+  }
+
+
+  if(
+    keys["arrowleft"] ||
+    keys["a"]
+  ){
+    fish.x -= fish.speed;
+  }
+
+
+  if(
+    keys["arrowright"] ||
+    keys["d"]
+  ){
+    fish.x += fish.speed;
+  }
+
+
+  fish.x =
+    Math.max(
+      16,
+      Math.min(
+        584,
+        fish.x
+      )
+    );
+
+
+  fish.y =
+    Math.max(
+      16,
+      Math.min(
+        334,
+        fish.y
+      )
+    );
+
+
+  const dx =
+    fish.x - food.x;
+
+
+  const dy =
+    fish.y - food.y;
+
+
+  if(
+    Math.sqrt(
+      dx*dx + dy*dy
+    ) <
+    fish.r + food.r
+  ){
 
     fishScore++;
 
-    document.getElementById("fishScore").textContent = fishScore;
+
+    document.getElementById(
+      "fishScore"
+    ).textContent =
+      fishScore;
+
 
     randomFood();
   }
 
-  fishCtx.clearRect(0,0,600,350);
 
-  fishCtx.fillStyle = "#0b4166";
-  fishCtx.fillRect(0,0,600,350);
+  fishCtx.clearRect(
+    0,
+    0,
+    600,
+    350
+  );
+
+
+  fishCtx.fillStyle =
+    "#0b4166";
+
+
+  fishCtx.fillRect(
+    0,
+    0,
+    600,
+    350
+  );
+
 
   /* bubbles */
 
-  fishCtx.fillStyle = "rgba(255,255,255,.15)";
+  fishCtx.fillStyle =
+    "rgba(255,255,255,.15)";
 
-  for(let i=0;i<12;i++){
 
-    const x = (i*83 + 30) % 600;
-    const y = (i*57 + 20) % 330;
+  for(
+    let i=0;
+    i<12;
+    i++
+  ){
+
+    const x =
+      (i*83 + 30) % 600;
+
+
+    const y =
+      (i*57 + 20) % 330;
+
 
     fishCtx.beginPath();
-    fishCtx.arc(x,y,4,0,Math.PI*2);
+
+
+    fishCtx.arc(
+      x,
+      y,
+      4,
+      0,
+      Math.PI*2
+    );
+
+
     fishCtx.fill();
   }
 
+
   /* food */
 
-  fishCtx.fillStyle = "#ffd166";
+  fishCtx.fillStyle =
+    "#ffd166";
+
 
   fishCtx.beginPath();
-  fishCtx.arc(food.x,food.y,food.r,0,Math.PI*2);
+
+
+  fishCtx.arc(
+    food.x,
+    food.y,
+    food.r,
+    0,
+    Math.PI*2
+  );
+
+
   fishCtx.fill();
+
 
   /* fish body */
 
-  fishCtx.fillStyle = "#f59e0b";
+  fishCtx.fillStyle =
+    "#f59e0b";
+
 
   fishCtx.beginPath();
+
+
   fishCtx.ellipse(
     fish.x,
     fish.y,
@@ -626,35 +1171,47 @@ function fishLoop(){
     Math.PI*2
   );
 
+
   fishCtx.fill();
+
 
   /* tail */
 
   fishCtx.beginPath();
+
 
   fishCtx.moveTo(
     fish.x-fish.r*1.2,
     fish.y
   );
 
+
   fishCtx.lineTo(
     fish.x-fish.r*2,
     fish.y-fish.r
   );
+
 
   fishCtx.lineTo(
     fish.x-fish.r*2,
     fish.y+fish.r
   );
 
+
   fishCtx.closePath();
+
   fishCtx.fill();
+
 
   /* eye */
 
-  fishCtx.fillStyle="#111";
+  fishCtx.fillStyle =
+    "#111";
+
 
   fishCtx.beginPath();
+
+
   fishCtx.arc(
     fish.x+fish.r*.65,
     fish.y-fish.r*.25,
@@ -663,9 +1220,13 @@ function fishLoop(){
     Math.PI*2
   );
 
+
   fishCtx.fill();
 
-  requestAnimationFrame(fishLoop);
+
+  requestAnimationFrame(
+    fishLoop
+  );
 }
 
 
@@ -673,115 +1234,242 @@ function fishLoop(){
    SPACE CREW MINI GAME
 ===================================================== */
 
-const crewCanvas = document.getElementById("crewCanvas");
-const crewCtx = crewCanvas.getContext("2d");
+const crewCanvas =
+  document.getElementById(
+    "crewCanvas"
+  );
+
+
+const crewCtx =
+  crewCanvas.getContext("2d");
+
 
 let crewMembers = [];
 let impostor = -1;
+
 
 function startCrew(){
 
   crewMembers = [];
 
-  for(let i=0;i<6;i++){
+
+  const colors = [
+    "#ef4444",
+    "#3b82f6",
+    "#22c55e",
+    "#facc15",
+    "#a855f7",
+    "#f97316"
+  ];
+
+
+  for(
+    let i=0;
+    i<6;
+    i++
+  ){
 
     crewMembers.push({
-      x:80 + (i%3)*220,
-      y:100 + Math.floor(i/3)*130,
-      color:["#ef4444","#3b82f6","#22c55e","#facc15","#a855f7","#f97316"][i]
+
+      x:
+        80 +
+        (i%3)*220,
+
+      y:
+        100 +
+        Math.floor(i/3)*130,
+
+      color:
+        colors[i]
+
     });
   }
 
-  impostor = Math.floor(Math.random()*crewMembers.length);
+
+  impostor =
+    Math.floor(
+      Math.random() *
+      crewMembers.length
+    );
+
 
   drawCrew();
 
-  document.getElementById("crewText").textContent =
+
+  document.getElementById(
+    "crewText"
+  ).textContent =
     "One crew member is the impostor. Pick who you think it is.";
 
+
   const buttons =
-    document.getElementById("crewButtons");
+    document.getElementById(
+      "crewButtons"
+    );
+
 
   buttons.innerHTML = "";
 
-  crewMembers.forEach((member,i)=>{
 
-    const button = document.createElement("button");
+  crewMembers.forEach(
+    (member,i) => {
 
-    button.textContent = "Check Crew " + (i+1);
+      const button =
+        document.createElement(
+          "button"
+        );
 
-    button.onclick = () => checkCrew(i);
 
-    buttons.appendChild(button);
-  });
+      button.textContent =
+        "Check Crew " +
+        (i+1);
+
+
+      button.onclick =
+        () => checkCrew(i);
+
+
+      buttons.appendChild(
+        button
+      );
+
+    }
+  );
 }
+
 
 function drawCrew(){
 
-  crewCtx.clearRect(0,0,600,350);
+  crewCtx.clearRect(
+    0,
+    0,
+    600,
+    350
+  );
 
-  crewCtx.fillStyle="#17131d";
-  crewCtx.fillRect(0,0,600,350);
 
-  crewMembers.forEach((member,i)=>{
+  crewCtx.fillStyle =
+    "#17131d";
 
-    crewCtx.fillStyle = member.color;
 
-    crewCtx.beginPath();
+  crewCtx.fillRect(
+    0,
+    0,
+    600,
+    350
+  );
 
-    crewCtx.roundRect(
-      member.x-25,
-      member.y-30,
-      50,
-      65,
-      15
-    );
 
-    crewCtx.fill();
+  crewMembers.forEach(
+    (member,i) => {
 
-    /* visor */
+      crewCtx.fillStyle =
+        member.color;
 
-    crewCtx.fillStyle="#bde7ff";
 
-    crewCtx.beginPath();
+      crewCtx.beginPath();
 
-    crewCtx.roundRect(
-      member.x-18,
-      member.y-22,
-      32,
-      18,
-      9
-    );
 
-    crewCtx.fill();
+      crewCtx.roundRect(
+        member.x-25,
+        member.y-30,
+        50,
+        65,
+        15
+      );
 
-    crewCtx.fillStyle="#fff";
-    crewCtx.font="bold 13px Arial";
-    crewCtx.textAlign="center";
 
-    crewCtx.fillText(
-      i+1,
-      member.x,
-      member.y+55
-    );
-  });
+      crewCtx.fill();
+
+
+      /* visor */
+
+      crewCtx.fillStyle =
+        "#bde7ff";
+
+
+      crewCtx.beginPath();
+
+
+      crewCtx.roundRect(
+        member.x-18,
+        member.y-22,
+        32,
+        18,
+        9
+      );
+
+
+      crewCtx.fill();
+
+
+      crewCtx.fillStyle =
+        "#fff";
+
+
+      crewCtx.font =
+        "bold 13px Arial";
+
+
+      crewCtx.textAlign =
+        "center";
+
+
+      crewCtx.fillText(
+        i+1,
+        member.x,
+        member.y+55
+      );
+
+    }
+  );
 }
+
 
 function checkCrew(index){
 
-  if(index === impostor){
+  if(
+    index === impostor
+  ){
 
-    document.getElementById("crewText").textContent =
+    document.getElementById(
+      "crewText"
+    ).textContent =
       "🚨 Correct! You found the impostor.";
 
   }else{
 
-    document.getElementById("crewText").textContent =
+    document.getElementById(
+      "crewText"
+    ).textContent =
       "❌ Nope. That crew member was innocent. Try again.";
+
   }
 }
+
+
+/* =====================================================
+   CLEANUP
+===================================================== */
+
+window.addEventListener(
+  "beforeunload",
+  () => {
+
+    if(qrStream){
+
+      qrStream
+        .getTracks()
+        .forEach(
+          track => track.stop()
+        );
+
+    }
+
+  }
+);
+
 </script>
 
 </body>
 </html>
-```
