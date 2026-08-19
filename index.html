@@ -13,165 +13,206 @@ html{scroll-behavior:smooth}
 :root{
   --purple:#9b5cff;
   --purple2:#6d28d9;
-  --pink:#ec4899;
-  --bg:#09070f;
-  --panel:#100c19;
-  --panel2:#151020;
-  --text:#f5f3ff;
-  --muted:#9b95aa;
-  --border:rgba(255,255,255,.08);
+  --pink:#d946ef;
+  --bg:#050507;
+  --panel:#101016;
+  --panel2:#15151d;
+  --border:#292936;
+  --text:#fff;
+  --muted:#858592;
 }
 
 body{
   margin:0;
-  background:
-    radial-gradient(circle at 50% -10%,rgba(155,92,255,.22),transparent 35%),
-    radial-gradient(circle at 100% 30%,rgba(236,72,153,.08),transparent 30%),
-    var(--bg);
   color:var(--text);
+  background:
+    radial-gradient(circle at 15% 10%,rgba(139,92,246,.14),transparent 30%),
+    radial-gradient(circle at 85% 70%,rgba(217,70,239,.10),transparent 35%),
+    var(--bg);
   font-family:Arial,Helvetica,sans-serif;
-  min-height:100vh;
   overflow-x:hidden;
 }
 
-button,input{
-  font:inherit;
-}
+button,input{font:inherit}
+button{cursor:pointer}
 
-button{
-  cursor:pointer;
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-5;
+  pointer-events:none;
+  background:
+    linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+  background-size:50px 50px;
 }
 
 #particles{
   position:fixed;
   inset:0;
   pointer-events:none;
+  z-index:-2;
   overflow:hidden;
-  z-index:0;
 }
 
 .particle{
   position:absolute;
-  left:var(--x);
-  top:var(--y);
   width:var(--size);
   height:var(--size);
+  left:var(--x);
+  top:var(--y);
   border-radius:50%;
-  background:#b77aff;
+  background:#c084fc;
+  box-shadow:0 0 12px #a855f7;
   opacity:var(--opacity);
   animation:float var(--duration) linear infinite;
   animation-delay:var(--delay);
 }
 
 @keyframes float{
-  0%{transform:translateY(30px)}
-  100%{transform:translateY(-110vh)}
+  from{transform:translate(-40px,40px)}
+  to{transform:translate(110vw,-15vh)}
 }
 
 header{
   position:sticky;
   top:0;
-  z-index:50;
-  padding:16px 5%;
-  background:rgba(9,7,15,.86);
-  backdrop-filter:blur(18px);
-  border-bottom:1px solid var(--border);
+  z-index:5000;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  background:rgba(5,5,8,.78);
+  backdrop-filter:blur(20px);
 }
 
 .nav{
-  max-width:1200px;
+  max-width:1450px;
+  min-height:72px;
   margin:auto;
+  padding:12px 28px;
   display:flex;
   align-items:center;
-  gap:18px;
+  gap:16px;
 }
 
 .logo{
-  font-size:24px;
-  font-weight:1000;
-  color:white;
   white-space:nowrap;
+  font-size:23px;
+  font-weight:1000;
 }
 
-.logo span{
-  color:var(--purple);
+.logoMark{
+  display:inline-flex;
+  width:31px;
+  height:31px;
+  align-items:center;
+  justify-content:center;
+  margin-right:7px;
+  border-radius:8px;
+  background:linear-gradient(135deg,#8b5cf6,#d946ef);
 }
 
-.searchWrap{
+.logo span:last-child{color:#c084fc}
+
+.search{
   flex:1;
+  max-width:600px;
 }
 
-#search{
+.search input{
   width:100%;
-  padding:13px 18px;
-  border-radius:14px;
+  padding:12px 16px;
   border:1px solid var(--border);
+  border-radius:9px;
   outline:none;
-  color:white;
-  background:#120d1b;
+  background:#121219;
+  color:#fff;
 }
 
-#search:focus{
-  border-color:var(--purple);
-  box-shadow:0 0 20px rgba(155,92,255,.15);
+.search input:focus{
+  border-color:#8b5cf6;
+  box-shadow:0 0 20px rgba(139,92,246,.18);
 }
 
 .navButtons{
   display:flex;
-  gap:8px;
+  gap:7px;
 }
 
 .navButtons button{
   border:1px solid var(--border);
-  background:#120d1b;
-  color:white;
-  border-radius:12px;
-  padding:11px 14px;
+  border-radius:8px;
+  padding:10px 12px;
+  color:#fff;
+  background:#15151c;
+  transition:.2s;
 }
 
 .navButtons button:hover{
-  border-color:var(--purple);
+  border-color:#8b5cf6;
+  transform:translateY(-2px);
 }
 
 main{
-  position:relative;
-  z-index:1;
-  max-width:1200px;
+  max-width:1450px;
   margin:auto;
-  padding:70px 5% 100px;
+  padding:38px 28px 80px;
 }
 
 .welcomeSmall{
-  color:var(--purple);
+  color:#a855f7;
   font-size:11px;
   font-weight:900;
-  letter-spacing:3px;
+  letter-spacing:2px;
 }
 
 h1{
-  font-size:clamp(42px,7vw,78px);
-  margin:10px 0;
-  line-height:.95;
+  margin:5px 0;
+  font-size:clamp(35px,5vw,58px);
+  letter-spacing:-3px;
 }
 
-.welcome p{
-  color:var(--muted);
-}
+.welcome p{color:#777}
 
-#gameCount{
-  color:#c084fc;
+.accessStatus{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-top:10px;
+  padding:8px 12px;
+  border:1px solid #30253c;
+  border-radius:8px;
+  background:#111017;
+  color:#aaa;
+  font-size:11px;
   font-weight:900;
 }
 
+.accessStatus span{
+  color:#c084fc;
+}
+
 .featured{
-  margin:45px 0;
-  padding:40px;
-  border-radius:25px;
-  border:1px solid rgba(155,92,255,.25);
+  position:relative;
+  overflow:hidden;
+  min-height:320px;
+  margin:30px 0 38px;
+  padding:45px;
+  border:1px solid rgba(168,85,247,.35);
+  border-radius:20px;
   background:
-    radial-gradient(circle at 90% 20%,rgba(155,92,255,.25),transparent 35%),
-    linear-gradient(135deg,#181025,#0d0914);
-  box-shadow:0 20px 60px rgba(0,0,0,.25);
+    radial-gradient(circle at 80% 40%,rgba(168,85,247,.22),transparent 30%),
+    linear-gradient(120deg,#21102f,#0e0b14);
+  box-shadow:0 30px 90px rgba(0,0,0,.45);
+}
+
+.featured:after{
+  content:"🪝";
+  position:absolute;
+  right:7%;
+  top:35px;
+  font-size:180px;
+  opacity:.11;
+  transform:rotate(-12deg);
 }
 
 .featuredLabel{
@@ -182,19 +223,2880 @@ h1{
 }
 
 .featured h2{
-  font-size:38px;
-  margin:12px 0;
+  margin:8px 0;
+  font-size:clamp(40px,6vw,70px);
+  letter-spacing:-4px;
 }
 
 .featured p{
-  color:var(--muted);
-  max-width:600px;
+  max-width:560px;
+  color:#999;
+  line-height:1.7;
 }
 
-.playFeatured,.play,.random,.openHub,.next{
+.playFeatured{
+  display:inline-block;
+  margin-top:10px;
+  padding:13px 23px;
   border:0;
-  background:linear-gradient(135deg,var(--purple),var(--purple2));
-  color:white;
+  border-radius:8px;
+  color:#fff;
+  background:linear-gradient(135deg,#8b5cf6,#c026d3);
   font-weight:900;
+  transition:.2s;
+}
+
+.playFeatured:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 30px rgba(139,92,246,.4);
+}
+
+.toolbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+}
+
+.toolbar h2{margin:0}
+
+.random{
+  border:1px solid #7543d2;
+  border-radius:8px;
+  padding:10px 16px;
+  color:#fff;
+  background:linear-gradient(135deg,#8b5cf6,#6d28d9);
+  font-weight:900;
+}
+
+.categories{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:18px 0 25px;
+}
+
+.category{
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:9px 14px;
+  color:#999;
+  background:#14141b;
+  font-size:12px;
+  font-weight:900;
+}
+
+.category:hover,
+.category.active{
+  border-color:#8b5cf6;
+  color:#fff;
+  background:#8b5cf6;
+}
+
+.gameGrid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(215px,1fr));
+  gap:17px;
+}
+
+.game{
+  overflow:hidden;
+  position:relative;
+  border:1px solid var(--border);
+  border-radius:14px;
+  background:rgba(16,16,22,.96);
+  transition:.25s;
+}
+
+.game:hover{
+  transform:translateY(-8px);
+  border-color:#a855f7;
+  box-shadow:
+    0 20px 50px rgba(0,0,0,.55),
+    0 0 30px rgba(139,92,246,.16);
+}
+
+.thumb{
+  height:170px;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 25%,var(--glow),transparent 42%),
+    linear-gradient(135deg,var(--one),var(--two));
+}
+
+.thumbIcon{
+  position:relative;
+  z-index:2;
+  font-size:68px;
+  filter:drop-shadow(0 12px 15px rgba(0,0,0,.45));
+  transition:.3s;
+}
+
+.game:hover .thumbIcon{
+  transform:scale(1.15) rotate(-4deg);
+}
+
+.badge{
+  position:absolute;
+  top:8px;
+  left:8px;
+  z-index:3;
+  padding:5px 7px;
+  border-radius:5px;
+  color:#d8b4fe;
+  background:rgba(4,4,8,.7);
+  font-size:8px;
+  font-weight:900;
+}
+
+.badge.external{color:#fbbf24}
+
+.thumbName{
+  position:absolute;
+  left:10px;
+  bottom:9px;
+  z-index:3;
+  font-size:10px;
+  font-weight:1000;
+  text-shadow:0 2px 8px #000;
+}
+
+.gameInfo{padding:14px}
+
+.gameName{
+  font-size:16px;
+  font-weight:1000;
+  margin-bottom:5px;
+}
+
+.gameCategory{
+  color:#777;
+  font-size:10px;
+  text-transform:uppercase;
+  font-weight:900;
+}
+
+.play{
+  margin-top:10px;
+  border:0;
+  border-radius:6px;
+  padding:8px 12px;
+  color:#fff;
+  background:#8b5cf6;
+  font-size:10px;
+  font-weight:1000;
+}
+
+.play:hover{
+  background:#a855f7;
+}
+
+.game.locked{
+  opacity:.5;
+}
+
+.game.locked .play{
+  background:#333;
+  cursor:not-allowed;
+}
+
+.hidden{display:none!important}
+
+.noResults{
+  display:none;
+  padding:50px;
+  border:1px dashed var(--border);
   border-radius:12px;
-  padding:12
+  color:#777;
+  text-align:center;
+}
+
+.section{margin-top:50px}
+
+.sectionTitle{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:15px;
+}
+
+.sectionTitle h2{margin:0}
+
+.sectionTitle span{
+  color:#666;
+  font-size:11px;
+}
+
+#recent{
+  display:flex;
+  gap:12px;
+  overflow-x:auto;
+  padding-bottom:10px;
+}
+
+.recentItem{
+  flex:0 0 200px;
+  padding:16px;
+  border:1px solid var(--border);
+  border-radius:11px;
+  background:#111117;
+}
+
+.achievements{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+.achievement{
+  padding:20px;
+  border:1px solid #25252d;
+  border-radius:11px;
+  background:#111117;
+  text-align:center;
+}
+
+.achievementIcon{font-size:30px}
+.achievementName{margin-top:7px;font-weight:1000}
+.achievementDesc{margin-top:5px;color:#666;font-size:10px}
+
+.overlay{
+  position:fixed;
+  inset:0;
+  z-index:50000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(3,2,6,.84);
+  backdrop-filter:blur(14px);
+}
+
+.overlay.show{
+  display:flex;
+}
+
+.box{
+  width:min(94%,560px);
+  padding:30px;
+  border:1px solid rgba(168,85,247,.45);
+  border-radius:18px;
+  background:linear-gradient(145deg,#190e26,#08070d);
+  box-shadow:0 30px 100px rgba(0,0,0,.75);
+}
+
+.box.center{text-align:center}
+
+.box h2{
+  margin:8px 0;
+}
+
+.box p{
+  color:#999;
+  line-height:1.7;
+}
+
+.timer{
+  font-size:42px;
+  font-weight:1000;
+  color:#c084fc;
+  margin:20px 0;
+}
+
+.primary{
+  border:1px solid #8b5cf6;
+  border-radius:8px;
+  padding:12px 18px;
+  color:#fff;
+  background:linear-gradient(135deg,#8b5cf6,#c026d3);
+  font-weight:900;
+}
+
+.secondary{
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:10px 16px;
+  color:#fff;
+  background:#15151c;
+  font-weight:900;
+}
+
+#redeemArea{
+  display:none;
+  margin-top:18px;
+}
+
+#redeemCode{
+  width:100%;
+  padding:12px;
+  border:1px solid #292936;
+  border-radius:8px;
+  outline:none;
+  background:#111117;
+  color:#fff;
+}
+
+.redeemMessage{
+  min-height:20px;
+  color:#c084fc!important;
+  font-size:12px;
+  font-weight:900;
+}
+
+.noticeButtons{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:20px;
+}
+
+#gamePlayer{
+  position:fixed;
+  inset:0;
+  z-index:100000;
+  display:none;
+  flex-direction:column;
+  background:#000;
+}
+
+#gamePlayer.show{display:flex}
+
+.gamePlayerTop{
+  height:58px;
+  flex:0 0 58px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:8px 14px;
+  background:linear-gradient(90deg,#0b0711,#15101d);
+  border-bottom:1px solid rgba(168,85,247,.3);
+}
+
+.gamePlayerTitle{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+}
+
+.gamePlayerTitleIcon{font-size:24px}
+
+.gamePlayerTitleText{
+  font-weight:1000;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.gamePlayerControls{
+  display:flex;
+  gap:7px;
+}
+
+.gamePlayerControls button{
+  border:1px solid #30253c;
+  border-radius:7px;
+  padding:8px 12px;
+  color:#fff;
+  background:#17121e;
+  font-weight:900;
+}
+
+#closeGamePlayer{
+  border-color:#8b5cf6;
+  background:linear-gradient(135deg,#8b5cf6,#c026d3);
+}
+
+#gameFrame{
+  width:100%;
+  height:calc(100vh - 58px);
+  border:0;
+  background:#000;
+}
+
+footer{
+  padding:35px;
+  border-top:1px solid #17171d;
+  color:#444;
+  text-align:center;
+  font-size:11px;
+}
+
+@media(max-width:700px){
+
+  .nav{
+    flex-wrap:wrap;
+    padding:12px 15px;
+  }
+
+  .search{
+    order:5;
+    flex-basis:100%;
+    max-width:none;
+  }
+
+  main{padding:25px 15px 60px}
+
+  .featured{padding:28px}
+
+  .featured:after{font-size:100px}
+
+  .gameGrid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+  }
+
+  .thumb{height:145px}
+  .thumbIcon{font-size:54px}
+
+  .achievements{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:430px){
+
+  .gameName{font-size:14px}
+
+  .achievements{
+    grid-template-columns:1fr;
+  }
+
+  .gamePlayerTop{
+    height:54px;
+    flex-basis:54px;
+  }
+
+  #gameFrame{
+    height:calc(100vh - 54px);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="particles"></div>
+
+<!-- =====================================================
+     ACCESS SYSTEM
+===================================================== -->
+
+<div class="overlay show" id="accessGate">
+
+  <div class="box center">
+
+    <div style="font-size:55px">🎮</div>
+
+    <div style="
+      color:#a855f7;
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:2px;
+    ">
+      PSTYLA GAMES
+    </div>
+
+    <h2 id="accessTitle">
+      Welcome to PStyla
+    </h2>
+
+    <p id="accessMessage">
+      Start your 5-minute free trial.
+    </p>
+
+    <div class="timer" id="accessTimer">
+      5:00
+    </div>
+
+    <button class="primary" id="startTrial">
+      START FREE TRIAL
+    </button>
+
+    <div style="margin-top:15px">
+
+      <button class="secondary" id="showRedeem">
+        🎟️ REDEEM QR CODE
+      </button>
+
+    </div>
+
+    <div id="redeemArea">
+
+      <input
+        id="redeemCode"
+        type="text"
+        placeholder="Enter your QR code"
+        autocomplete="off"
+      >
+
+      <button
+        class="primary"
+        id="redeemSubmit"
+        style="margin-top:10px"
+      >
+        REDEEM
+      </button>
+
+      <p
+        class="redeemMessage"
+        id="redeemMessage"
+      ></p>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     MAIN SITE
+===================================================== -->
+
+<header>
+
+  <div class="nav">
+
+    <div class="logo">
+      <span class="logoMark">P</span>
+      <span>PStyla</span> Games
+    </div>
+
+    <div class="search">
+
+      <input
+        id="search"
+        type="search"
+        placeholder="Search games..."
+        autocomplete="off"
+      >
+
+    </div>
+
+    <div class="navButtons">
+
+      <button id="updates">
+        ✨ Updates
+      </button>
+
+      <button id="newTab">
+        🪟
+      </button>
+
+      <button id="homeButton">
+        Home
+      </button>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<main>
+
+  <div class="welcomeSmall">
+    WELCOME TO PSTYLA
+  </div>
+
+  <h1>PStyla Games</h1>
+
+  <div class="welcome">
+
+    <p>
+      <span id="gameCount">0</span>
+      hand-picked games.
+      No filler. Just games worth playing. 🔥
+    </p>
+
+    <div class="accessStatus">
+      🔐 Access:
+      <span id="accessStatusText">
+        Checking...
+      </span>
+    </div>
+
+  </div>
+
+
+  <div class="featured">
+
+    <div class="featuredLabel">
+      🔥 FEATURED GAME
+    </div>
+
+    <h2>Stickman Hook</h2>
+
+    <p>
+      Swing, dodge and fly through the levels.
+      One of the classics in the PStyla lineup.
+    </p>
+
+    <button
+      class="playFeatured"
+      id="featuredPlay"
+    >
+      PLAY NOW →
+    </button>
+
+  </div>
+
+
+  <div class="toolbar">
+
+    <h2>🎮 Games</h2>
+
+    <button
+      class="random"
+      id="random"
+    >
+      🎲 Surprise Me
+    </button>
+
+  </div>
+
+
+  <div class="categories">
+
+    <button
+      class="category active"
+      data-category="all"
+    >
+      All
+    </button>
+
+    <button
+      class="category"
+      data-category="action"
+    >
+      Action
+    </button>
+
+    <button
+      class="category"
+      data-category="arcade"
+    >
+      Arcade
+    </button>
+
+    <button
+      class="category"
+      data-category="racing"
+    >
+      Racing
+    </button>
+
+    <button
+      class="category"
+      data-category="sports"
+    >
+      Sports
+    </button>
+
+    <button
+      class="category"
+      data-category="platformer"
+    >
+      Platformer
+    </button>
+
+    <button
+      class="category"
+      data-category="puzzle"
+    >
+      Puzzle
+    </button>
+
+    <button
+      class="category"
+      data-category="casual"
+    >
+      Casual
+    </button>
+
+  </div>
+
+
+  <div
+    class="gameGrid"
+    id="games"
+  ></div>
+
+  <div
+    class="noResults"
+    id="noResults"
+  >
+    😭 No games found. Try another search.
+  </div>
+
+
+  <section class="section">
+
+    <div class="sectionTitle">
+
+      <h2>🕐 Recently Played</h2>
+
+      <span>
+        Saved on this device
+      </span>
+
+    </div>
+
+    <div id="recent"></div>
+
+  </section>
+
+
+  <section class="section">
+
+    <div class="sectionTitle">
+      <h2>🏆 Achievements</h2>
+    </div>
+
+    <div class="achievements">
+
+      <div class="achievement">
+        <div class="achievementIcon">🎮</div>
+        <div class="achievementName">
+          First Game
+        </div>
+        <div class="achievementDesc">
+          Play your first game
+        </div>
+      </div>
+
+      <div class="achievement">
+        <div class="achievementIcon">🔥</div>
+        <div class="achievementName">
+          Getting Addicted
+        </div>
+        <div class="achievementDesc">
+          Play 5 different games
+        </div>
+      </div>
+
+      <div class="achievement">
+        <div class="achievementIcon">🎲</div>
+        <div class="achievementName">
+          Lucky Player
+        </div>
+        <div class="achievementDesc">
+          Use Surprise Me
+        </div>
+      </div>
+
+      <div class="achievement">
+        <div class="achievementIcon">🧭</div>
+        <div class="achievementName">
+          Explorer
+        </div>
+        <div class="achievementDesc">
+          Finish the tutorial
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+  PStyla Games © 2026 • Fresh Edition
+</footer>
+
+
+<!-- GAME NOTICE -->
+
+<div
+  class="overlay"
+  id="gameNotice"
+>
+
+  <div class="box center">
+
+    <div
+      id="noticeIcon"
+      style="font-size:55px"
+    >
+      🎮
+    </div>
+
+    <h2 id="noticeTitle">
+      Open Game
+    </h2>
+
+    <p id="noticeText">
+      You're about to start this game.
+    </p>
+
+    <div class="noticeButtons">
+
+      <button
+        class="secondary"
+        id="noticeCancel"
+      >
+        Cancel
+      </button>
+
+      <button
+        class="primary"
+        id="noticeOpen"
+      >
+        PLAY GAME →
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- UPDATE MODAL -->
+
+<div
+  class="overlay"
+  id="modal"
+>
+
+  <div class="box">
+
+    <div style="
+      color:#a855f7;
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:2px;
+    ">
+      PSTYLA GAMES
+    </div>
+
+    <h2>✨ What's New</h2>
+
+    <p>
+      • Added 5-minute free trial<br>
+      • Added 9-day QR redemption<br>
+      • Added weekly free-trial reset<br>
+      • Games now lock when access expires<br>
+      • Added persistent access timers<br>
+      • Improved game launching<br>
+      • Improved search<br>
+      • Improved categories<br>
+      • Improved recently played<br>
+      • Improved mobile layout
+    </p>
+
+    <button
+      class="secondary"
+      id="closeModal"
+    >
+      CLOSE
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- GAME PLAYER -->
+
+<div id="gamePlayer">
+
+  <div class="gamePlayerTop">
+
+    <div class="gamePlayerTitle">
+
+      <div
+        class="gamePlayerTitleIcon"
+        id="playerIcon"
+      >
+        🎮
+      </div>
+
+      <div>
+
+        <div
+          class="gamePlayerTitleText"
+          id="playerTitle"
+        >
+          PStyla Game
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="gamePlayerControls">
+
+      <button id="reloadGame">
+        ↻ Reload
+      </button>
+
+      <button id="closeGamePlayer">
+        ✕ Back to PStyla
+      </button>
+
+    </div>
+
+  </div>
+
+  <iframe
+    id="gameFrame"
+    title="PStyla Game"
+    allow="autoplay; fullscreen; gamepad; pointer-lock"
+    allowfullscreen
+    referrerpolicy="no-referrer"
+  ></iframe>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   GAME DATABASE
+===================================================== */
+
+const gamesData = [
+
+  {
+    n:"Tiny Fishing",
+    c:"casual",
+    i:"🎣",
+    external:true,
+    url:"https://bitstore1612.github.io/g5/class-451/"
+  },
+
+  {
+    n:"Among Us",
+    c:"arcade",
+    i:"👽",
+    external:true,
+    url:"https://bitstore1612.github.io/g5/class-468/"
+  },
+
+  {
+    n:"Shape Transform: Shifting Rush",
+    c:"platformer",
+    i:"🔷",
+    gameUrl:"https://www.bestgames.com/games/Shape-Transform-Shifting-Rush/index.html"
+  },
+
+  {
+    n:"Delete Puzzle",
+    c:"puzzle",
+    i:"🧩",
+    gameUrl:"https://html5.gamemonetize.co/ic9ka1ads3apmosue78nqng1hyxv6of2/"
+  },
+
+  {
+    n:"Gun Shooting Range",
+    c:"action",
+    i:"🎯",
+    gameUrl:"https://www.bestgames.com/games/Gun-Shooting-Range/index.html"
+  },
+
+  {
+    n:"Hit And Run: Solo Leveling",
+    c:"action",
+    i:"⚔️",
+    gameUrl:"https://html5.gamemonetize.co/f89br0v93lrsimki3ms5qjfpaf83vh2x/"
+  },
+
+  {
+    n:"Build Your Vehicle Run",
+    c:"racing",
+    i:"🚗",
+    gameUrl:"https://html5.gamemonetize.co/cp974vc56hy4rr4732500z5n3c04aefh/"
+  },
+
+  {
+    n:"Geometry Stack 2048 Run",
+    c:"puzzle",
+    i:"🔢",
+    gameUrl:"https://www.bestgames.com/games/Geometry-Stack-2048-Run/index.html"
+  },
+
+  {
+    n:"Join Clash: Color Button",
+    c:"arcade",
+    i:"🟣",
+    gameUrl:"https://html5.gamemonetize.co/5p0e6629cm0c227ienk6jsiv6puykqnf/"
+  },
+
+  {
+    n:"Lazy Jump Online",
+    c:"casual",
+    i:"🧍",
+    gameUrl:"https://html5.gamemonetize.co/npycpi1rn91379sihu4cbzsvvn5oosjy/"
+  },
+
+  {
+    n:"Save The Duck",
+    c:"puzzle",
+    i:"🦆",
+    gameUrl:"https://www.bestgames.com/games/Save-The-Duck/index.html"
+  },
+
+  {
+    n:"Uphill Rush Water Park 3D",
+    c:"racing",
+    i:"🌊",
+    gameUrl:"https://html5.gamemonetize.co/kct3c24pb3u24xq6mefl1im1xdte6r0y/"
+  },
+
+  {
+    n:"Merge Alphabet 3D",
+    c:"puzzle",
+    i:"🔤",
+    gameUrl:"https://html5.gamemonetize.co/8nh0vlg6u85gvqqxle1z5swjythyt8js/"
+  },
+
+  {
+    n:"Shoes Evolution 3D",
+    c:"arcade",
+    i:"👟",
+    gameUrl:"https://html5.gamemonetize.co/y2lchxvx76pgts75ned1zfav4cmxm160/"
+  },
+
+  {
+    n:"Cut It All",
+    c:"action",
+    i:"✂️",
+    gameUrl:"https://html5.gamemonetize.co/18n99dqsu01rpazmf1m06hlqsz3fqlf3/"
+  },
+
+  {
+    n:"Giant Head Rush",
+    c:"arcade",
+    i:"🗿",
+    gameUrl:"https://html5.gamemonetize.co/ggdaw86k8m7wha5i3639a26c1qnmepa0/"
+  },
+
+  {
+    n:"Balls Go High",
+    c:"sports",
+    i:"🏀",
+    gameUrl:"https://html5.gamemonetize.co/ga4wun1rt2bmbjxe8qlkzyktfb3xz3i1/"
+  },
+
+  {
+    n:"Blob Runner 3D",
+    c:"platformer",
+    i:"🟢",
+    gameUrl:"https://html5.gamemonetize.co/bsfynu69gzds6me5430fclhccnemu4ly/"
+  },
+
+  {
+    n:"Sky Rolling Balls",
+    c:"arcade",
+    i:"🔵",
+    gameUrl:"https://www.bestgames.com/games/Sky-Rolling-Balls/index.html"
+  },
+
+  {
+    n:"Collect Em All",
+    c:"puzzle",
+    i:"🔴",
+    gameUrl:"https://html5.gamemonetize.co/97xgrsd6ovyudenbgr9rg1fxcuwt4omu/"
+  },
+
+  {
+    n:"Stickman Hook",
+    c:"action",
+    i:"🪝",
+    gameUrl:"https://stickmanhook.bitbucket.io/"
+  }
+
+];
+
+document.getElementById("gameCount").textContent =
+  gamesData.length;
+
+
+/* =====================================================
+   PARTICLES
+===================================================== */
+
+const particleBox =
+  document.getElementById("particles");
+
+for(let i=0;i<70;i++){
+
+  const p=document.createElement("div");
+
+  p.className="particle";
+
+  p.style.setProperty("--x",Math.random()*100+"%");
+  p.style.setProperty("--y",Math.random()*100+"%");
+  p.style.setProperty("--size",Math.random()*3+1+"px");
+  p.style.setProperty("--opacity",Math.random()*.6+.1);
+  p.style.setProperty("--duration",Math.random()*12+8+"s");
+  p.style.setProperty("--delay",-(Math.random()*15)+"s");
+
+  particleBox.appendChild(p);
+
+}
+
+
+/* =====================================================
+   COLORS
+===================================================== */
+
+const colors={
+  action:["#7c3aed","#170a29"],
+  arcade:["#0891b2","#06151a"],
+  racing:["#ef4444","#1a0707"],
+  sports:["#16a34a","#061409"],
+  platformer:["#2563eb","#071329"],
+  puzzle:["#f59e0b","#1b1004"],
+  casual:["#db2777","#190817"]
+};
+
+
+/* =====================================================
+   ACCESS SYSTEM
+===================================================== */
+
+/*
+   CHANGE THIS CODE IF YOU WANT.
+
+   Put this exact text inside your QR code:
+   PSTYLA-9DAY
+*/
+
+const VALID_REDEEM_CODES = [
+  "PSTYLA-9DAY"
+];
+
+const FREE_TRIAL_MS =
+  5 * 60 * 1000;
+
+const NINE_DAYS_MS =
+  9 * 24 * 60 * 60 * 1000;
+
+
+/*
+   The trial is allowed once per calendar week.
+
+   Example:
+   Monday -> Sunday = one trial period.
+   The following Monday they can receive another
+   5-minute trial.
+*/
+
+function getWeekKey(){
+
+  const now=new Date();
+
+  const firstDay=
+    new Date(
+      now.getFullYear(),
+      0,
+      1
+    );
+
+  const dayOfYear=
+    Math.floor(
+      (now-firstDay)/86400000
+    );
+
+  const week=
+    Math.ceil(
+      (dayOfYear+firstDay.getDay()+1)/7
+    );
+
+  return (
+    now.getFullYear()+
+    "-W"+
+    week
+  );
+
+}
+
+
+function getAccess(){
+
+  try{
+
+    return JSON.parse(
+      localStorage.getItem(
+        "pstylaAccess"
+      ) || "{}"
+    );
+
+  }catch{
+
+    return {};
+
+  }
+
+}
+
+
+function saveAccess(access){
+
+  localStorage.setItem(
+    "pstylaAccess",
+    JSON.stringify(access)
+  );
+
+}
+
+
+function hasPremiumAccess(){
+
+  const access=getAccess();
+
+  if(
+    access.premiumUntil &&
+    Date.now()<access.premiumUntil
+  ){
+
+    return true;
+
+  }
+
+  return false;
+
+}
+
+
+function hasFreeTrial(){
+
+  const access=getAccess();
+
+  if(
+    !access.trialStarted ||
+    !access.trialEnds
+  ){
+
+    return false;
+
+  }
+
+  return Date.now()<access.trialEnds;
+
+}
+
+
+function hasAccess(){
+
+  return (
+    hasPremiumAccess() ||
+    hasFreeTrial()
+  );
+
+}
+
+
+function getRemaining(){
+
+  const access=getAccess();
+
+  if(
+    access.premiumUntil &&
+    Date.now()<access.premiumUntil
+  ){
+
+    return access.premiumUntil-Date.now();
+
+  }
+
+  if(
+    access.trialEnds &&
+    Date.now()<access.trialEnds
+  ){
+
+    return access.trialEnds-Date.now();
+
+  }
+
+  return 0;
+
+}
+
+
+function formatTime(ms){
+
+  const total=
+    Math.max(
+      0,
+      Math.floor(ms/1000)
+    );
+
+  const days=
+    Math.floor(total/86400);
+
+  const hours=
+    Math.floor(
+      (total%86400)/3600
+    );
+
+  const minutes=
+    Math.floor(
+      (total%3600)/60
+    );
+
+  const seconds=
+    total%60;
+
+  if(days>0){
+
+    return (
+      days+"d "+
+      String(hours).padStart(2,"0")+
+      "h "+
+      String(minutes).padStart(2,"0")+
+      "m"
+    );
+
+  }
+
+  return (
+    String(minutes).padStart(2,"0")+
+    ":"+
+    String(seconds).padStart(2,"0")
+  );
+
+}
+
+
+const accessGate=
+  document.getElementById(
+    "accessGate"
+  );
+
+const accessTitle=
+  document.getElementById(
+    "accessTitle"
+  );
+
+const accessMessage=
+  document.getElementById(
+    "accessMessage"
+  );
+
+const accessTimer=
+  document.getElementById(
+    "accessTimer"
+  );
+
+const startTrial=
+  document.getElementById(
+    "startTrial"
+  );
+
+const showRedeem=
+  document.getElementById(
+    "showRedeem"
+  );
+
+const redeemArea=
+  document.getElementById(
+    "redeemArea"
+  );
+
+const redeemCode=
+  document.getElementById(
+    "redeemCode"
+  );
+
+const redeemSubmit=
+  document.getElementById(
+    "redeemSubmit"
+  );
+
+const redeemMessage=
+  document.getElementById(
+    "redeemMessage"
+  );
+
+const accessStatusText=
+  document.getElementById(
+    "accessStatusText"
+  );
+
+
+function openAccessGate(){
+
+  accessGate.classList.add("show");
+
+}
+
+
+function closeAccessGate(){
+
+  accessGate.classList.remove("show");
+
+}
+
+
+function startFreeTrial(){
+
+  const access=getAccess();
+
+  const currentWeek=
+    getWeekKey();
+
+  /*
+     If they already used this week's trial,
+     don't start another one.
+  */
+
+  if(
+    access.trialWeek===currentWeek &&
+    access.trialEnds &&
+    Date.now()>=access.trialEnds
+  ){
+
+    accessTitle.textContent=
+      "Free trial already used";
+
+    accessMessage.textContent=
+      "Sorry, your free trial has ended. Wait until next week or see Peter for extra credits.";
+
+    accessTimer.textContent=
+      "0:00";
+
+    startTrial.style.display=
+      "none";
+
+    return;
+
+  }
+
+
+  const now=Date.now();
+
+  access.trialStarted=now;
+
+  access.trialEnds=
+    now+FREE_TRIAL_MS;
+
+  access.trialWeek=
+    currentWeek;
+
+  saveAccess(access);
+
+  closeAccessGate();
+
+  updateAccessUI();
+
+}
+
+
+function redeem(){
+
+  const entered=
+    redeemCode.value
+      .trim()
+      .toUpperCase();
+
+  if(!entered){
+
+    redeemMessage.textContent=
+      "Please enter a code.";
+
+    return;
+
+  }
+
+
+  if(
+    !VALID_REDEEM_CODES.includes(
+      entered
+    )
+  ){
+
+    redeemMessage.textContent=
+      "❌ That code isn't valid.";
+
+    return;
+
+  }
+
+
+  const access=getAccess();
+
+  /*
+     Prevent the same code being redeemed
+     twice on this browser.
+  */
+
+  const redeemedCodes=
+    access.redeemedCodes || [];
+
+  if(
+    redeemedCodes.includes(
+      entered
+    )
+  ){
+
+    redeemMessage.textContent=
+      "⚠️ This code has already been redeemed on this device.";
+
+    return;
+
+  }
+
+
+  const now=Date.now();
+
+  access.premiumUntil=
+    Math.max(
+      now,
+      access.premiumUntil || 0
+    )+NINE_DAYS_MS;
+
+  redeemedCodes.push(entered);
+
+  access.redeemedCodes=
+    redeemedCodes;
+
+  saveAccess(access);
+
+  redeemMessage.textContent=
+    "🎉 Thanks for redeeming this! You now have 9 days of access.";
+
+  accessTitle.textContent=
+    "Thanks for redeeming this!";
+
+  accessMessage.textContent=
+    "Your QR code has been redeemed successfully. Enjoy PStyla for 9 days! 🎮";
+
+  accessTimer.textContent=
+    formatTime(
+      access.premiumUntil-Date.now()
+    );
+
+  startTrial.style.display=
+    "none";
+
+  setTimeout(()=>{
+
+    closeAccessGate();
+    updateAccessUI();
+
+  },1800);
+
+}
+
+
+showRedeem.addEventListener(
+  "click",
+  ()=>{
+
+    redeemArea.style.display=
+      redeemArea.style.display==="block"
+        ? "none"
+        : "block";
+
+    if(
+      redeemArea.style.display==="block"
+    ){
+
+      redeemCode.focus();
+
+    }
+
+  }
+);
+
+
+redeemSubmit.addEventListener(
+  "click",
+  redeem
+);
+
+
+redeemCode.addEventListener(
+  "keydown",
+  e=>{
+
+    if(e.key==="Enter"){
+      redeem();
+    }
+
+  }
+);
+
+
+startTrial.addEventListener(
+  "click",
+  startFreeTrial
+);
+
+
+function expireAccess(){
+
+  const access=getAccess();
+
+  /*
+     Don't delete premium access.
+     Just allow it to expire naturally.
+  */
+
+  accessTitle.textContent=
+    "Free trial ended";
+
+  accessMessage.textContent=
+    "Sorry, your free trial has ended. Wait until next week or see Peter for extra credits.";
+
+  accessTimer.textContent=
+    "0:00";
+
+  startTrial.style.display=
+    "none";
+
+  redeemArea.style.display=
+    "block";
+
+  openAccessGate();
+
+  lockGames();
+
+  updateAccessUI();
+
+}
+
+
+function updateAccessUI(){
+
+  const access=getAccess();
+
+  const premium=
+    access.premiumUntil &&
+    Date.now()<access.premiumUntil;
+
+  const trial=
+    access.trialEnds &&
+    Date.now()<access.trialEnds;
+
+  if(premium){
+
+    const remaining=
+      access.premiumUntil-Date.now();
+
+    accessStatusText.textContent=
+      "🎟️ 9-day access • "+
+      formatTime(remaining);
+
+    accessTimer.textContent=
+      formatTime(remaining);
+
+    unlockGames();
+
+    return;
+
+  }
+
+
+  if(trial){
+
+    const remaining=
+      access.trialEnds-Date.now();
+
+    accessStatusText.textContent=
+      "🆓 Free trial • "+
+      formatTime(remaining);
+
+    accessTimer.textContent=
+      formatTime(remaining);
+
+    unlockGames();
+
+    return;
+
+  }
+
+
+  accessStatusText.textContent=
+    "🔒 Trial expired";
+
+  lockGames();
+
+}
+
+
+function updateAccessTimer(){
+
+  const access=getAccess();
+
+  if(
+    access.premiumUntil &&
+    Date.now()<access.premiumUntil
+  ){
+
+    accessTimer.textContent=
+      formatTime(
+        access.premiumUntil-Date.now()
+      );
+
+    updateAccessUI();
+
+    return;
+
+  }
+
+
+  if(
+    access.trialEnds &&
+    Date.now()<access.trialEnds
+  ){
+
+    accessTimer.textContent=
+      formatTime(
+        access.trialEnds-Date.now()
+      );
+
+    updateAccessUI();
+
+    return;
+
+  }
+
+
+  /*
+     If a timer used to exist and has now
+     reached zero, show the expiry screen.
+  */
+
+  if(
+    access.trialEnds &&
+    Date.now()>=access.trialEnds &&
+    access.trialStarted
+  ){
+
+    if(
+      !document
+        .getElementById("gamePlayer")
+        .classList.contains("show")
+    ){
+
+      expireAccess();
+
+    }else{
+
+      closeGamePlayer();
+      expireAccess();
+
+    }
+
+  }
+
+}
+
+
+setInterval(
+  updateAccessTimer,
+  500
+);
+
+
+/*
+   When the user comes back to the tab,
+   immediately check the real timestamp.
+   The timer never depended on the tab being active.
+*/
+
+document.addEventListener(
+  "visibilitychange",
+  ()=>{
+
+    updateAccessUI();
+    updateAccessTimer();
+
+  }
+);
+
+
+window.addEventListener(
+  "focus",
+  ()=>{
+
+    updateAccessUI();
+    updateAccessTimer();
+
+  }
+);
+
+
+/* =====================================================
+   GAME LOCKING
+===================================================== */
+
+function lockGames(){
+
+  document
+    .querySelectorAll(".game")
+    .forEach(card=>{
+
+      card.classList.add("locked");
+
+      const button=
+        card.querySelector(".play");
+
+      if(button){
+
+        button.textContent=
+          "🔒 LOCKED";
+
+      }
+
+    });
+
+}
+
+
+function unlockGames(){
+
+  document
+    .querySelectorAll(".game")
+    .forEach(card=>{
+
+      card.classList.remove("locked");
+
+      const button=
+        card.querySelector(".play");
+
+      if(button){
+
+        button.textContent=
+          "PLAY →";
+
+      }
+
+    });
+
+}
+
+
+function requireAccess(){
+
+  if(hasAccess()){
+
+    return true;
+
+  }
+
+  expireAccess();
+
+  return false;
+
+}
+
+
+/* =====================================================
+   GAME CARDS
+===================================================== */
+
+const gamesBox=
+  document.getElementById("games");
+
+
+function createGame(game){
+
+  const card=
+    document.createElement("div");
+
+  card.className="game";
+
+  card.dataset.name=
+    game.n.toLowerCase();
+
+  card.dataset.category=
+    game.c;
+
+  const pair=
+    colors[game.c] ||
+    ["#8b5cf6","#100817"];
+
+  card.innerHTML=`
+
+    <div
+      class="thumb"
+      style="
+        --one:${pair[0]};
+        --two:${pair[1]};
+        --glow:${pair[0]};
+      "
+    >
+
+      <div
+        class="badge ${
+          game.external
+          ? "external"
+          : ""
+        }"
+      >
+        ${
+          game.external
+          ? "EXTERNAL"
+          : "IN PSTYLA"
+        }
+      </div>
+
+      <div class="thumbIcon">
+        ${game.i}
+      </div>
+
+      <div class="thumbName">
+        ${game.n}
+      </div>
+
+    </div>
+
+    <div class="gameInfo">
+
+      <div class="gameName">
+        ${game.n}
+      </div>
+
+      <div class="gameCategory">
+        ${game.c}
+      </div>
+
+      <button
+        class="play"
+        type="button"
+      >
+        PLAY →
+      </button>
+
+    </div>
+
+  `;
+
+
+  card
+    .querySelector(".play")
+    .addEventListener(
+      "click",
+      ()=>{
+
+        if(!requireAccess()){
+          return;
+        }
+
+        openGame(game);
+
+      }
+    );
+
+
+  return card;
+
+}
+
+
+gamesData.forEach(
+  game=>{
+    gamesBox.appendChild(
+      createGame(game)
+    );
+  }
+);
+
+
+updateAccessUI();
+
+
+/* =====================================================
+   GAME LAUNCHER
+===================================================== */
+
+const gameNotice=
+  document.getElementById(
+    "gameNotice"
+  );
+
+const noticeTitle=
+  document.getElementById(
+    "noticeTitle"
+  );
+
+const noticeText=
+  document.getElementById(
+    "noticeText"
+  );
+
+const noticeIcon=
+  document.getElementById(
+    "noticeIcon"
+  );
+
+const noticeOpen=
+  document.getElementById(
+    "noticeOpen"
+  );
+
+const noticeCancel=
+  document.getElementById(
+    "noticeCancel"
+  );
+
+let selectedGame=null;
+
+const gamePlayer=
+  document.getElementById(
+    "gamePlayer"
+  );
+
+const gameFrame=
+  document.getElementById(
+    "gameFrame"
+  );
+
+const playerTitle=
+  document.getElementById(
+    "playerTitle"
+  );
+
+const playerIcon=
+  document.getElementById(
+    "playerIcon"
+  );
+
+let currentPlayingGame=null;
+
+
+function openGame(game){
+
+  if(!requireAccess()){
+    return;
+  }
+
+  selectedGame=game;
+
+  noticeTitle.textContent=
+    game.n;
+
+  noticeIcon.textContent=
+    game.i;
+
+  if(game.external){
+
+    noticeText.textContent=
+      "This game opens in a separate tab.";
+
+    noticeOpen.textContent=
+      "OPEN GAME ↗";
+
+  }else{
+
+    noticeText.textContent=
+      "This game will load inside the PStyla game player.";
+
+    noticeOpen.textContent=
+      "PLAY INSIDE PSTYLA →";
+
+  }
+
+  gameNotice.classList.add("show");
+
+}
+
+
+noticeOpen.addEventListener(
+  "click",
+  ()=>{
+
+    if(!selectedGame){
+      return;
+    }
+
+    if(!requireAccess()){
+      selectedGame=null;
+      gameNotice.classList.remove("show");
+      return;
+    }
+
+    const game=
+      selectedGame;
+
+    selectedGame=null;
+
+    gameNotice.classList.remove(
+      "show"
+    );
+
+    savePlayed(game.n);
+
+
+    if(game.external){
+
+      const opened=
+        window.open(
+          game.url,
+          "_blank",
+          "noopener,noreferrer"
+        );
+
+      if(!opened){
+
+        alert(
+          "Your browser blocked the game tab. Allow pop-ups for PStyla."
+        );
+
+      }
+
+      return;
+
+    }
+
+
+    currentPlayingGame=
+      game;
+
+    playerTitle.textContent=
+      game.n;
+
+    playerIcon.textContent=
+      game.i;
+
+    gameFrame.src=
+      "about:blank";
+
+    gamePlayer.classList.add(
+      "show"
+    );
+
+    document.body.style.overflow=
+      "hidden";
+
+    setTimeout(
+      ()=>{
+
+        if(
+          currentPlayingGame===game &&
+          hasAccess()
+        ){
+
+          gameFrame.src=
+            game.gameUrl;
+
+        }
+
+      },
+      50
+    );
+
+  }
+);
+
+
+/* =====================================================
+   CLOSE GAME
+===================================================== */
+
+function closeGamePlayer(){
+
+  gameFrame.src=
+    "about:blank";
+
+  gamePlayer.classList.remove(
+    "show"
+  );
+
+  document.body.style.overflow=
+    "";
+
+  currentPlayingGame=
+    null;
+
+}
+
+
+document
+  .getElementById(
+    "closeGamePlayer"
+  )
+  .addEventListener(
+    "click",
+    closeGamePlayer
+  );
+
+
+document
+  .getElementById(
+    "reloadGame"
+  )
+  .addEventListener(
+    "click",
+    ()=>{
+
+      if(
+        !currentPlayingGame ||
+        !requireAccess()
+      ){
+
+        return;
+
+      }
+
+      const url=
+        currentPlayingGame.gameUrl;
+
+      gameFrame.src=
+        "about:blank";
+
+      setTimeout(
+        ()=>{
+
+          if(hasAccess()){
+
+            gameFrame.src=url;
+
+          }
+
+        },
+        100
+      );
+
+    }
+  );
+
+
+noticeCancel.addEventListener(
+  "click",
+  ()=>{
+
+    gameNotice.classList.remove(
+      "show"
+    );
+
+    selectedGame=null;
+
+  }
+);
+
+
+gameNotice.addEventListener(
+  "click",
+  e=>{
+
+    if(e.target===gameNotice){
+
+      gameNotice.classList.remove(
+        "show"
+      );
+
+      selectedGame=null;
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   FEATURED
+===================================================== */
+
+document
+  .getElementById(
+    "featuredPlay"
+  )
+  .addEventListener(
+    "click",
+    ()=>{
+
+      if(!requireAccess()){
+        return;
+      }
+
+      const game=
+        gamesData.find(
+          g=>g.n==="Stickman Hook"
+        );
+
+      if(game){
+        openGame(game);
+      }
+
+    }
+  );
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+const search=
+  document.getElementById(
+    "search"
+  );
+
+const categories=
+  document.querySelectorAll(
+    ".category"
+  );
+
+const noResults=
+  document.getElementById(
+    "noResults"
+  );
+
+let currentCategory=
+  "all";
+
+
+function updateGames(){
+
+  const query=
+    search.value
+      .toLowerCase()
+      .trim();
+
+  let count=0;
+
+  document
+    .querySelectorAll(".game")
+    .forEach(
+      card=>{
+
+        const name=
+          card.dataset.name;
+
+        const cat=
+          card.dataset.category;
+
+        const matchName=
+          name.includes(query);
+
+        const matchCategory=
+          currentCategory==="all" ||
+          cat===currentCategory;
+
+        if(
+          matchName &&
+          matchCategory
+        ){
+
+          card.classList.remove(
+            "hidden"
+          );
+
+          count++;
+
+        }else{
+
+          card.classList.add(
+            "hidden"
+          );
+
+        }
+
+      }
+    );
+
+  noResults.style.display=
+    count
+      ? "none"
+      : "block";
+
+}
+
+
+search.addEventListener(
+  "input",
+  updateGames
+);
+
+
+categories.forEach(
+  button=>{
+
+    button.addEventListener(
+      "click",
+      ()=>{
+
+        categories.forEach(
+          b=>
+            b.classList.remove(
+              "active"
+            )
+        );
+
+        button.classList.add(
+          "active"
+        );
+
+        currentCategory=
+          button.dataset.category;
+
+        updateGames();
+
+      }
+    );
+
+  }
+);
+
+
+/* =====================================================
+   RECENTLY PLAYED
+===================================================== */
+
+function getRecent(){
+
+  try{
+
+    return JSON.parse(
+      localStorage.getItem(
+        "pstylaRecent"
+      ) || "[]"
+    );
+
+  }catch{
+
+    return [];
+
+  }
+
+}
+
+
+function savePlayed(name){
+
+  let recent=
+    getRecent();
+
+  recent=
+    recent.filter(
+      x=>x!==name
+    );
+
+  recent.unshift(name);
+
+  recent=
+    recent.slice(0,8);
+
+  localStorage.setItem(
+    "pstylaRecent",
+    JSON.stringify(recent)
+  );
+
+  loadRecent();
+  updateAchievements();
+
+}
+
+
+function findGame(name){
+
+  return gamesData.find(
+    x=>x.n===name
+  );
+
+}
+
+
+function loadRecent(){
+
+  const box=
+    document.getElementById(
+      "recent"
+    );
+
+  const recent=
+    getRecent();
+
+  box.innerHTML="";
+
+  if(!recent.length){
+
+    box.innerHTML=`
+
+      <div class="recentItem">
+        🎮 Play a game and it'll appear here.
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  recent.forEach(
+    name=>{
+
+      const game=
+        findGame(name);
+
+      if(!game){
+        return;
+      }
+
+      const item=
+        document.createElement(
+          "div"
+        );
+
+      item.className=
+        "recentItem";
+
+      item.innerHTML=`
+
+        <div style="font-size:35px">
+          ${game.i}
+        </div>
+
+        <strong>
+          ${game.n}
+        </strong>
+
+        <div
+          style="
+            color:#777;
+            font-size:10px;
+            margin-top:4px
+          "
+        >
+          ${game.c.toUpperCase()}
+        </div>
+
+        <button
+          class="play"
+          type="button"
+        >
+          PLAY AGAIN
+        </button>
+
+      `;
+
+      item
+        .querySelector("button")
+        .addEventListener(
+          "click",
+          ()=>{
+
+            if(requireAccess()){
+              openGame(game);
+            }
+
+          }
+        );
+
+      box.appendChild(item);
+
+    }
+  );
+
+}
+
+
+loadRecent();
+
+
+/* =====================================================
+   RANDOM
+===================================================== */
+
+document
+  .getElementById(
+    "random"
+  )
+  .addEventListener(
+    "click",
+    ()=>{
+
+      if(!requireAccess()){
+        return;
+      }
+
+      const visible=
+        [
+          ...document
+            .querySelectorAll(".game")
+        ]
+        .filter(
+          card=>
+            !card.classList.contains(
+              "hidden"
+            )
+        );
+
+      if(!visible.length){
+        return;
+      }
+
+      const card=
+        visible[
+          Math.floor(
+            Math.random()*
+            visible.length
+          )
+        ];
+
+      const game=
+        gamesData.find(
+          g=>
+            g.n.toLowerCase()===
+            card.dataset.name
+        );
+
+      if(!game){
+        return;
+      }
+
+      savePlayed(game.n);
+
+      openGame(game);
+
+      card.scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+      });
+
+      card.style.boxShadow=
+        "0 0 50px rgba(168,85,247,.9)";
+
+      setTimeout(
+        ()=>{
+          card.style.boxShadow="";
+        },
+        1500
+      );
+
+      localStorage.setItem(
+        "pstylaLuckyPlayer",
+        "true"
+      );
+
+      updateAchievements();
+
+    }
+  );
+
+
+/* =====================================================
+   HOME
+===================================================== */
+
+document
+  .getElementById(
+    "homeButton"
+  )
+  .addEventListener(
+    "click",
+    ()=>{
+      window.scrollTo({
+        top:0,
+        behavior:"smooth"
+      });
+    }
+  );
+
+
+/* =====================================================
+   NEW TAB
+===================================================== */
+
+document
+  .getElementById(
+    "newTab"
+  )
+  .addEventListener(
+    "click",
+    ()=>{
+
+      const opened=
+        window.open(
+          window.location.href,
+          "_blank"
+        );
+
+      if(!opened){
+
+        alert(
+          "Your browser blocked the new tab. Allow pop-ups for PStyla."
+        );
+
+      }
+
+    }
+  );
+
+
+/* =====================================================
+   UPDATES
+===================================================== */
+
+const modal=
+  document.getElementById(
+    "modal"
+  );
+
+
+document
+  .getElementById(
+    "updates"
+  )
+  .addEventListener(
+    "click",
+    ()=>{
+      modal.classList.add(
+        "show"
+      );
+    }
+  );
+
+
+document
+  .getElementById(
+    "closeModal"
+  )
+  .addEventListener(
+    "click",
+    ()=>{
+      modal.classList.remove(
+        "show"
+      );
+    }
+  );
+
+
+modal.addEventListener(
+  "click",
+  e=>{
+
+    if(e.target===modal){
+      modal.classList.remove(
+        "show"
+      );
+    }
+
+  }
+);
+
+
+/* =====================================================
+   ACHIEVEMENTS
+===================================================== */
+
+function updateAchievements(){
+
+  const recent=
+    getRecent();
+
+  const achievements=
+    document.querySelectorAll(
+      ".achievement"
+    );
+
+  if(recent.length>=1){
+
+    achievements[0]
+      .style.borderColor=
+      "#a855f7";
+
+  }
+
+  if(recent.length>=5){
+
+    achievements[1]
+      .style.borderColor=
+      "#a855f7";
+
+  }
+
+  if(
+    localStorage.getItem(
+      "pstylaLuckyPlayer"
+    )==="true"
+  ){
+
+    achievements[2]
+      .style.borderColor=
+      "#a855f7";
+
+  }
+
+  if(
+    localStorage.getItem(
+      "pstylaTutorialDone"
+    )==="true"
+  ){
+
+    achievements[3]
+      .style.borderColor=
+      "#a855f7";
+
+  }
+
+}
+
+
+updateAchievements();
+
+
+/* =====================================================
+   ESCAPE
+===================================================== */
+
+document.addEventListener(
+  "keydown",
+  e=>{
+
+    if(e.key==="Escape"){
+
+      modal.classList.remove(
+        "show"
+      );
+
+      gameNotice.classList.remove(
+        "show"
+      );
+
+      selectedGame=null;
+
+      if(
+        gamePlayer.classList.contains(
+          "show"
+        )
+      ){
+
+        closeGamePlayer();
+
+      }
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   PAGE UNLOAD
+===================================================== */
+
+window.addEventListener(
+  "beforeunload",
+  ()=>{
+    gameFrame.src=
+      "about:blank";
+  }
+);
+
+
+console.log(
+  "PStyla Games loaded:",
+  gamesData.length,
+  "games"
+);
+
+</script>
+
+</body>
+</html>
