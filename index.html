@@ -76,7 +76,9 @@ body:before{
   to{transform:translate(110vw,-15vh)}
 }
 
-/* ACCESS SYSTEM */
+/* =====================================================
+   ACCESS SYSTEM
+   ===================================================== */
 
 #accessScreen{
   position:fixed;
@@ -208,7 +210,9 @@ body:before{
   font-size:11px!important;
 }
 
-/* INTRO */
+/* =====================================================
+   INTRO
+   ===================================================== */
 
 #intro{
   position:fixed;
@@ -288,7 +292,9 @@ body:before{
   to{opacity:1;transform:none}
 }
 
-/* NAV */
+/* =====================================================
+   NAV
+   ===================================================== */
 
 header{
   position:sticky;
@@ -367,7 +373,9 @@ header{
   transform:translateY(-2px);
 }
 
-/* MAIN */
+/* =====================================================
+   MAIN
+   ===================================================== */
 
 main{
   max-width:1450px;
@@ -572,7 +580,9 @@ h1{
   font-weight:900;
 }
 
-.badge.external{color:#fbbf24}
+.badge.external{
+  color:#fbbf24;
+}
 
 .thumbName{
   position:absolute;
@@ -605,7 +615,9 @@ h1{
   margin-top:5px;
 }
 
-.gameVersion.external{color:#fbbf24}
+.gameVersion.external{
+  color:#fbbf24;
+}
 
 .play{
   margin-top:10px;
@@ -624,7 +636,9 @@ h1{
   box-shadow:0 0 18px rgba(139,92,246,.45);
 }
 
-.hidden{display:none!important}
+.hidden{
+  display:none!important;
+}
 
 .noResults{
   display:none;
@@ -635,7 +649,9 @@ h1{
   text-align:center;
 }
 
-.section{margin-top:50px}
+.section{
+  margin-top:50px;
+}
 
 .sectionTitle{
   display:flex;
@@ -645,7 +661,11 @@ h1{
 }
 
 .sectionTitle h2{margin:0}
-.sectionTitle span{color:#666;font-size:11px}
+
+.sectionTitle span{
+  color:#666;
+  font-size:11px;
+}
 
 #recent{
   display:flex;
@@ -686,7 +706,9 @@ h1{
 .achievementName{margin-top:7px;font-weight:1000}
 .achievementDesc{margin-top:5px;color:#666;font-size:10px}
 
-/* MODALS */
+/* =====================================================
+   MODALS
+   ===================================================== */
 
 .modal,#tutorial,.gameNotice{
   position:fixed;
@@ -713,7 +735,9 @@ h1{
   box-shadow:0 30px 100px rgba(0,0,0,.75);
 }
 
-.modalBox h2,.tutorialBox h2{margin-top:8px}
+.modalBox h2,.tutorialBox h2{
+  margin-top:8px;
+}
 
 .notes{
   color:#aaa;
@@ -758,7 +782,10 @@ h1{
   letter-spacing:2px;
 }
 
-.tutorialStep{color:#666;font-size:11px}
+.tutorialStep{
+  color:#666;
+  font-size:11px;
+}
 
 .tutorialTips{
   display:grid;
@@ -775,7 +802,9 @@ h1{
   font-size:12px;
 }
 
-.tutorialTip b{color:#c084fc}
+.tutorialTip b{
+  color:#c084fc;
+}
 
 .tutorialProgress{
   display:flex;
@@ -790,7 +819,9 @@ h1{
   background:#292932;
 }
 
-.progressDot.active{background:#a855f7}
+.progressDot.active{
+  background:#a855f7;
+}
 
 .tutorialButtons,.noticeButtons{
   display:flex;
@@ -804,8 +835,13 @@ h1{
   text-align:center;
 }
 
-.gameNoticeIcon{font-size:55px}
-.gameNoticeBox h2{margin:12px 0 8px}
+.gameNoticeIcon{
+  font-size:55px;
+}
+
+.gameNoticeBox h2{
+  margin:12px 0 8px;
+}
 
 .musicToast{
   position:fixed;
@@ -830,9 +866,13 @@ h1{
   transform:none;
 }
 
-.musicToast span{color:#c084fc}
+.musicToast span{
+  color:#c084fc;
+}
 
-/* GAME PLAYER */
+/* =====================================================
+   GAME PLAYER
+   ===================================================== */
 
 #gamePlayer{
   position:fixed;
@@ -843,7 +883,9 @@ h1{
   background:#000;
 }
 
-#gamePlayer.show{display:flex}
+#gamePlayer.show{
+  display:flex;
+}
 
 .gamePlayerTop{
   height:58px;
@@ -864,7 +906,9 @@ h1{
   min-width:0;
 }
 
-.gamePlayerTitleIcon{font-size:24px}
+.gamePlayerTitleIcon{
+  font-size:24px;
+}
 
 .gamePlayerTitleText{
   font-weight:1000;
@@ -898,12 +942,6 @@ h1{
   border-color:#a855f7;
 }
 
-#openExternalGame{
-  display:none;
-  border-color:#f59e0b;
-  background:linear-gradient(135deg,#f59e0b,#d97706);
-}
-
 #closeGamePlayer{
   border-color:#8b5cf6;
   background:linear-gradient(135deg,#8b5cf6,#c026d3);
@@ -925,6 +963,7 @@ footer{
 }
 
 @media(max-width:700px){
+
   .nav{
     flex-wrap:wrap;
     padding:12px 15px;
@@ -936,21 +975,34 @@ footer{
     max-width:none;
   }
 
-  main{padding:25px 15px 60px}
+  main{
+    padding:25px 15px 60px;
+  }
 
-  .featured{padding:28px}
+  .featured{
+    padding:28px;
+  }
 
-  .featured:after{font-size:100px}
+  .featured:after{
+    font-size:100px;
+  }
 
   .gameGrid{
     grid-template-columns:repeat(2,minmax(0,1fr));
     gap:10px;
   }
 
-  .thumb{height:145px}
-  .thumbIcon{font-size:54px}
+  .thumb{
+    height:145px;
+  }
 
-  .achievements{grid-template-columns:repeat(2,1fr)}
+  .thumbIcon{
+    font-size:54px;
+  }
+
+  .achievements{
+    grid-template-columns:repeat(2,1fr);
+  }
 
   .navButtons button{
     padding:8px 9px;
@@ -966,7 +1018,9 @@ footer{
     height:calc(100vh - 54px);
   }
 
-  .gamePlayerBadge{display:none}
+  .gamePlayerBadge{
+    display:none;
+  }
 
   .gamePlayerControls button{
     padding:7px 9px;
@@ -975,11 +1029,18 @@ footer{
 }
 
 @media(max-width:430px){
-  .gameName{font-size:14px}
 
-  .achievements{grid-template-columns:1fr}
+  .gameName{
+    font-size:14px;
+  }
 
-  .gamePlayerTitleText{font-size:12px}
+  .achievements{
+    grid-template-columns:1fr;
+  }
+
+  .gamePlayerTitleText{
+    font-size:12px;
+  }
 }
 </style>
 </head>
@@ -988,38 +1049,62 @@ footer{
 
 <div id="particles"></div>
 
+<!-- =====================================================
+     ACCESS SCREEN
+     ===================================================== -->
+
 <div id="accessScreen">
+
   <div class="accessBox">
+
     <div class="accessLogo">
       <span>P</span>Styla
     </div>
 
-    <h1 id="accessTitle">Free Trial</h1>
+    <h1 id="accessTitle">
+      Free Trial
+    </h1>
 
     <p id="accessDescription">
       You have a free 5-minute trial of PStyla Games.
     </p>
 
     <div class="accessTimer">
-      <div class="accessTimerLabel">ACCESS TIME REMAINING</div>
-      <div id="timerText">05:00</div>
+
+      <div class="accessTimerLabel">
+        ACCESS TIME REMAINING
+      </div>
+
+      <div id="timerText">
+        05:00
+      </div>
+
     </div>
 
     <div class="accessButtons">
-      <button class="accessButton" id="startTrialButton">
+
+      <button
+        class="accessButton"
+        id="startTrialButton"
+      >
         🎮 START FREE TRIAL
       </button>
 
-      <button class="accessButton secondary" id="showRedeemButton">
-        🎟️ REDEEM QR
+      <button
+        class="accessButton secondary"
+        id="showRedeemButton"
+      >
+        🎟️ ENTER ACCESS CODE
       </button>
+
     </div>
 
     <div id="redeemArea">
+
       <input
         id="redeemInput"
         type="text"
-        placeholder="Enter QR / access code"
+        placeholder="Enter access code"
         autocomplete="off"
       >
 
@@ -1032,16 +1117,26 @@ footer{
       </button>
 
       <div id="redeemMessage"></div>
+
     </div>
 
     <p class="qrHint">
-      Scan a valid PStyla QR code to receive 9 days of access.
+      📱 Scan a valid PStyla QR code and your access will activate automatically.
     </p>
+
   </div>
+
 </div>
 
+
+<!-- =====================================================
+     INTRO
+     ===================================================== -->
+
 <div id="intro">
+
   <div class="introBox">
+
     <div class="introTitle">
       <span>P</span>Styla Games
     </div>
@@ -1052,16 +1147,28 @@ footer{
     </div>
 
     <div class="updateText">
-      ✨ Fresh games and updates every <span>1–2 weeks</span>
+      ✨ Fresh games and updates every
+      <span>1–2 weeks</span>
     </div>
 
-    <button class="enter" id="enter">
+    <button
+      class="enter"
+      id="enter"
+    >
       🎮 ENTER PSTYLA
     </button>
+
   </div>
+
 </div>
 
+
+<!-- =====================================================
+     NAV
+     ===================================================== -->
+
 <header>
+
   <div class="nav">
 
     <div class="logo">
@@ -1070,95 +1177,205 @@ footer{
     </div>
 
     <div class="search">
+
       <input
         id="search"
         type="search"
         placeholder="Search games..."
         autocomplete="off"
       >
+
     </div>
 
     <div class="navButtons">
-      <button id="music">🔇</button>
-      <button id="updates">✨ Updates</button>
-      <button id="newTab">🪟</button>
-      <button id="homeButton">Home</button>
+
+      <button id="music">
+        🔇
+      </button>
+
+      <button id="updates">
+        ✨ Updates
+      </button>
+
+      <button id="homeButton">
+        Home
+      </button>
+
     </div>
 
   </div>
+
 </header>
+
+
+<!-- =====================================================
+     MAIN
+     ===================================================== -->
 
 <main>
 
-  <div class="welcomeSmall">WELCOME TO PSTYLA</div>
+  <div class="welcomeSmall">
+    WELCOME TO PSTYLA
+  </div>
 
-  <h1>PStyla Games</h1>
+  <h1>
+    PStyla Games
+  </h1>
 
   <div class="welcome">
+
     <p>
       <span id="gameCount">0</span>
       hand-picked games.
       No filler. Just games worth playing. 🔥
     </p>
+
   </div>
+
 
   <div class="featured">
 
-    <div class="featuredLabel">🔥 FEATURED GAME</div>
+    <div class="featuredLabel">
+      🔥 FEATURED GAME
+    </div>
 
-    <h2>Stickman Hook</h2>
+    <h2>
+      Stickman Hook
+    </h2>
 
     <p>
       Swing, dodge and fly through the levels.
       One of the classics in the PStyla lineup.
     </p>
 
-    <button class="playFeatured" id="featuredPlay">
+    <button
+      class="playFeatured"
+      id="featuredPlay"
+    >
       PLAY NOW →
     </button>
 
   </div>
 
-  <div class="toolbar">
-    <h2>🎮 Games</h2>
 
-    <button class="random" id="random">
+  <div class="toolbar">
+
+    <h2>
+      🎮 Games
+    </h2>
+
+    <button
+      class="random"
+      id="random"
+    >
       🎲 Surprise Me
     </button>
+
   </div>
+
 
   <div class="categories">
-    <button class="category active" data-category="all">All</button>
-    <button class="category" data-category="action">Action</button>
-    <button class="category" data-category="arcade">Arcade</button>
-    <button class="category" data-category="racing">Racing</button>
-    <button class="category" data-category="sports">Sports</button>
-    <button class="category" data-category="platformer">Platformer</button>
-    <button class="category" data-category="puzzle">Puzzle</button>
-    <button class="category" data-category="casual">Casual</button>
+
+    <button
+      class="category active"
+      data-category="all"
+    >
+      All
+    </button>
+
+    <button
+      class="category"
+      data-category="action"
+    >
+      Action
+    </button>
+
+    <button
+      class="category"
+      data-category="arcade"
+    >
+      Arcade
+    </button>
+
+    <button
+      class="category"
+      data-category="racing"
+    >
+      Racing
+    </button>
+
+    <button
+      class="category"
+      data-category="sports"
+    >
+      Sports
+    </button>
+
+    <button
+      class="category"
+      data-category="platformer"
+    >
+      Platformer
+    </button>
+
+    <button
+      class="category"
+      data-category="puzzle"
+    >
+      Puzzle
+    </button>
+
+    <button
+      class="category"
+      data-category="casual"
+    >
+      Casual
+    </button>
+
   </div>
 
-  <div class="gameGrid" id="games"></div>
 
-  <div class="noResults" id="noResults">
+  <div
+    class="gameGrid"
+    id="games"
+  ></div>
+
+
+  <div
+    class="noResults"
+    id="noResults"
+  >
     😭 No games found. Try another search.
   </div>
+
 
   <section class="section">
 
     <div class="sectionTitle">
-      <h2>🕐 Recently Played</h2>
-      <span>Saved on this device</span>
+
+      <h2>
+        🕐 Recently Played
+      </h2>
+
+      <span>
+        Saved on this device
+      </span>
+
     </div>
 
     <div id="recent"></div>
 
   </section>
 
+
   <section class="section">
 
     <div class="sectionTitle">
-      <h2>🏆 Achievements</h2>
+
+      <h2>
+        🏆 Achievements
+      </h2>
+
     </div>
 
     <div class="achievements">
@@ -1193,15 +1410,32 @@ footer{
 
 </main>
 
+
 <footer>
   PStyla Games © 2026 • Fresh Edition
 </footer>
 
-<div class="musicToast" id="musicToast">
+
+<!-- =====================================================
+     MUSIC TOAST
+     ===================================================== -->
+
+<div
+  class="musicToast"
+  id="musicToast"
+>
   🎵 <span id="musicStatus">Music Off</span>
 </div>
 
-<div class="modal" id="modal">
+
+<!-- =====================================================
+     UPDATES MODAL
+     ===================================================== -->
+
+<div
+  class="modal"
+  id="modal"
+>
 
   <div class="modalBox">
 
@@ -1214,15 +1448,21 @@ footer{
       PSTYLA GAMES
     </div>
 
-    <h2>✨ What's New</h2>
+    <h2>
+      ✨ What's New
+    </h2>
 
     <div class="notes">
+
       • Real HTML5 game files used where available<br>
       • Games run inside the PStyla player<br>
-      • Tiny Fishing kept as an exception<br>
-      • Among Us kept as an exception<br>
+      • Tiny Fishing preserved<br>
+      • Among Us preserved<br>
       • Free 5-minute trial system<br>
       • QR redemption gives 9 days<br>
+      • QR codes now auto-redeem<br>
+      • No game opens a new tab<br>
+      • Owner/tester access code added<br>
       • Fixed game launching<br>
       • Fixed game-player behavior<br>
       • Improved categories<br>
@@ -1230,22 +1470,42 @@ footer{
       • Improved mobile layout<br>
       • Improved recently played<br>
       • Improved Surprise Me
+
     </div>
 
-    <button class="close" id="close">
+    <button
+      class="close"
+      id="close"
+    >
       CLOSE
     </button>
 
   </div>
+
 </div>
 
-<div class="gameNotice" id="gameNotice">
+
+<!-- =====================================================
+     GAME NOTICE
+     ===================================================== -->
+
+<div
+  class="gameNotice"
+  id="gameNotice"
+>
 
   <div class="gameNoticeBox">
 
-    <div class="gameNoticeIcon" id="noticeIcon">🎮</div>
+    <div
+      class="gameNoticeIcon"
+      id="noticeIcon"
+    >
+      🎮
+    </div>
 
-    <h2 id="noticeTitle">Open Game</h2>
+    <h2 id="noticeTitle">
+      Open Game
+    </h2>
 
     <p id="noticeText">
       You're about to start this game.
@@ -1257,7 +1517,10 @@ footer{
         Cancel
       </button>
 
-      <button class="openHub" id="noticeOpen">
+      <button
+        class="openHub"
+        id="noticeOpen"
+      >
         PLAY GAME →
       </button>
 
@@ -1266,6 +1529,11 @@ footer{
   </div>
 
 </div>
+
+
+<!-- =====================================================
+     TUTORIAL
+     ===================================================== -->
 
 <div id="tutorial">
 
@@ -1277,13 +1545,19 @@ footer{
         PSTYLA QUICK TOUR
       </div>
 
-      <div class="tutorialStep" id="tutorialStep">
+      <div
+        class="tutorialStep"
+        id="tutorialStep"
+      >
         1 / 7
       </div>
 
     </div>
 
-    <div class="tutorialIcon" id="tutorialIcon">
+    <div
+      class="tutorialIcon"
+      id="tutorialIcon"
+    >
       🎮
     </div>
 
@@ -1295,9 +1569,15 @@ footer{
       Your new game hub.
     </p>
 
-    <div class="tutorialTips" id="tutorialTips"></div>
+    <div
+      class="tutorialTips"
+      id="tutorialTips"
+    ></div>
 
-    <div class="tutorialProgress" id="tutorialProgress"></div>
+    <div
+      class="tutorialProgress"
+      id="tutorialProgress"
+    ></div>
 
     <div class="tutorialButtons">
 
@@ -1309,7 +1589,10 @@ footer{
         Skip
       </button>
 
-      <button class="next" id="tutorialNext">
+      <button
+        class="next"
+        id="tutorialNext"
+      >
         Next →
       </button>
 
@@ -1319,19 +1602,30 @@ footer{
 
 </div>
 
+
+<!-- =====================================================
+     GAME PLAYER
+     ===================================================== -->
+
 <div id="gamePlayer">
 
   <div class="gamePlayerTop">
 
     <div class="gamePlayerTitle">
 
-      <div class="gamePlayerTitleIcon" id="playerIcon">
+      <div
+        class="gamePlayerTitleIcon"
+        id="playerIcon"
+      >
         🎮
       </div>
 
       <div>
 
-        <div class="gamePlayerTitleText" id="playerTitle">
+        <div
+          class="gamePlayerTitleText"
+          id="playerTitle"
+        >
           PStyla Game
         </div>
 
@@ -1347,10 +1641,6 @@ footer{
 
       <button id="reloadGame">
         ↻ Reload
-      </button>
-
-      <button id="openExternalGame">
-        ↗ Open Tab
       </button>
 
       <button id="closeGamePlayer">
@@ -1371,84 +1661,148 @@ footer{
 
 </div>
 
+
 <script>
 
 /* =====================================================
-   PSTYLA ACCESS / FREE TRIAL / QR SYSTEM
+   PSTYLA ACCESS SYSTEM
    ===================================================== */
 
-const TRIAL_TIME = 5 * 60 * 1000;
-const QR_ACCESS_TIME = 9 * 24 * 60 * 60 * 1000;
+const TRIAL_TIME =
+  5 * 60 * 1000;
+
+const QR_ACCESS_TIME =
+  9 * 24 * 60 * 60 * 1000;
 
 /*
-   Change this code if you want a different QR code.
+   NORMAL QR CODE
+   ----------------
+   Your QR should point to:
 
-   Your QR code should open:
+   YOUR_SITE_URL?redeem=PSTYLA9DAYS
 
-   your-pstyla-site-url?redeem=PSTYLA9DAYS
+   It will automatically redeem.
+
+   OWNER / TESTER CODE
+   -------------------
+   ZionPeter3129@!
+
+   Owner access does not expire.
 */
 
 const VALID_QR_CODES = [
   "PSTYLA9DAYS"
 ];
 
-const ACCESS_KEY = "pstylaAccessData";
+const OWNER_TESTER_CODE =
+  "ZionPeter3129@!";
+
+const ACCESS_KEY =
+  "pstylaAccessData";
+
+
+/* =====================================================
+   ACCESS DATA
+   ===================================================== */
 
 function getAccessData(){
+
   try{
+
     return JSON.parse(
-      localStorage.getItem(ACCESS_KEY) || "{}"
+      localStorage.getItem(
+        ACCESS_KEY
+      ) || "{}"
     );
+
   }catch{
+
     return {};
+
   }
+
 }
 
+
 function saveAccessData(data){
+
   localStorage.setItem(
     ACCESS_KEY,
     JSON.stringify(data)
   );
+
 }
+
+
+/* =====================================================
+   ACCESS CHECK
+   ===================================================== */
 
 function hasValidAccess(){
 
-  const data = getAccessData();
+  const data =
+    getAccessData();
+
+  if(data.type === "owner"){
+    return true;
+  }
 
   if(data.accessUntil){
 
-    if(Date.now() < data.accessUntil){
+    if(
+      Date.now() <
+      data.accessUntil
+    ){
       return true;
     }
 
-    if(data.type === "qr"){
+    if(
+      data.type === "qr"
+    ){
       return false;
     }
+
   }
 
   if(data.trialStarted){
 
     const elapsed =
-      Date.now() - data.trialStarted;
+      Date.now() -
+      data.trialStarted;
 
-    if(elapsed < TRIAL_TIME){
+    if(
+      elapsed <
+      TRIAL_TIME
+    ){
       return true;
     }
+
   }
 
   return false;
+
 }
+
 
 function getRemainingTime(){
 
-  const data = getAccessData();
+  const data =
+    getAccessData();
+
+  if(
+    data.type === "owner"
+  ){
+    return Infinity;
+  }
 
   if(data.accessUntil){
 
     return Math.max(
       0,
-      data.accessUntil - Date.now()
+      data.accessUntil -
+      Date.now()
     );
+
   }
 
   if(data.trialStarted){
@@ -1456,81 +1810,157 @@ function getRemainingTime(){
     return Math.max(
       0,
       TRIAL_TIME -
-      (Date.now() - data.trialStarted)
+      (Date.now() -
+      data.trialStarted)
     );
+
   }
 
   return 0;
+
 }
+
+
+/* =====================================================
+   TIME FORMAT
+   ===================================================== */
 
 function formatTime(ms){
 
+  if(ms === Infinity){
+    return "∞";
+  }
+
   const totalSeconds =
-    Math.ceil(ms / 1000);
+    Math.ceil(
+      ms / 1000
+    );
 
   const days =
-    Math.floor(totalSeconds / 86400);
+    Math.floor(
+      totalSeconds /
+      86400
+    );
 
   const hours =
     Math.floor(
-      (totalSeconds % 86400) / 3600
+      (totalSeconds %
+      86400) / 3600
     );
 
   const minutes =
     Math.floor(
-      (totalSeconds % 3600) / 60
+      (totalSeconds %
+      3600) / 60
     );
 
   const seconds =
-    totalSeconds % 60;
+    totalSeconds %
+    60;
 
   if(days > 0){
-    return `${days}d ${hours}h ${minutes}m`;
+
+    return (
+      `${days}d ` +
+      `${hours}h ` +
+      `${minutes}m`
+    );
+
   }
 
   return (
-    String(minutes).padStart(2,"0") +
+    String(minutes)
+      .padStart(2,"0") +
     ":" +
-    String(seconds).padStart(2,"0")
+    String(seconds)
+      .padStart(2,"0")
   );
+
 }
+
+
+/* =====================================================
+   ACCESS SCREEN
+   ===================================================== */
 
 function showAccessScreen(){
 
   document
     .getElementById("accessScreen")
-    .classList.remove("hidden");
+    .classList.remove(
+      "hidden"
+    );
 
   updateAccessScreen();
+
 }
+
 
 function hideAccessScreen(){
 
   document
     .getElementById("accessScreen")
-    .classList.add("hidden");
+    .classList.add(
+      "hidden"
+    );
+
 }
+
 
 function updateAccessScreen(){
 
-  const data = getAccessData();
+  const data =
+    getAccessData();
 
   const title =
-    document.getElementById("accessTitle");
+    document.getElementById(
+      "accessTitle"
+    );
 
   const description =
-    document.getElementById("accessDescription");
+    document.getElementById(
+      "accessDescription"
+    );
 
   const timer =
-    document.getElementById("timerText");
+    document.getElementById(
+      "timerText"
+    );
 
   const startButton =
-    document.getElementById("startTrialButton");
+    document.getElementById(
+      "startTrialButton"
+    );
 
   const remaining =
     getRemainingTime();
 
-  if(data.type === "qr" && remaining > 0){
+
+  if(
+    data.type === "owner"
+  ){
+
+    title.textContent =
+      "👑 Owner / Tester Access";
+
+    description.textContent =
+      "Permanent PStyla testing access is active.";
+
+    timer.textContent =
+      "∞";
+
+    startButton.style.display =
+      "none";
+
+    return;
+
+  }
+
+
+  if(
+    data.type === "qr" &&
+    remaining > 0
+  ){
 
     title.textContent =
       "9-Day Access Active";
@@ -1539,15 +1969,22 @@ function updateAccessScreen(){
       "Your QR access is active. Enjoy PStyla!";
 
     timer.textContent =
-      formatTime(remaining);
+      formatTime(
+        remaining
+      );
 
     startButton.style.display =
       "none";
 
     return;
+
   }
 
-  if(data.trialStarted && remaining > 0){
+
+  if(
+    data.trialStarted &&
+    remaining > 0
+  ){
 
     title.textContent =
       "Free Trial";
@@ -1556,13 +1993,17 @@ function updateAccessScreen(){
       "Your 5-minute free trial is active.";
 
     timer.textContent =
-      formatTime(remaining);
+      formatTime(
+        remaining
+      );
 
     startButton.textContent =
       "🎮 CONTINUE";
 
     return;
+
   }
+
 
   if(data.trialStarted){
 
@@ -1579,7 +2020,9 @@ function updateAccessScreen(){
       "none";
 
     return;
+
   }
+
 
   title.textContent =
     "Free Trial";
@@ -1592,13 +2035,22 @@ function updateAccessScreen(){
 
   startButton.style.display =
     "inline-block";
+
 }
+
+
+/* =====================================================
+   START TRIAL
+   ===================================================== */
 
 function startTrial(){
 
-  const data = getAccessData();
+  const data =
+    getAccessData();
 
-  if(data.trialStarted){
+  if(
+    data.trialStarted
+  ){
     return;
   }
 
@@ -1608,24 +2060,116 @@ function startTrial(){
   data.type =
     "trial";
 
-  saveAccessData(data);
+  saveAccessData(
+    data
+  );
 
   hideAccessScreen();
 
   startAccessTimer();
+
 }
+
+
+/* =====================================================
+   REDEEM CODE
+   ===================================================== */
 
 function redeemCode(code){
 
   code =
-    code
-      .trim()
-      .toUpperCase();
+    String(code || "")
+      .trim();
 
   const message =
-    document.getElementById("redeemMessage");
+    document.getElementById(
+      "redeemMessage"
+    );
 
-  if(!VALID_QR_CODES.includes(code)){
+  const normalized =
+    code.toUpperCase();
+
+  /*
+     OWNER / TESTER
+  */
+
+  if(
+    normalized ===
+    OWNER_TESTER_CODE.toUpperCase()
+  ){
+
+    const data =
+      getAccessData();
+
+    data.type =
+      "owner";
+
+    data.owner =
+      true;
+
+    data.redeemedAt =
+      Date.now();
+
+    saveAccessData(
+      data
+    );
+
+    message.textContent =
+      "👑 Owner/tester access activated.";
+
+    message.style.color =
+      "#c084fc";
+
+    document
+      .getElementById(
+        "accessTitle"
+      )
+      .textContent =
+        "👑 Owner Access Active";
+
+    document
+      .getElementById(
+        "accessDescription"
+      )
+      .textContent =
+        "Permanent tester access is enabled.";
+
+    document
+      .getElementById(
+        "timerText"
+      )
+      .textContent =
+        "∞";
+
+    document
+      .getElementById(
+        "startTrialButton"
+      )
+      .style.display =
+        "none";
+
+    setTimeout(
+      ()=>{
+        hideAccessScreen();
+        startAccessTimer();
+      },
+      1000
+    );
+
+    return;
+
+  }
+
+
+  /*
+     NORMAL QR ACCESS
+  */
+
+  if(
+    !VALID_QR_CODES.includes(
+      normalized
+    )
+  ){
 
     message.textContent =
       "❌ Invalid QR / access code.";
@@ -1634,55 +2178,80 @@ function redeemCode(code){
       "#ef4444";
 
     return;
+
   }
 
-  const data = getAccessData();
+
+  const data =
+    getAccessData();
 
   data.type =
     "qr";
 
   data.accessUntil =
-    Date.now() + QR_ACCESS_TIME;
+    Date.now() +
+    QR_ACCESS_TIME;
 
   data.redeemedAt =
     Date.now();
 
   data.redeemCode =
-    code;
+    normalized;
 
-  saveAccessData(data);
+  saveAccessData(
+    data
+  );
 
   message.textContent =
-    "🎉 Thanks for redeeming this! You now have 9 days of access.";
+    "🎉 QR redeemed! You now have 9 days of access.";
 
   message.style.color =
     "#c084fc";
 
   document
-    .getElementById("accessTitle")
+    .getElementById(
+      "accessTitle"
+    )
     .textContent =
-      "Thanks for redeeming this!";
+      "🎉 QR Access Activated";
 
   document
-    .getElementById("accessDescription")
+    .getElementById(
+      "accessDescription"
+    )
     .textContent =
       "Your 9 days of PStyla access are now active.";
 
   document
-    .getElementById("timerText")
+    .getElementById(
+      "timerText"
+    )
     .textContent =
-      formatTime(QR_ACCESS_TIME);
+      formatTime(
+        QR_ACCESS_TIME
+      );
 
   document
-    .getElementById("startTrialButton")
+    .getElementById(
+      "startTrialButton"
+    )
     .style.display =
       "none";
 
-  setTimeout(()=>{
-    hideAccessScreen();
-    startAccessTimer();
-  },1800);
+  setTimeout(
+    ()=>{
+      hideAccessScreen();
+      startAccessTimer();
+    },
+    1000
+  );
+
 }
+
+
+/* =====================================================
+   ACCESS TIMER
+   ===================================================== */
 
 function startAccessTimer(){
 
@@ -1691,114 +2260,182 @@ function startAccessTimer(){
   );
 
   window.pstylaAccessTimer =
-    setInterval(()=>{
+    setInterval(
+      ()=>{
 
-      const remaining =
-        getRemainingTime();
+        const remaining =
+          getRemainingTime();
 
-      if(!hasValidAccess()){
+        if(
+          !hasValidAccess()
+        ){
 
-        clearInterval(
-          window.pstylaAccessTimer
-        );
+          clearInterval(
+            window.pstylaAccessTimer
+          );
 
-        showAccessScreen();
+          showAccessScreen();
 
-        updateAccessScreen();
+          updateAccessScreen();
 
-        return;
-      }
+          return;
 
-      const timer =
-        document.getElementById("timerText");
+        }
 
-      if(timer){
-        timer.textContent =
-          formatTime(remaining);
-      }
+        const timer =
+          document.getElementById(
+            "timerText"
+          );
 
-    },500);
+        if(timer){
+
+          timer.textContent =
+            formatTime(
+              remaining
+            );
+
+        }
+
+      },
+      500
+    );
+
 }
 
+
 /* =====================================================
-   QR LINK AUTO REDEMPTION
+   QR AUTO REDEMPTION
    ===================================================== */
 
 function checkQRLink(){
 
-  const params =
+  const searchParams =
     new URLSearchParams(
       window.location.search
     );
 
-  const redeem =
-    params.get("redeem");
+  const hashText =
+    window.location.hash
+      .replace(/^#/,"");
+
+  const hashParams =
+    new URLSearchParams(
+      hashText
+    );
+
+  let redeem =
+    searchParams.get(
+      "redeem"
+    );
 
   if(!redeem){
-    return;
+
+    redeem =
+      hashParams.get(
+        "redeem"
+      );
+
+  }
+
+  if(!redeem){
+    return false;
   }
 
   const code =
-    redeem.trim().toUpperCase();
+    decodeURIComponent(
+      redeem
+    )
+    .trim();
 
-  if(VALID_QR_CODES.includes(code)){
+  /*
+     Redeem immediately.
+     No manual code screen.
+  */
 
-    redeemCode(code);
+  redeemCode(code);
 
-    window.history.replaceState(
-      {},
-      document.title,
-      window.location.pathname
-    );
-  }
+  /*
+     Remove the QR parameter
+     after processing it.
+  */
+
+  window.history.replaceState(
+    {},
+    document.title,
+    window.location.pathname
+  );
+
+  return true;
+
 }
+
 
 /* =====================================================
    ACCESS BUTTONS
    ===================================================== */
 
 document
-  .getElementById("startTrialButton")
+  .getElementById(
+    "startTrialButton"
+  )
   .addEventListener(
     "click",
     startTrial
   );
 
+
 document
-  .getElementById("showRedeemButton")
+  .getElementById(
+    "showRedeemButton"
+  )
   .addEventListener(
     "click",
     ()=>{
 
       document
-        .getElementById("redeemArea")
-        .classList.toggle("show");
+        .getElementById(
+          "redeemArea"
+        )
+        .classList.toggle(
+          "show"
+        );
 
     }
   );
 
+
 document
-  .getElementById("redeemButton")
+  .getElementById(
+    "redeemButton"
+  )
   .addEventListener(
     "click",
     ()=>{
 
       redeemCode(
         document
-          .getElementById("redeemInput")
+          .getElementById(
+            "redeemInput"
+          )
           .value
       );
 
     }
   );
 
+
 document
-  .getElementById("redeemInput")
+  .getElementById(
+    "redeemInput"
+  )
   .addEventListener(
     "keydown",
     e=>{
 
-      if(e.key === "Enter"){
+      if(
+        e.key ===
+        "Enter"
+      ){
 
         redeemCode(
           e.target.value
@@ -1809,15 +2446,39 @@ document
     }
   );
 
+
 /* =====================================================
-   INITIAL ACCESS CHECK
+   INITIAL ACCESS
    ===================================================== */
 
 (function(){
 
-  checkQRLink();
+  /*
+     Check QR FIRST.
+     This prevents the access screen
+     from interrupting automatic redemption.
+  */
 
-  if(hasValidAccess()){
+  const qrDetected =
+    checkQRLink();
+
+  if(
+    qrDetected &&
+    hasValidAccess()
+  ){
+
+    hideAccessScreen();
+
+    startAccessTimer();
+
+    return;
+
+  }
+
+
+  if(
+    hasValidAccess()
+  ){
 
     hideAccessScreen();
 
@@ -1833,7 +2494,7 @@ document
 
 
 /* =====================================================
-   PSTYLA GAME DATABASE
+   GAME DATABASE
    ===================================================== */
 
 const gamesData = [
@@ -1989,8 +2650,12 @@ const gamesData = [
 
 ];
 
-document.getElementById("gameCount").textContent =
-  gamesData.length;
+document
+  .getElementById(
+    "gameCount"
+  )
+  .textContent =
+    gamesData.length;
 
 
 /* =====================================================
@@ -1998,14 +2663,23 @@ document.getElementById("gameCount").textContent =
    ===================================================== */
 
 const particleBox =
-  document.getElementById("particles");
+  document.getElementById(
+    "particles"
+  );
 
-for(let i=0;i<90;i++){
+for(
+  let i=0;
+  i<90;
+  i++
+){
 
   const p =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
-  p.className="particle";
+  p.className =
+    "particle";
 
   p.style.setProperty(
     "--x",
@@ -2046,14 +2720,43 @@ for(let i=0;i<90;i++){
    COLORS
    ===================================================== */
 
-const colors={
-  action:["#7c3aed","#170a29"],
-  arcade:["#0891b2","#06151a"],
-  racing:["#ef4444","#1a0707"],
-  sports:["#16a34a","#061409"],
-  platformer:["#2563eb","#071329"],
-  puzzle:["#f59e0b","#1b1004"],
-  casual:["#db2777","#190817"]
+const colors = {
+
+  action:[
+    "#7c3aed",
+    "#170a29"
+  ],
+
+  arcade:[
+    "#0891b2",
+    "#06151a"
+  ],
+
+  racing:[
+    "#ef4444",
+    "#1a0707"
+  ],
+
+  sports:[
+    "#16a34a",
+    "#061409"
+  ],
+
+  platformer:[
+    "#2563eb",
+    "#071329"
+  ],
+
+  puzzle:[
+    "#f59e0b",
+    "#1b1004"
+  ],
+
+  casual:[
+    "#db2777",
+    "#190817"
+  ]
+
 };
 
 
@@ -2062,14 +2765,20 @@ const colors={
    ===================================================== */
 
 const gamesBox =
-  document.getElementById("games");
+  document.getElementById(
+    "games"
+  );
+
 
 function createGame(game){
 
   const card =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
-  card.className="game";
+  card.className =
+    "game";
 
   card.dataset.name =
     game.n.toLowerCase();
@@ -2079,19 +2788,24 @@ function createGame(game){
 
   const pair =
     colors[game.c] ||
-    ["#8b5cf6","#100817"];
+    [
+      "#8b5cf6",
+      "#100817"
+    ];
+
+  /*
+     External games are no longer
+     actually external.
+  */
 
   const badge =
-    game.external
-      ? "EXTERNAL"
-      : "IN PSTYLA";
+    "IN PSTYLA";
 
   const version =
-    game.external
-      ? "EXTERNAL GAME"
-      : "IN-SITE GAME";
+    "IN-SITE GAME";
 
   card.innerHTML = `
+
     <div
       class="thumb"
       style="
@@ -2101,7 +2815,7 @@ function createGame(game){
       "
     >
 
-      <div class="badge ${game.external ? "external" : ""}">
+      <div class="badge">
         ${badge}
       </div>
 
@@ -2125,19 +2839,25 @@ function createGame(game){
         ${game.c}
       </div>
 
-      <div class="gameVersion ${game.external ? "external" : ""}">
+      <div class="gameVersion">
         ${version}
       </div>
 
-      <button class="play" type="button">
+      <button
+        class="play"
+        type="button"
+      >
         PLAY →
       </button>
 
     </div>
+
   `;
 
   card
-    .querySelector(".play")
+    .querySelector(
+      ".play"
+    )
     .addEventListener(
       "click",
       ()=>{
@@ -2146,64 +2866,89 @@ function createGame(game){
     );
 
   return card;
+
 }
 
-gamesData.forEach(game=>{
-  gamesBox.appendChild(
-    createGame(game)
-  );
-});
+
+gamesData.forEach(
+  game=>{
+    gamesBox.appendChild(
+      createGame(game)
+    );
+  }
+);
 
 
 /* =====================================================
-   GAME LAUNCH SYSTEM
+   GAME LAUNCH
    ===================================================== */
 
 const gameNotice =
-  document.getElementById("gameNotice");
+  document.getElementById(
+    "gameNotice"
+  );
 
 const noticeTitle =
-  document.getElementById("noticeTitle");
+  document.getElementById(
+    "noticeTitle"
+  );
 
 const noticeText =
-  document.getElementById("noticeText");
+  document.getElementById(
+    "noticeText"
+  );
 
 const noticeIcon =
-  document.getElementById("noticeIcon");
+  document.getElementById(
+    "noticeIcon"
+  );
 
 const noticeOpen =
-  document.getElementById("noticeOpen");
+  document.getElementById(
+    "noticeOpen"
+  );
 
-let selectedGame=null;
+let selectedGame =
+  null;
 
 const gamePlayer =
-  document.getElementById("gamePlayer");
+  document.getElementById(
+    "gamePlayer"
+  );
 
 const gameFrame =
-  document.getElementById("gameFrame");
+  document.getElementById(
+    "gameFrame"
+  );
 
 const playerTitle =
-  document.getElementById("playerTitle");
+  document.getElementById(
+    "playerTitle"
+  );
 
 const playerIcon =
-  document.getElementById("playerIcon");
+  document.getElementById(
+    "playerIcon"
+  );
 
-const openExternalGame =
-  document.getElementById("openExternalGame");
-
-let currentPlayingGame=null;
+let currentPlayingGame =
+  null;
 
 
 function openGame(game){
 
-  if(!hasValidAccess()){
+  if(
+    !hasValidAccess()
+  ){
 
     showAccessScreen();
 
     return;
+
   }
 
-  selectedGame=game;
+  selectedGame =
+    game;
 
   noticeTitle.textContent =
     game.n;
@@ -2211,25 +2956,20 @@ function openGame(game){
   noticeIcon.textContent =
     game.i;
 
-  if(game.external){
+  /*
+     EVERY game now stays inside PStyla.
+  */
 
-    noticeText.textContent =
-      "This is one of your preserved external games. It will open separately.";
+  noticeText.textContent =
+    "This game will load directly inside the PStyla game player. No new tab needed.";
 
-    noticeOpen.textContent =
-      "OPEN GAME ↗";
+  noticeOpen.textContent =
+    "PLAY INSIDE PSTYLA →";
 
-  }else{
+  gameNotice.classList.add(
+    "show"
+  );
 
-    noticeText.textContent =
-      "This game will load directly inside the PStyla game player.";
-
-    noticeOpen.textContent =
-      "PLAY INSIDE PSTYLA →";
-
-  }
-
-  gameNotice.classList.add("show");
 }
 
 
@@ -2241,48 +2981,45 @@ noticeOpen.addEventListener(
   "click",
   ()=>{
 
-    if(!selectedGame)return;
+    if(
+      !selectedGame
+    ){
+      return;
+    }
 
-    if(!hasValidAccess()){
+    if(
+      !hasValidAccess()
+    ){
 
-      gameNotice.classList.remove("show");
+      gameNotice.classList.remove(
+        "show"
+      );
 
-      selectedGame=null;
+      selectedGame =
+        null;
 
       showAccessScreen();
 
       return;
+
     }
 
-    const game=selectedGame;
+    const game =
+      selectedGame;
 
-    selectedGame=null;
+    selectedGame =
+      null;
 
-    gameNotice.classList.remove("show");
+    gameNotice.classList.remove(
+      "show"
+    );
 
-    savePlayed(game.n);
+    savePlayed(
+      game.n
+    );
 
-    if(game.external){
-
-      const opened =
-        window.open(
-          game.url,
-          "_blank",
-          "noopener,noreferrer"
-        );
-
-      if(!opened){
-
-        alert(
-          "Your browser blocked the game tab. Allow pop-ups for PStyla."
-        );
-
-      }
-
-      return;
-    }
-
-    currentPlayingGame=game;
+    currentPlayingGame =
+      game;
 
     playerTitle.textContent =
       game.n;
@@ -2290,19 +3027,34 @@ noticeOpen.addEventListener(
     playerIcon.textContent =
       game.i;
 
-    openExternalGame.style.display =
-      "none";
+    gameFrame.src =
+      "about:blank";
 
-    gameFrame.src="about:blank";
+    gamePlayer.classList.add(
+      "show"
+    );
 
-    gamePlayer.classList.add("show");
+    document.body.style.overflow =
+      "hidden";
 
-    document.body.style.overflow="hidden";
+    setTimeout(
+      ()=>{
 
-    setTimeout(()=>{
-      gameFrame.src =
-        game.gameUrl;
-    },50);
+        /*
+           Both normal and previously
+           external games are loaded here.
+        */
+
+        const url =
+          game.gameUrl ||
+          game.url;
+
+        gameFrame.src =
+          url;
+
+      },
+      50
+    );
 
   }
 );
@@ -2314,17 +3066,26 @@ noticeOpen.addEventListener(
 
 function closeGamePlayer(){
 
-  gameFrame.src="about:blank";
+  gameFrame.src =
+    "about:blank";
 
-  gamePlayer.classList.remove("show");
+  gamePlayer.classList.remove(
+    "show"
+  );
 
-  document.body.style.overflow="";
+  document.body.style.overflow =
+    "";
 
-  currentPlayingGame=null;
+  currentPlayingGame =
+    null;
+
 }
 
+
 document
-  .getElementById("closeGamePlayer")
+  .getElementById(
+    "closeGamePlayer"
+  )
   .addEventListener(
     "click",
     closeGamePlayer
@@ -2336,22 +3097,33 @@ document
    ===================================================== */
 
 document
-  .getElementById("reloadGame")
+  .getElementById(
+    "reloadGame"
+  )
   .addEventListener(
     "click",
     ()=>{
 
-      if(!currentPlayingGame)
+      if(
+        !currentPlayingGame
+      ){
         return;
+      }
 
       const url =
-        currentPlayingGame.gameUrl;
+        currentPlayingGame.gameUrl ||
+        currentPlayingGame.url;
 
-      gameFrame.src="about:blank";
+      gameFrame.src =
+        "about:blank";
 
-      setTimeout(()=>{
-        gameFrame.src=url;
-      },100);
+      setTimeout(
+        ()=>{
+          gameFrame.src =
+            url;
+        },
+        100
+      );
 
     }
   );
@@ -2362,14 +3134,19 @@ document
    ===================================================== */
 
 document
-  .getElementById("noticeCancel")
+  .getElementById(
+    "noticeCancel"
+  )
   .addEventListener(
     "click",
     ()=>{
 
-      gameNotice.classList.remove("show");
+      gameNotice.classList.remove(
+        "show"
+      );
 
-      selectedGame=null;
+      selectedGame =
+        null;
 
     }
   );
@@ -2379,11 +3156,17 @@ gameNotice.addEventListener(
   "click",
   e=>{
 
-    if(e.target===gameNotice){
+    if(
+      e.target ===
+      gameNotice
+    ){
 
-      gameNotice.classList.remove("show");
+      gameNotice.classList.remove(
+        "show"
+      );
 
-      selectedGame=null;
+      selectedGame =
+        null;
 
     }
 
@@ -2396,19 +3179,29 @@ gameNotice.addEventListener(
    ===================================================== */
 
 document
-  .getElementById("featuredPlay")
+  .getElementById(
+    "featuredPlay"
+  )
   .addEventListener(
     "click",
     ()=>{
 
       const stickmanHook =
         gamesData.find(
-          g=>g.n==="Stickman Hook"
+          g=>
+            g.n ===
+            "Stickman Hook"
         );
 
-      if(!stickmanHook)return;
+      if(
+        !stickmanHook
+      ){
+        return;
+      }
 
-      openGame(stickmanHook);
+      openGame(
+        stickmanHook
+      );
 
     }
   );
@@ -2419,15 +3212,23 @@ document
    ===================================================== */
 
 const search =
-  document.getElementById("search");
+  document.getElementById(
+    "search"
+  );
 
 const categories =
-  document.querySelectorAll(".category");
+  document.querySelectorAll(
+    ".category"
+  );
 
 const noResults =
-  document.getElementById("noResults");
+  document.getElementById(
+    "noResults"
+  );
 
-let currentCategory="all";
+let currentCategory =
+  "all";
+
 
 function updateGames(){
 
@@ -2436,46 +3237,62 @@ function updateGames(){
       .toLowerCase()
       .trim();
 
-  let count=0;
+  let count =
+    0;
 
   document
-    .querySelectorAll(".game")
-    .forEach(card=>{
+    .querySelectorAll(
+      ".game"
+    )
+    .forEach(
+      card=>{
 
-      const name =
-        card.dataset.name;
+        const name =
+          card.dataset.name;
 
-      const cat =
-        card.dataset.category;
+        const cat =
+          card.dataset.category;
 
-      const matchName =
-        name.includes(query);
+        const matchName =
+          name.includes(
+            query
+          );
 
-      const matchCategory =
-        currentCategory==="all" ||
-        cat===currentCategory;
+        const matchCategory =
+          currentCategory ===
+          "all" ||
+          cat ===
+          currentCategory;
 
-      if(matchName && matchCategory){
+        if(
+          matchName &&
+          matchCategory
+        ){
 
-        card.classList.remove(
-          "hidden"
-        );
+          card.classList.remove(
+            "hidden"
+          );
 
-        count++;
+          count++;
 
-      }else{
+        }else{
 
-        card.classList.add(
-          "hidden"
-        );
+          card.classList.add(
+            "hidden"
+          );
+
+        }
 
       }
-
-    });
+    );
 
   noResults.style.display =
-    count ? "none" : "block";
+    count
+      ? "none"
+      : "block";
+
 }
+
 
 search.addEventListener(
   "input",
@@ -2487,27 +3304,34 @@ search.addEventListener(
    CATEGORIES
    ===================================================== */
 
-categories.forEach(button=>{
+categories.forEach(
+  button=>{
 
-  button.addEventListener(
-    "click",
-    ()=>{
+    button.addEventListener(
+      "click",
+      ()=>{
 
-      categories.forEach(
-        b=>b.classList.remove("active")
-      );
+        categories.forEach(
+          b=>
+            b.classList.remove(
+              "active"
+            )
+        );
 
-      button.classList.add("active");
+        button.classList.add(
+          "active"
+        );
 
-      currentCategory =
-        button.dataset.category;
+        currentCategory =
+          button.dataset.category;
 
-      updateGames();
+        updateGames();
 
-    }
-  );
+      }
+    );
 
-});
+  }
+);
 
 
 /* =====================================================
@@ -2529,114 +3353,155 @@ function getRecent(){
     return [];
 
   }
+
 }
+
 
 function savePlayed(name){
 
-  let recent=getRecent();
+  let recent =
+    getRecent();
 
   recent =
     recent.filter(
-      x=>x!==name
+      x=>
+        x !== name
     );
 
-  recent.unshift(name);
+  recent.unshift(
+    name
+  );
 
   recent =
-    recent.slice(0,8);
+    recent.slice(
+      0,
+      8
+    );
 
   localStorage.setItem(
     "pstylaRecent",
-    JSON.stringify(recent)
+    JSON.stringify(
+      recent
+    )
   );
 
   loadRecent();
 
   updateAchievements();
+
 }
+
 
 function findGame(name){
 
   return gamesData.find(
-    x=>x.n===name
+    x=>
+      x.n === name
   );
 
 }
 
+
 function loadRecent(){
 
   const box =
-    document.getElementById("recent");
+    document.getElementById(
+      "recent"
+    );
 
   const recent =
     getRecent();
 
-  box.innerHTML="";
+  box.innerHTML =
+    "";
 
-  if(!recent.length){
+  if(
+    !recent.length
+  ){
 
-    box.innerHTML=`
+    box.innerHTML = `
       <div class="recentItem">
         🎮 Play a game and it'll appear here.
       </div>
     `;
 
     return;
+
   }
 
-  recent.forEach(name=>{
+  recent.forEach(
+    name=>{
 
-    const game =
-      findGame(name);
+      const game =
+        findGame(
+          name
+        );
 
-    if(!game)return;
+      if(
+        !game
+      ){
+        return;
+      }
 
-    const item =
-      document.createElement("div");
+      const item =
+        document.createElement(
+          "div"
+        );
 
-    item.className="recentItem";
+      item.className =
+        "recentItem";
 
-    item.innerHTML=`
-      <div style="font-size:35px">
-        ${game.i}
-      </div>
+      item.innerHTML = `
 
-      <strong>
-        ${game.n}
-      </strong>
+        <div style="font-size:35px">
+          ${game.i}
+        </div>
 
-      <div
-        style="
-          color:#777;
-          font-size:10px;
-          margin-top:4px
-        "
-      >
-        ${game.c.toUpperCase()}
-      </div>
+        <strong>
+          ${game.n}
+        </strong>
 
-      <button
-        class="play"
-        type="button"
-      >
-        PLAY AGAIN
-      </button>
-    `;
+        <div
+          style="
+            color:#777;
+            font-size:10px;
+            margin-top:4px
+          "
+        >
+          ${game.c.toUpperCase()}
+        </div>
 
-    item
-      .querySelector("button")
-      .addEventListener(
-        "click",
-        ()=>{
-          openGame(game);
-        }
+        <button
+          class="play"
+          type="button"
+        >
+          PLAY AGAIN
+        </button>
+
+      `;
+
+      item
+        .querySelector(
+          "button"
+        )
+        .addEventListener(
+          "click",
+          ()=>{
+            openGame(
+              game
+            );
+          }
+        );
+
+      box.appendChild(
+        item
       );
 
-    box.appendChild(item);
-
-  });
+    }
+  );
 
 }
+
 
 loadRecent();
 
@@ -2646,26 +3511,37 @@ loadRecent();
    ===================================================== */
 
 document
-  .getElementById("random")
+  .getElementById(
+    "random"
+  )
   .addEventListener(
     "click",
     ()=>{
 
       const visible =
         [
-          ...document.querySelectorAll(".game")
+          ...document.querySelectorAll(
+            ".game"
+          )
         ]
         .filter(
           card=>
-            !card.classList.contains("hidden")
+            !card.classList.contains(
+              "hidden"
+            )
         );
 
-      if(!visible.length)return;
+      if(
+        !visible.length
+      ){
+        return;
+      }
 
       const card =
         visible[
           Math.floor(
-            Math.random()*visible.length
+            Math.random() *
+            visible.length
           )
         ];
 
@@ -2676,11 +3552,19 @@ document
             card.dataset.name
         );
 
-      if(!game)return;
+      if(
+        !game
+      ){
+        return;
+      }
 
-      savePlayed(game.n);
+      savePlayed(
+        game.n
+      );
 
-      openGame(game);
+      openGame(
+        game
+      );
 
       card.scrollIntoView({
         behavior:"smooth",
@@ -2690,9 +3574,13 @@ document
       card.style.boxShadow =
         "0 0 50px rgba(168,85,247,.9)";
 
-      setTimeout(()=>{
-        card.style.boxShadow="";
-      },1500);
+      setTimeout(
+        ()=>{
+          card.style.boxShadow =
+            "";
+        },
+        1500
+      );
 
       localStorage.setItem(
         "pstylaLuckyPlayer",
@@ -2710,7 +3598,9 @@ document
    ===================================================== */
 
 document
-  .getElementById("homeButton")
+  .getElementById(
+    "homeButton"
+  )
   .addEventListener(
     "click",
     ()=>{
@@ -2725,63 +3615,41 @@ document
 
 
 /* =====================================================
-   NEW TAB
-   ===================================================== */
-
-document
-  .getElementById("newTab")
-  .addEventListener(
-    "click",
-    ()=>{
-
-      const currentUrl =
-        window.location.href;
-
-      const newWindow =
-        window.open(
-          currentUrl,
-          "_blank"
-        );
-
-      if(!newWindow){
-
-        alert(
-          "Your browser blocked the new tab. Allow pop-ups for PStyla."
-        );
-
-      }
-
-    }
-  );
-
-
-/* =====================================================
    INTRO
    ===================================================== */
 
 document
-  .getElementById("enter")
+  .getElementById(
+    "enter"
+  )
   .addEventListener(
     "click",
     ()=>{
 
       document
-        .getElementById("intro")
-        .classList.add("hide");
+        .getElementById(
+          "intro"
+        )
+        .classList.add(
+          "hide"
+        );
 
-      setTimeout(()=>{
+      setTimeout(
+        ()=>{
 
-        if(
-          !localStorage.getItem(
-            "pstylaTutorialDone"
-          )
-        ){
+          if(
+            !localStorage.getItem(
+              "pstylaTutorialDone"
+            )
+          ){
 
-          openTutorial();
+            openTutorial();
 
-        }
+          }
 
-      },500);
+        },
+        500
+      );
 
     }
   );
@@ -2791,7 +3659,7 @@ document
    TUTORIAL
    ===================================================== */
 
-const tutorialPages=[
+const tutorialPages = [
 
   {
     icon:"🎮",
@@ -2832,23 +3700,23 @@ const tutorialPages=[
     icon:"▶️",
     title:"Play Inside PStyla",
     text:
-      "The game player loads the game inside PStyla.",
+      "Every game now loads inside the PStyla player.",
     tips:[
+      "No game opens a new tab",
       "Games stay inside the PStyla player",
-      "PStyla's interface remains behind the game",
       "Use <b>Back to PStyla</b> when finished"
     ]
   },
 
   {
     icon:"🎣",
-    title:"Two Exceptions",
+    title:"Tiny Fishing & Among Us",
     text:
-      "Tiny Fishing and Among Us stay as your original external games.",
+      "Your preserved versions are still here.",
     tips:[
-      "They open in a separate tab",
-      "PStyla stays open",
-      "Your original versions are preserved"
+      "They now load inside PStyla",
+      "No separate browser tab is opened",
+      "PStyla stays in control"
     ]
   },
 
@@ -2877,39 +3745,62 @@ const tutorialPages=[
 
 ];
 
-let tutorialIndex=0;
+
+let tutorialIndex =
+  0;
 
 const tutorial =
-  document.getElementById("tutorial");
+  document.getElementById(
+    "tutorial"
+  );
 
 const tutorialIcon =
-  document.getElementById("tutorialIcon");
+  document.getElementById(
+    "tutorialIcon"
+  );
 
 const tutorialTitle =
-  document.getElementById("tutorialTitle");
+  document.getElementById(
+    "tutorialTitle"
+  );
 
 const tutorialText =
-  document.getElementById("tutorialText");
+  document.getElementById(
+    "tutorialText"
+  );
 
 const tutorialTips =
-  document.getElementById("tutorialTips");
+  document.getElementById(
+    "tutorialTips"
+  );
 
 const tutorialStep =
-  document.getElementById("tutorialStep");
+  document.getElementById(
+    "tutorialStep"
+  );
 
 const tutorialProgress =
-  document.getElementById("tutorialProgress");
+  document.getElementById(
+    "tutorialProgress"
+  );
 
 const tutorialBack =
-  document.getElementById("tutorialBack");
+  document.getElementById(
+    "tutorialBack"
+  );
 
 const tutorialNext =
-  document.getElementById("tutorialNext");
+  document.getElementById(
+    "tutorialNext"
+  );
+
 
 function renderTutorial(){
 
   const page =
-    tutorialPages[tutorialIndex];
+    tutorialPages[
+      tutorialIndex
+    ];
 
   tutorialIcon.textContent =
     page.icon;
@@ -2923,62 +3814,95 @@ function renderTutorial(){
   tutorialStep.textContent =
     `${tutorialIndex+1} / ${tutorialPages.length}`;
 
-  tutorialTips.innerHTML="";
+  tutorialTips.innerHTML =
+    "";
 
-  page.tips.forEach(tip=>{
+  page.tips.forEach(
+    tip=>{
 
-    const div =
-      document.createElement("div");
+      const div =
+        document.createElement(
+          "div"
+        );
 
-    div.className="tutorialTip";
+      div.className =
+        "tutorialTip";
 
-    div.innerHTML=tip;
+      div.innerHTML =
+        tip;
 
-    tutorialTips.appendChild(div);
+      tutorialTips.appendChild(
+        div
+      );
 
-  });
-
-  tutorialProgress.innerHTML="";
-
-  tutorialPages.forEach((_,index)=>{
-
-    const dot =
-      document.createElement("div");
-
-    dot.className="progressDot";
-
-    if(index===tutorialIndex){
-      dot.classList.add("active");
     }
+  );
 
-    tutorialProgress.appendChild(dot);
+  tutorialProgress.innerHTML =
+    "";
 
-  });
+  tutorialPages.forEach(
+    (_,index)=>{
+
+      const dot =
+        document.createElement(
+          "div"
+        );
+
+      dot.className =
+        "progressDot";
+
+      if(
+        index ===
+        tutorialIndex
+      ){
+
+        dot.classList.add(
+          "active"
+        );
+
+      }
+
+      tutorialProgress.appendChild(
+        dot
+      );
+
+    }
+  );
 
   tutorialBack.style.visibility =
-    tutorialIndex===0
+    tutorialIndex === 0
       ? "hidden"
       : "visible";
 
   tutorialNext.textContent =
-    tutorialIndex===
-    tutorialPages.length-1
+    tutorialIndex ===
+    tutorialPages.length - 1
       ? "Finish ✓"
       : "Next →";
+
 }
+
 
 function openTutorial(){
 
-  tutorialIndex=0;
+  tutorialIndex =
+    0;
 
   renderTutorial();
 
-  tutorial.classList.add("show");
+  tutorial.classList.add(
+    "show"
+  );
+
 }
+
 
 function closeTutorial(){
 
-  tutorial.classList.remove("show");
+  tutorial.classList.remove(
+    "show"
+  );
 
   localStorage.setItem(
     "pstylaTutorialDone",
@@ -2986,15 +3910,17 @@ function closeTutorial(){
   );
 
   updateAchievements();
+
 }
+
 
 tutorialNext.addEventListener(
   "click",
   ()=>{
 
     if(
-      tutorialIndex<
-      tutorialPages.length-1
+      tutorialIndex <
+      tutorialPages.length - 1
     ){
 
       tutorialIndex++;
@@ -3010,11 +3936,14 @@ tutorialNext.addEventListener(
   }
 );
 
+
 tutorialBack.addEventListener(
   "click",
   ()=>{
 
-    if(tutorialIndex>0){
+    if(
+      tutorialIndex > 0
+    ){
 
       tutorialIndex--;
 
@@ -3025,8 +3954,11 @@ tutorialBack.addEventListener(
   }
 );
 
+
 document
-  .getElementById("tutorialSkip")
+  .getElementById(
+    "tutorialSkip"
+  )
   .addEventListener(
     "click",
     closeTutorial
@@ -3038,32 +3970,51 @@ document
    ===================================================== */
 
 const modal =
-  document.getElementById("modal");
-
-document
-  .getElementById("updates")
-  .addEventListener(
-    "click",
-    ()=>{
-      modal.classList.add("show");
-    }
+  document.getElementById(
+    "modal"
   );
 
 document
-  .getElementById("close")
+  .getElementById(
+    "updates"
+  )
   .addEventListener(
     "click",
     ()=>{
-      modal.classList.remove("show");
+      modal.classList.add(
+        "show"
+      );
     }
   );
+
+
+document
+  .getElementById(
+    "close"
+  )
+  .addEventListener(
+    "click",
+    ()=>{
+      modal.classList.remove(
+        "show"
+      );
+    }
+  );
+
 
 modal.addEventListener(
   "click",
   e=>{
 
-    if(e.target===modal){
-      modal.classList.remove("show");
+    if(
+      e.target ===
+      modal
+    ){
+
+      modal.classList.remove(
+        "show"
+      );
+
     }
 
   }
@@ -3074,7 +4025,7 @@ modal.addEventListener(
    MUSIC
    ===================================================== */
 
-const musicTracks=[
+const musicTracks = [
 
   {
     name:"PStyla Track 1",
@@ -3088,67 +4039,106 @@ const musicTracks=[
 
 ];
 
-let musicIndex=-1;
-let musicFrame=null;
+
+let musicIndex =
+  -1;
+
+let musicFrame =
+  null;
+
 
 const musicButton =
-  document.getElementById("music");
+  document.getElementById(
+    "music"
+  );
 
 const musicToast =
-  document.getElementById("musicToast");
+  document.getElementById(
+    "musicToast"
+  );
 
 const musicStatus =
-  document.getElementById("musicStatus");
+  document.getElementById(
+    "musicStatus"
+  );
+
 
 function showMusicToast(text){
 
-  musicStatus.textContent=text;
+  musicStatus.textContent =
+    text;
 
-  musicToast.classList.add("show");
+  musicToast.classList.add(
+    "show"
+  );
 
   clearTimeout(
     window.musicTimer
   );
 
   window.musicTimer =
-    setTimeout(()=>{
-
-      musicToast.classList.remove("show");
-
-    },2200);
+    setTimeout(
+      ()=>{
+        musicToast.classList.remove(
+          "show"
+        );
+      },
+      2200
+    );
 
 }
 
+
 function clearMusic(){
 
-  if(musicFrame){
+  if(
+    musicFrame
+  ){
 
     musicFrame.remove();
 
-    musicFrame=null;
+    musicFrame =
+      null;
 
   }
 
 }
 
+
 function playMusic(index){
 
   clearMusic();
 
-  musicIndex=index;
+  musicIndex =
+    index;
 
   const track =
-    musicTracks[musicIndex];
+    musicTracks[
+      musicIndex
+    ];
 
   musicFrame =
-    document.createElement("iframe");
+    document.createElement(
+      "iframe"
+    );
 
-  musicFrame.style.position="fixed";
-  musicFrame.style.width="1px";
-  musicFrame.style.height="1px";
-  musicFrame.style.left="-100px";
-  musicFrame.style.top="-100px";
-  musicFrame.style.opacity="0";
+  musicFrame.style.position =
+    "fixed";
+
+  musicFrame.style.width =
+    "1px";
+
+  musicFrame.style.height =
+    "1px";
+
+  musicFrame.style.left =
+    "-100px";
+
+  musicFrame.style.top =
+    "-100px";
+
+  musicFrame.style.opacity =
+    "0";
 
   musicFrame.allow =
     "autoplay; encrypted-media";
@@ -3160,21 +4150,26 @@ function playMusic(index){
     musicFrame
   );
 
-  musicButton.textContent="🔊";
+  musicButton.textContent =
+    "🔊";
 
   showMusicToast(
-    "Music: "+track.name
+    "Music: " +
+    track.name
   );
 
 }
+
 
 function stopMusic(){
 
   clearMusic();
 
-  musicIndex=-1;
+  musicIndex =
+    -1;
 
-  musicButton.textContent="🔇";
+  musicButton.textContent =
+    "🔇";
 
   showMusicToast(
     "Music Off"
@@ -3182,27 +4177,33 @@ function stopMusic(){
 
 }
 
+
 musicButton.addEventListener(
   "click",
   ()=>{
 
-    if(musicIndex===-1){
+    if(
+      musicIndex ===
+      -1
+    ){
 
       playMusic(0);
 
       return;
+
     }
 
     if(
-      musicIndex<
-      musicTracks.length-1
+      musicIndex <
+      musicTracks.length - 1
     ){
 
       playMusic(
-        musicIndex+1
+        musicIndex + 1
       );
 
       return;
+
     }
 
     stopMusic();
@@ -3210,13 +4211,18 @@ musicButton.addEventListener(
   }
 );
 
+
 document.addEventListener(
   "keydown",
   e=>{
 
     if(
-      e.key.toLowerCase()==="m" &&
-      !["INPUT","TEXTAREA"].includes(
+      e.key.toLowerCase() ===
+      "m" &&
+      ![
+        "INPUT",
+        "TEXTAREA"
+      ].includes(
         document.activeElement.tagName
       )
     ){
@@ -3235,50 +4241,60 @@ document.addEventListener(
 
 function updateAchievements(){
 
-  const recent=getRecent();
+  const recent =
+    getRecent();
 
   const achievements =
     document.querySelectorAll(
       ".achievement"
     );
 
-  if(recent.length>=1){
+  if(
+    recent.length >= 1
+  ){
 
     achievements[0]
-      .style.borderColor="#a855f7";
+      .style.borderColor =
+        "#a855f7";
 
   }
 
-  if(recent.length>=5){
+  if(
+    recent.length >= 5
+  ){
 
     achievements[1]
-      .style.borderColor="#a855f7";
+      .style.borderColor =
+        "#a855f7";
 
   }
 
   if(
     localStorage.getItem(
       "pstylaLuckyPlayer"
-    )==="true"
+    ) === "true"
   ){
 
     achievements[2]
-      .style.borderColor="#a855f7";
+      .style.borderColor =
+        "#a855f7";
 
   }
 
   if(
     localStorage.getItem(
       "pstylaTutorialDone"
-    )==="true"
+    ) === "true"
   ){
 
     achievements[3]
-      .style.borderColor="#a855f7";
+      .style.borderColor =
+        "#a855f7";
 
   }
 
 }
+
 
 updateAchievements();
 
@@ -3291,18 +4307,30 @@ document.addEventListener(
   "keydown",
   e=>{
 
-    if(e.key==="Escape"){
+    if(
+      e.key ===
+      "Escape"
+    ){
 
-      modal.classList.remove("show");
+      modal.classList.remove(
+        "show"
+      );
 
-      tutorial.classList.remove("show");
+      tutorial.classList.remove(
+        "show"
+      );
 
-      gameNotice.classList.remove("show");
+      gameNotice.classList.remove(
+        "show"
+      );
 
-      selectedGame=null;
+      selectedGame =
+        null;
 
       if(
-        gamePlayer.classList.contains("show")
+        gamePlayer.classList.contains(
+          "show"
+        )
       ){
 
         closeGamePlayer();
@@ -3322,7 +4350,8 @@ document.addEventListener(
 window.addEventListener(
   "beforeunload",
   ()=>{
-    gameFrame.src="about:blank";
+    gameFrame.src =
+      "about:blank";
   }
 );
 
